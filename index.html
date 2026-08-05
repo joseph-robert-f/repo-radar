@@ -154,7 +154,9 @@
   .card .desc { color: var(--text-secondary); font-size: 13px; margin: 6px 0 0; min-height: 19px; }
   .card .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 12.5px; margin-top: 10px; }
   .card .meta b { font-weight: 600; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
-  .status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+  .card h3 a { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pin { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 400; border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; flex: none; }
+  .status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); font-weight: 400; margin-left: auto; flex: none; }
   .status .dot.hot { background: var(--recency-hot); }
   .status .dot.active { background: var(--recency-active); }
   .status .dot.idle { background: var(--recency-idle); }
@@ -216,7 +218,6 @@
     <button class="ghost" id="themeToggle">Theme</button>
   </header>
 
-  <div id="scaffoldBanner" class="banner hidden"></div>
   <div id="loadError" class="banner hidden"></div>
 
   <div id="app" class="hidden">
@@ -246,7 +247,7 @@
     </section>
 
     <section id="reposSection">
-      <h2>Repositories</h2>
+      <h2>Public repositories</h2>
       <div class="filters">
         <input type="search" id="q" placeholder="Filter repos…" aria-label="Filter repositories">
         <button class="ghost" data-f="all" aria-pressed="true">All</button>
@@ -391,6 +392,10 @@ function listBlock(title, items) {
 }
 
 function renderCards(d) {
+  if (!d.repos.length) {
+    $("#cards").innerHTML = `<div class="empty">No public repos in this snapshot yet — the collector hasn't run, or every repo is filtered out by <code>hide</code> in <code>config.json</code>.</div>`;
+    return;
+  }
   const q = $("#q").value.trim().toLowerCase();
   const rows = d.repos.filter((r) => repoMatches(r, q));
   $("#cards").innerHTML = rows.length ? rows.map((r) => {
@@ -406,10 +411,10 @@ function renderCards(d) {
            ${listBlock("Open issues", issues)}
            ${listBlock("Branches", branches)}
          </details>`
-      : r.redacted ? `<details class="more"><summary>Details</summary><div class="empty" style="padding:9px 0">Hidden — this repo is private and redaction is on.</div></details>` : "";
-    return `<article class="card">
-      <h3>${name}<span class="status"><span class="dot ${r.status}"></span>${STATUS_LABEL[r.status]}</span></h3>
-      <p class="desc">${esc(r.description || (r.redacted ? "Details hidden" : ""))}</p>
+      : "";
+    return `<article class="card${r.pinned ? " pinned" : ""}">
+      <h3>${name}${r.pinned ? `<span class="pin" title="Pinned in config.json">Pinned</span>` : ""}<span class="status"><span class="dot ${r.status}"></span>${STATUS_LABEL[r.status]}</span></h3>
+      <p class="desc">${esc(r.description || "")}</p>
       <div class="meta">
         ${r.language ? `<span>${esc(r.language)}</span>` : ""}
         <span><b>${r.counts.commits7d}</b> commits/7d</span>
@@ -466,18 +471,13 @@ fetch("data/snapshot.json", { cache: "no-store" })
   .then((d) => {
     DATA = d;
     $("#app").classList.remove("hidden");
-    if (d.sample) {
-      const b = $("#scaffoldBanner");
-      b.classList.remove("hidden");
-      b.innerHTML = "<b>Scaffold data.</b> This is generated sample data from <code>scripts/make-sample.mjs</code> — proof the page and Pages deploy work. Phase 2 replaces it with <code>scripts/collect.mjs</code> hitting the real GitHub API.";
-    }
     renderFreshness(d);
     renderTiles(d);
     renderTasks(d);
     renderHeatmap(d);
     renderCards(d);
     renderTable(d);
-    $("#foot").innerHTML = `${d.repos.length} repos tracked · snapshot generated ${esc(d.generatedAt)}${d.redactionEnabled ? " · private repos redacted" : ""}`;
+    $("#foot").innerHTML = `${d.repos.length} public repos tracked for ${esc(d.user)} · snapshot generated ${esc(d.generatedAt)} · private repos are not collected`;
   })
   .catch((err) => {
     const b = $("#loadError");

@@ -1,7 +1,8 @@
 {
   "username": "joseph-robert-f",
 
-  "redactPrivateRepos": true,
+  "includeForks": false,
+  "includeArchived": false,
 
   "hide": [],
   "pin": [],
