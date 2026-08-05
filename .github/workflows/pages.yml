@@ -1,0 +1,41 @@
+name: Deploy Pages
+
+# Phase 1: deploy-only. No token, no data collection — this exists purely to
+# prove the Pages pipeline works before we build the collector.
+# Phase 5 adds a `collect` job that runs before this one and commits a fresh
+# data/snapshot.json.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity check the snapshot is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('data/snapshot.json','utf8')); console.log('snapshot ok')"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

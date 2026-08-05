@@ -1,0 +1,27 @@
+{
+  "username": "joseph-robert-f",
+
+  "redactPrivateRepos": true,
+
+  "hide": [],
+  "pin": [],
+  "statusOverrides": {},
+
+  "lookback": {
+    "commitsPerRepo": 10,
+    "heatmapWeeks": 52
+  },
+
+  "staleDays": {
+    "pr": 7,
+    "draftPr": 14,
+    "branch": 14,
+    "issue": 30
+  },
+
+  "statusThresholdDays": {
+    "hot": 3,
+    "active": 14,
+    "idle": 60
+  }
+}

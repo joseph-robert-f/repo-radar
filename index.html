@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Repo Radar</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --plane: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --gridline: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --wash: rgba(11,11,11,0.035);
+
+    /* recency ramp — ordinal, one hue, validated light→dark */
+    --recency-hot: #1c5cab;
+    --recency-active: #2a78d6;
+    --recency-idle: #5598e7;
+    --recency-dormant: #86b6ef;
+
+    /* heatmap sequential blue */
+    --hm-0: #eceae4; --hm-1: #cde2fb; --hm-2: #9ec5f4; --hm-3: #5598e7; --hm-4: #1c5cab;
+
+    /* status — fixed, never themed */
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --status-critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --plane: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --gridline: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --wash: rgba(255,255,255,0.04);
+      --recency-hot: #86b6ef;
+      --recency-active: #5598e7;
+      --recency-idle: #2a78d6;
+      --recency-dormant: #184f95;
+      --hm-0: #2c2c2a; --hm-1: #184f95; --hm-2: #256abf; --hm-3: #3987e5; --hm-4: #86b6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plane: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --wash: rgba(255,255,255,0.04);
+    --recency-hot: #86b6ef;
+    --recency-active: #5598e7;
+    --recency-idle: #2a78d6;
+    --recency-dormant: #184f95;
+    --hm-0: #2c2c2a; --hm-1: #184f95; --hm-2: #256abf; --hm-3: #3987e5; --hm-4: #86b6ef;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--plane);
+    color: var(--text-primary);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 28px 20px 72px; }
+
+  /* ---------- header ---------- */
+  header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+  h1 { font-size: 21px; font-weight: 620; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--text-secondary); font-size: 13px; }
+  .spacer { flex: 1 1 auto; }
+  button.ghost {
+    font: inherit; font-size: 13px; color: var(--text-secondary);
+    background: none; border: 1px solid var(--border); border-radius: 7px;
+    padding: 5px 11px; cursor: pointer;
+  }
+  button.ghost:hover { background: var(--wash); color: var(--text-primary); }
+  button.ghost[aria-pressed="true"] { background: var(--wash); color: var(--text-primary); border-color: var(--baseline); }
+
+  .freshness { font-size: 12.5px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; }
+  .freshness.stale { color: var(--text-primary); }
+  .freshness.stale .dot { background: var(--status-warning); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: inline-block; }
+
+  /* ---------- stat tiles ---------- */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 26px; }
+  .tile {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px;
+    padding: 14px 16px 15px;
+  }
+  .tile .label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 5px; }
+  .tile .value { font-size: 27px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+  .tile.hero .value { font-size: 48px; letter-spacing: -0.03em; }
+  .tile .note { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 30px; }
+  h2 { font-size: 13px; font-weight: 620; text-transform: uppercase; letter-spacing: 0.055em; color: var(--text-secondary); margin: 0 0 11px; }
+  .panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; overflow: hidden; }
+  .empty { padding: 20px 16px; color: var(--text-secondary); font-size: 13.5px; }
+
+  /* ---------- task rows ---------- */
+  .row { display: flex; align-items: center; gap: 11px; padding: 11px 15px; border-top: 1px solid var(--gridline); text-decoration: none; color: inherit; }
+  .row:first-child { border-top: none; }
+  .row:hover { background: var(--wash); }
+  .row .kind { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); width: 52px; flex: none; }
+  .row .title { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+  .row .repo { color: var(--text-secondary); font-size: 12.5px; flex: none; }
+  .row .age { color: var(--text-muted); font-size: 12.5px; flex: none; width: 66px; text-align: right; font-variant-numeric: tabular-nums; }
+  .flag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); flex: none; }
+
+  /* ---------- heatmap ---------- */
+  .hm-scroll { overflow-x: auto; padding: 15px; }
+  .hm { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 11px); gap: 3px; width: max-content; }
+  .hm i { width: 11px; height: 11px; border-radius: 2.5px; background: var(--hm-0); display: block; }
+  .hm i[data-l="1"] { background: var(--hm-1); }
+  .hm i[data-l="2"] { background: var(--hm-2); }
+  .hm i[data-l="3"] { background: var(--hm-3); }
+  .hm i[data-l="4"] { background: var(--hm-4); }
+  .hm-legend { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); padding: 0 15px 14px; }
+  .hm-legend i { width: 11px; height: 11px; border-radius: 2.5px; display: block; }
+
+  /* ---------- filters ---------- */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  input[type="search"] {
+    font: inherit; font-size: 13.5px; padding: 6px 11px; border-radius: 7px;
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); min-width: 190px;
+  }
+  input[type="search"]:focus { outline: 2px solid var(--recency-active); outline-offset: 1px; }
+
+  /* ---------- repo cards ---------- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 11px; }
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; padding: 14px 15px; }
+  .card.pinned { border-color: var(--baseline); }
+  .card h3 { margin: 0; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .card h3 a { color: inherit; text-decoration: none; }
+  .card h3 a:hover { text-decoration: underline; }
+  .card .desc { color: var(--text-secondary); font-size: 13px; margin: 6px 0 0; min-height: 19px; }
+  .card .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 12.5px; margin-top: 10px; }
+  .card .meta b { font-weight: 600; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+  .status .dot.hot { background: var(--recency-hot); }
+  .status .dot.active { background: var(--recency-active); }
+  .status .dot.idle { background: var(--recency-idle); }
+  .status .dot.dormant { background: var(--recency-dormant); }
+  details.more { margin-top: 11px; border-top: 1px solid var(--gridline); padding-top: 9px; }
+  details.more summary { cursor: pointer; font-size: 12.5px; color: var(--text-secondary); list-style: none; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::before { content: "▸ "; color: var(--text-muted); }
+  details.more[open] summary::before { content: "▾ "; }
+  details.more ul { margin: 9px 0 0; padding: 0; list-style: none; }
+  details.more li { font-size: 12.5px; padding: 3px 0; color: var(--text-secondary); display: flex; gap: 8px; }
+  details.more li a { color: var(--text-primary); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  details.more li a:hover { text-decoration: underline; }
+  details.more li .when { color: var(--text-muted); flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
+  details.more .grouphd { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 9px; }
+
+  /* ---------- table view ---------- */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 15px; border-top: 1px solid var(--gridline); }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; border-top: none; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td a { color: var(--text-primary); }
+  .hidden { display: none !important; }
+
+  /* ---------- narrow screens ---------- */
+  @media (max-width: 640px) {
+    .wrap { padding: 20px 14px 56px; }
+    .tile.hero .value { font-size: 38px; }
+    /* task rows: let the title own a full line instead of ellipsing to nothing */
+    .row { flex-wrap: wrap; row-gap: 4px; padding: 10px 13px; }
+    .row .title { order: 1; flex: 1 1 100%; white-space: normal; overflow: visible; }
+    .row .kind { order: 2; width: auto; }
+    .row .flag { order: 3; }
+    .row .repo { order: 4; }
+    .row .age { order: 5; width: auto; margin-left: auto; }
+    th, td { padding: 7px 11px; }
+  }
+
+  #tip {
+    position: fixed; pointer-events: none; z-index: 50; opacity: 0;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--border); border-radius: 7px;
+    padding: 5px 9px; font-size: 12.5px; white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.13); transition: opacity .09s;
+  }
+  footer { color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--gridline); padding-top: 14px; }
+  .banner { background: var(--surface-1); border: 1px solid var(--status-warning); border-radius: 11px; padding: 14px 16px; margin-bottom: 20px; font-size: 13.5px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; background: var(--wash); padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Repo Radar</h1>
+    <span class="freshness" id="freshness"></span>
+    <span class="spacer"></span>
+    <button class="ghost" id="viewToggle" aria-pressed="false">Table view</button>
+    <button class="ghost" id="themeToggle">Theme</button>
+  </header>
+
+  <div id="scaffoldBanner" class="banner hidden"></div>
+  <div id="loadError" class="banner hidden"></div>
+
+  <div id="app" class="hidden">
+
+    <div class="tiles" id="tiles"></div>
+
+    <section id="attentionSection">
+      <h2>Needs attention</h2>
+      <div class="panel" id="attention"></div>
+    </section>
+
+    <section id="tasksSection">
+      <h2>Active tasks</h2>
+      <div class="panel" id="tasks"></div>
+    </section>
+
+    <section id="heatmapSection">
+      <h2>Commit activity · all repos, last 52 weeks</h2>
+      <div class="panel">
+        <div class="hm-scroll"><div class="hm" id="heatmap"></div></div>
+        <div class="hm-legend">
+          <span>Less</span>
+          <i style="background:var(--hm-0)"></i><i style="background:var(--hm-1)"></i><i style="background:var(--hm-2)"></i><i style="background:var(--hm-3)"></i><i style="background:var(--hm-4)"></i>
+          <span>More</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="reposSection">
+      <h2>Repositories</h2>
+      <div class="filters">
+        <input type="search" id="q" placeholder="Filter repos…" aria-label="Filter repositories">
+        <button class="ghost" data-f="all" aria-pressed="true">All</button>
+        <button class="ghost" data-f="active" aria-pressed="false">Active</button>
+        <button class="ghost" data-f="prs" aria-pressed="false">Has open PRs</button>
+        <button class="ghost" data-f="dormant" aria-pressed="false">Dormant</button>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section id="tableSection" class="hidden">
+      <h2>All data</h2>
+      <div class="panel" style="overflow-x:auto"><table id="table"></table></div>
+    </section>
+
+    <footer id="foot"></footer>
+  </div>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const STATUS_LABEL = { hot: "Hot", active: "Active", idle: "Idle", dormant: "Dormant" };
+const KIND_LABEL = { pr: "PR", issue: "Issue", branch: "Branch" };
+
+function relTime(iso) {
+  const d = (Date.now() - Date.parse(iso)) / 86400000;
+  if (d < 0.042) return "just now";
+  if (d < 1) return `${Math.round(d * 24)}h ago`;
+  if (d < 30) return `${Math.round(d)}d ago`;
+  if (d < 365) return `${Math.round(d / 30)}mo ago`;
+  return `${(d / 365).toFixed(1)}y ago`;
+}
+function ageLabel(days) {
+  if (days < 1) return "<1d";
+  if (days < 90) return `${Math.round(days)}d`;
+  return `${Math.round(days / 30)}mo`;
+}
+
+/* ---------- theme ---------- */
+$("#themeToggle").addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const sysDark = matchMedia("(prefers-color-scheme: dark)").matches;
+  const next = cur ? (cur === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
+  document.documentElement.setAttribute("data-theme", next);
+});
+
+/* ---------- tooltip ---------- */
+const tip = $("#tip");
+function showTip(e, text) {
+  tip.textContent = text;
+  tip.style.opacity = "1";
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 12, y = e.clientY - r.height - 10;
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 12;
+  if (y < 8) y = e.clientY + 16;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => (tip.style.opacity = "0");
+
+/* ---------- render ---------- */
+let DATA = null;
+let filter = "all";
+
+function renderTiles(d) {
+  const s = d.summary;
+  const tiles = [
+    { label: "Commits this week", value: s.commits7d, note: "across all repos", hero: true },
+    { label: "Open PRs", value: s.openPRs },
+    { label: "Open issues", value: s.openIssues },
+    { label: "Active repos", value: `${s.activeRepos}`, note: `of ${s.repos} tracked` },
+    { label: "Needs attention", value: s.needsAttention, note: s.needsAttention ? "stale items below" : "all clear" },
+  ];
+  $("#tiles").innerHTML = tiles.map((t) => `
+    <div class="tile${t.hero ? " hero" : ""}">
+      <div class="label">${esc(t.label)}</div>
+      <div class="value">${esc(t.value)}</div>
+      ${t.note ? `<div class="note">${esc(t.note)}</div>` : ""}
+    </div>`).join("");
+}
+
+function taskRow(t, showFlag) {
+  const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
+  const tag = t.url ? "a" : "div";
+  const flag = showFlag
+    ? `<span class="flag"><span class="dot" style="background:${t.ageInDays > 30 ? "var(--status-critical)" : "var(--status-warning)"}"></span>Stale</span>`
+    : t.isDraft ? `<span class="flag"><span class="dot" style="background:var(--status-serious)"></span>Draft</span>` : "";
+  return `<${tag} class="row"${href}>
+    <span class="kind">${KIND_LABEL[t.type]}</span>
+    <span class="title">${esc(t.title)}</span>
+    ${flag}
+    <span class="repo">${esc(t.repo)}</span>
+    <span class="age">${ageLabel(t.ageInDays)}</span>
+  </${tag}>`;
+}
+
+function renderTasks(d) {
+  const open = d.tasks.filter((t) => !t.stale);
+  $("#attention").innerHTML = d.attention.length
+    ? d.attention.map((t) => taskRow(t, true)).join("")
+    : `<div class="empty">Nothing stale. Every open PR, assigned issue, and live branch has moved recently.</div>`;
+  $("#tasks").innerHTML = open.length
+    ? open.map((t) => taskRow(t, false)).join("")
+    : `<div class="empty">No open PRs, assigned issues, or unmerged branches outside the attention list.</div>`;
+}
+
+function renderHeatmap(d) {
+  const days = d.heatmap || [];
+  if (!days.length) { $("#heatmapSection").classList.add("hidden"); return; }
+  const max = Math.max(1, ...days.map((x) => x.count));
+  const lvl = (n) => (n === 0 ? 0 : Math.min(4, Math.ceil((n / max) * 4)));
+  // pad so the first column starts on Sunday
+  const lead = new Date(days[0].date + "T00:00:00Z").getUTCDay();
+  const pad = Array.from({ length: lead }, () => null);
+  $("#heatmap").innerHTML = pad.map(() => `<i style="visibility:hidden"></i>`).join("")
+    + days.map((x) => `<i data-l="${lvl(x.count)}" data-d="${x.date}" data-n="${x.count}"></i>`).join("");
+}
+$("#heatmap").addEventListener("mouseover", (e) => {
+  const c = e.target.closest("i[data-d]"); if (!c) return;
+  const n = +c.dataset.n;
+  showTip(e, `${n} commit${n === 1 ? "" : "s"} · ${c.dataset.d}`);
+});
+$("#heatmap").addEventListener("mousemove", (e) => {
+  const c = e.target.closest("i[data-d]"); if (!c) { hideTip(); return; }
+  const n = +c.dataset.n;
+  showTip(e, `${n} commit${n === 1 ? "" : "s"} · ${c.dataset.d}`);
+});
+$("#heatmap").addEventListener("mouseleave", hideTip);
+
+function repoMatches(r, q) {
+  if (q && !(`${r.name} ${r.description || ""} ${r.language || ""}`.toLowerCase().includes(q))) return false;
+  if (filter === "active") return r.status === "hot" || r.status === "active";
+  if (filter === "prs") return r.counts.openPRs > 0;
+  if (filter === "dormant") return r.status === "dormant";
+  return true;
+}
+
+function listBlock(title, items) {
+  if (!items.length) return "";
+  return `<div class="grouphd">${esc(title)}</div><ul>${items.join("")}</ul>`;
+}
+
+function renderCards(d) {
+  const q = $("#q").value.trim().toLowerCase();
+  const rows = d.repos.filter((r) => repoMatches(r, q));
+  $("#cards").innerHTML = rows.length ? rows.map((r) => {
+    const name = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name);
+    const commits = r.commits.map((c) => `<li><a href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.message)}</a><span class="when">${relTime(c.date)}</span></li>`);
+    const prs = r.openPRs.map((p) => `<li><a href="${esc(p.url || "#")}" target="_blank" rel="noopener">#${p.number} ${esc(p.title)}</a><span class="when">${ageLabel(p.ageInDays)}</span></li>`);
+    const issues = r.openIssues.map((i) => `<li><a href="${esc(i.url || "#")}" target="_blank" rel="noopener">#${i.number} ${esc(i.title)}</a><span class="when">${ageLabel(i.ageInDays)}</span></li>`);
+    const branches = r.branches.map((b) => `<li><a href="${esc(r.url ? r.url + "/tree/" + b.name : "#")}" target="_blank" rel="noopener">${esc(b.name)}</a><span class="when">${b.unmergedCommits} ahead</span></li>`);
+    const detail = commits.length || prs.length || issues.length || branches.length
+      ? `<details class="more"><summary>Details</summary>
+           ${listBlock("Recent commits", commits)}
+           ${listBlock("Open PRs", prs)}
+           ${listBlock("Open issues", issues)}
+           ${listBlock("Branches", branches)}
+         </details>`
+      : r.redacted ? `<details class="more"><summary>Details</summary><div class="empty" style="padding:9px 0">Hidden — this repo is private and redaction is on.</div></details>` : "";
+    return `<article class="card">
+      <h3>${name}<span class="status"><span class="dot ${r.status}"></span>${STATUS_LABEL[r.status]}</span></h3>
+      <p class="desc">${esc(r.description || (r.redacted ? "Details hidden" : ""))}</p>
+      <div class="meta">
+        ${r.language ? `<span>${esc(r.language)}</span>` : ""}
+        <span><b>${r.counts.commits7d}</b> commits/7d</span>
+        <span><b>${r.counts.openPRs}</b> PRs</span>
+        <span><b>${r.counts.openIssues}</b> issues</span>
+        <span>${relTime(r.pushedAt)}</span>
+      </div>
+      ${detail}
+    </article>`;
+  }).join("") : `<div class="empty">No repos match that filter.</div>`;
+}
+
+function renderTable(d) {
+  const head = `<thead><tr><th>Repo</th><th>Status</th><th>Language</th><th class="num">Commits 7d</th><th class="num">PRs</th><th class="num">Issues</th><th class="num">Branches</th><th>Last push</th></tr></thead>`;
+  const body = d.repos.map((r) => `<tr>
+    <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</td>
+    <td>${STATUS_LABEL[r.status]}</td>
+    <td>${esc(r.language || "—")}</td>
+    <td class="num">${r.counts.commits7d}</td>
+    <td class="num">${r.counts.openPRs}</td>
+    <td class="num">${r.counts.openIssues}</td>
+    <td class="num">${r.counts.branches}</td>
+    <td>${relTime(r.pushedAt)}</td>
+  </tr>`).join("");
+  $("#table").innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+function renderFreshness(d) {
+  const hrs = (Date.now() - Date.parse(d.generatedAt)) / 3600000;
+  const el = $("#freshness");
+  el.className = "freshness" + (hrs > 24 ? " stale" : "");
+  el.innerHTML = hrs > 24
+    ? `<span class="dot"></span>Snapshot is ${Math.round(hrs / 24)} day(s) old — the refresh job may be failing`
+    : `Updated ${relTime(d.generatedAt)}`;
+}
+
+/* ---------- filters ---------- */
+$("#q").addEventListener("input", () => renderCards(DATA));
+document.querySelectorAll("[data-f]").forEach((b) => b.addEventListener("click", () => {
+  filter = b.dataset.f;
+  document.querySelectorAll("[data-f]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  renderCards(DATA);
+}));
+$("#viewToggle").addEventListener("click", (e) => {
+  const on = e.target.getAttribute("aria-pressed") !== "true";
+  e.target.setAttribute("aria-pressed", String(on));
+  $("#tableSection").classList.toggle("hidden", !on);
+  ["#reposSection", "#heatmapSection"].forEach((s) => $(s).classList.toggle("hidden", on));
+});
+
+/* ---------- boot ---------- */
+fetch("data/snapshot.json", { cache: "no-store" })
+  .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+  .then((d) => {
+    DATA = d;
+    $("#app").classList.remove("hidden");
+    if (d.sample) {
+      const b = $("#scaffoldBanner");
+      b.classList.remove("hidden");
+      b.innerHTML = "<b>Scaffold data.</b> This is generated sample data from <code>scripts/make-sample.mjs</code> — proof the page and Pages deploy work. Phase 2 replaces it with <code>scripts/collect.mjs</code> hitting the real GitHub API.";
+    }
+    renderFreshness(d);
+    renderTiles(d);
+    renderTasks(d);
+    renderHeatmap(d);
+    renderCards(d);
+    renderTable(d);
+    $("#foot").innerHTML = `${d.repos.length} repos tracked · snapshot generated ${esc(d.generatedAt)}${d.redactionEnabled ? " · private repos redacted" : ""}`;
+  })
+  .catch((err) => {
+    const b = $("#loadError");
+    b.classList.remove("hidden");
+    b.innerHTML = `<b>Couldn't load data/snapshot.json</b> (${esc(err.message)}).<br>
+      Opening this file directly with <code>file://</code> won't work — browsers block the fetch.
+      Run <code>python3 -m http.server 8000</code> in the repo and open <code>http://localhost:8000</code>.`;
+  });
+</script>
+</body>
+</html>
