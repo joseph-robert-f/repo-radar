@@ -87,7 +87,7 @@ async function gql(query, variables = {}, attempt = 1) {
 
 /* ------------------------------------------------------- phase 1: repos */
 
-const REPOS_QUERY = `
+export const REPOS_QUERY = `
 query Repos($login: String!, $cursor: String, $page: Int!, $commits: Int!) {
   rateLimit { limit cost remaining resetAt }
   user(login: $login) {
@@ -230,6 +230,25 @@ function normalizeRepo(node, login) {
 
 /* --------------------------------------------- phase 2: year of commits */
 
+/** One aliased `history` block per repo in the batch. */
+export function buildHistoryQuery(count) {
+  const decls = ["$login: String!", "$since: GitTimestamp!", "$page: Int!"];
+  const parts = [];
+  for (let n = 0; n < count; n++) {
+    decls.push(`$n${n}: String!`, `$c${n}: String`);
+    parts.push(`
+  r${n}: repository(owner: $login, name: $n${n}) {
+    defaultBranchRef { target { ... on Commit {
+      history(first: $page, since: $since, after: $c${n}) {
+        pageInfo { hasNextPage endCursor }
+        nodes { committedDate author { user { login } } }
+      }
+    } } }
+  }`);
+  }
+  return `query Hist(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
+}
+
 /**
  * The heatmap needs a year of daily counts, which the 10-commit preview above
  * can't supply. Fetch dates only (cheap fields) for every repo, several repos
@@ -246,29 +265,13 @@ async function fetchCommitDates(login, repos, since) {
     let live = batch.filter((r) => !state.get(r.name).done);
 
     while (live.length) {
-      const decls = ["$login: String!", "$since: GitTimestamp!", "$page: Int!"];
-      const parts = [];
-      live.forEach((r, n) => {
-        decls.push(`$n${n}: String!`, `$c${n}: String`);
-        parts.push(`
-  r${n}: repository(owner: $login, name: $n${n}) {
-    defaultBranchRef { target { ... on Commit {
-      history(first: $page, since: $since, after: $c${n}) {
-        pageInfo { hasNextPage endCursor }
-        nodes { committedDate author { user { login } } }
-      }
-    } } }
-  }`);
-      });
-
       const vars = { login, since, page: HISTORY_PAGE };
       live.forEach((r, n) => {
         vars[`n${n}`] = r.name;
         vars[`c${n}`] = state.get(r.name).cursor;
       });
 
-      const query = `query Hist(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
-      const data = await gql(query, vars);
+      const data = await gql(buildHistoryQuery(live.length), vars);
 
       const next = [];
       live.forEach((r, n) => {
@@ -305,6 +308,20 @@ async function fetchCommitDates(login, repos, since) {
 
 /* ------------------------------------------- phase 3: how far ahead? */
 
+/** One aliased default-branch-vs-branch comparison per job in the batch. */
+export function buildCompareQuery(count) {
+  const decls = ["$login: String!"];
+  const parts = [];
+  for (let n = 0; n < count; n++) {
+    decls.push(`$n${n}: String!`, `$q${n}: String!`, `$h${n}: String!`);
+    parts.push(`
+  c${n}: repository(owner: $login, name: $n${n}) {
+    ref(qualifiedName: $q${n}) { compare(headRef: $h${n}) { aheadBy } }
+  }`);
+  }
+  return `query Cmp(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
+}
+
 /**
  * `unmergedCommits` is the number this dashboard exists for: work sitting on a
  * branch that hasn't landed. The API only gives it via a comparison against the
@@ -319,16 +336,6 @@ async function fetchBranchLeads(login, repos) {
 
   for (let i = 0; i < jobs.length; i += COMPARE_BATCH) {
     const batch = jobs.slice(i, i + COMPARE_BATCH);
-    const decls = ["$login: String!"];
-    const parts = [];
-    batch.forEach((j, n) => {
-      decls.push(`$n${n}: String!`, `$q${n}: String!`, `$h${n}: String!`);
-      parts.push(`
-  c${n}: repository(owner: $login, name: $n${n}) {
-    ref(qualifiedName: $q${n}) { compare(headRef: $h${n}) { aheadBy } }
-  }`);
-    });
-
     const vars = { login };
     batch.forEach((j, n) => {
       vars[`n${n}`] = j.repo.name;
@@ -336,8 +343,7 @@ async function fetchBranchLeads(login, repos) {
       vars[`h${n}`] = j.branch.name;
     });
 
-    const query = `query Cmp(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
-    const data = await gql(query, vars);
+    const data = await gql(buildCompareQuery(batch.length), vars);
     batch.forEach((j, n) => {
       j.branch.unmergedCommits = data[`c${n}`]?.ref?.compare?.aheadBy ?? 0;
     });
@@ -418,7 +424,11 @@ async function main() {
   console.log(`wrote ${outPath}`);
 }
 
-main().catch((err) => {
-  console.error(`\ncollect failed: ${err.message}`);
-  process.exit(1);
-});
+// Only run when invoked directly — the query builders above are imported by
+// scripts/validate-queries.mjs, which must not trigger a collect.
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((err) => {
+    console.error(`\ncollect failed: ${err.message}`);
+    process.exit(1);
+  });
+}

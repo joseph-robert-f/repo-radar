@@ -107,12 +107,19 @@ data/snapshot.json            generated; what the page reads
 scripts/collect.mjs           network + orchestration: GraphQL → normalized repos
 scripts/derive.mjs            pure logic: status, staleness, tasks, heatmap, guards
 scripts/selftest.mjs          offline tests for derive.mjs — run this before pushing
+scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's schema
 .github/workflows/pages.yml   collect on a 6h cron, then deploy from main
 ```
 
 `collect.mjs` and `derive.mjs` are split so the interesting logic is testable without a
 token or a network. If you add a rule about what counts as stale, active, or a task, it
 goes in `derive.mjs` and gets a test in `selftest.mjs`.
+
+The queries are the one part `selftest.mjs` can't reach, so they get their own check:
+`validate-queries.mjs` imports the real query builders from `collect.mjs` and validates
+them against GitHub's published SDL. Run it after touching a query. It needs two dev
+deps (`npm i --no-save @octokit/graphql-schema graphql`), which is why it isn't part of
+the default test run and why the workflow step is `continue-on-error`.
 
 ---
 
@@ -197,7 +204,8 @@ job it does, validate, then style.
 
 ## Verification checklist
 
-- [x] `node scripts/selftest.mjs` passes
+- [x] `node scripts/selftest.mjs` passes (23 checks)
+- [x] All three GraphQL documents validate against GitHub's published schema
 - [x] Page renders in light, dark, and at 390px with no console errors
 - [x] Snapshot contains no private repo names, no `redacted`/`sample` flags
 - [ ] A real collect run returns repo data, not 401 — **needs a live Actions run**
@@ -205,6 +213,11 @@ job it does, validate, then style.
 - [ ] Pages URL loads with real data
 - [ ] A second run with no changes commits nothing
 - [ ] Rate-limit headroom logged in the workflow output
+
+The unchecked items all need one thing: a `workflow_dispatch` run on GitHub. They
+couldn't be done from the sandbox this was built in — its proxy blocks the GraphQL
+endpoint and scopes REST to this repo alone, so there was no way to reach the live API.
+Everything reachable offline was verified instead, including the queries themselves.
 
 ---
 

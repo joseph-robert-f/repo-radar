@@ -38,6 +38,15 @@ jobs:
       - name: Self-test the derivation logic
         run: node scripts/selftest.mjs
 
+      - name: Validate the GraphQL queries against GitHub's schema
+        # Non-blocking: it needs dev deps this repo otherwise doesn't have, and
+        # a flaky npm shouldn't stop a data refresh. When it does fail it names
+        # the exact field GitHub changed, which beats reading a 422 body.
+        continue-on-error: true
+        run: |
+          npm i --no-save --no-audit --no-fund @octokit/graphql-schema graphql
+          node scripts/validate-queries.mjs
+
       - name: Collect public repo activity
         env:
           # A fine-grained PAT with read-only Metadata/Contents/Pull requests/

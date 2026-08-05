@@ -111,6 +111,17 @@ DASHBOARD_TOKEN=github_pat_… node scripts/collect.mjs
 python3 -m http.server 8000                  # then open http://localhost:8000
 ```
 
+After touching a GraphQL query, check it against GitHub's published schema — this
+catches a typo'd field or a retired enum without a token or a workflow run:
+
+```bash
+npm i --no-save @octokit/graphql-schema graphql
+node scripts/validate-queries.mjs
+```
+
+Those are the only dependencies anywhere in the project, they're dev-only, and
+`--no-save` keeps them out of the repo (there is no `package.json`).
+
 Opening `index.html` via `file://` won't work — browsers block the `fetch` of
 `data/snapshot.json`. The page tells you this if you try.
 
@@ -125,6 +136,7 @@ data/snapshot.json            generated; what the page reads
 scripts/collect.mjs           fetches from the GraphQL API, writes the snapshot
 scripts/derive.mjs            pure logic: status, staleness, tasks, heatmap
 scripts/selftest.mjs          offline tests for derive.mjs — no network
+scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's schema
 .github/workflows/pages.yml   collect on a 6h cron, then deploy from main
 ```
 
