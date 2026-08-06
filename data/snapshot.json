@@ -1,23 +1,1285 @@
 {
-  "generatedAt": "2026-08-05T22:45:50.616Z",
+  "generatedAt": "2026-08-06T02:27:13.811Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
-    "repos": 0,
-    "activeRepos": 0,
-    "openPRs": 0,
+    "repos": 13,
+    "activeRepos": 6,
+    "openPRs": 5,
     "openIssues": 0,
-    "commits7d": 0,
-    "needsAttention": 0
+    "commits7d": 37,
+    "needsAttention": 13
   },
-  "repos": [],
-  "tasks": [],
-  "attention": [],
-  "heatmap": [
+  "repos": [
     {
-      "date": "2025-08-06",
-      "count": 0
+      "name": "repo-radar",
+      "url": "https://github.com/joseph-robert-f/repo-radar",
+      "description": "Phase 1: scaffold, sample data, Pages deploy",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-06T02:26:58Z",
+      "daysSinceLastPush": 0,
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "2cdb23f",
+          "message": "Phase 2: collect live data from public repos, drop private repo track…",
+          "date": "2026-08-06T02:26:58Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/2cdb23f5a35b81300b12f067d8a9e2139835a7bf"
+        },
+        {
+          "sha": "69978a9",
+          "message": "test: validate the GraphQL documents against GitHub's published schema",
+          "date": "2026-08-05T22:50:56Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/69978a9b9008ff395f88f42c954354c12de72d3c"
+        },
+        {
+          "sha": "26030eb",
+          "message": "feat: collect live data from public repos, drop private repo tracking",
+          "date": "2026-08-05T22:47:25Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/26030eb983a396e6d26732dc8aa8e41010f66e5b"
+        },
+        {
+          "sha": "541334b",
+          "message": "Initial commit",
+          "date": "2026-08-05T22:15:55Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/541334b87ad5e6deff69968976815061ba2e9132"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 4,
+        "commits30d": 4,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
     },
+    {
+      "name": "headless-blender-character-builder",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder",
+      "description": "Deterministic, keyless Blender 4.5 pipeline for bounded JSON characters, inspectable .blend/GLB, and print-oriented STL artifacts.",
+      "language": "Python",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-05T15:12:01Z",
+      "daysSinceLastPush": 0.5,
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "720a716",
+          "message": "Merge pull request #5 from joseph-robert-f/agent/fix-main-ci",
+          "date": "2026-08-05T15:10:34Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/720a7162f9f1f17b312b8e2df29aabb229d4a9aa"
+        },
+        {
+          "sha": "5750c9f",
+          "message": "Fix BuildKit parent image reference",
+          "date": "2026-08-05T14:50:00Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/5750c9fff1bb43f7184e54dcf4eb71a0cc2ef4dc"
+        },
+        {
+          "sha": "679b02c",
+          "message": "Fix main CI portability",
+          "date": "2026-08-05T14:38:07Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/679b02caca6a2ecdd0d4d6315a235eca1af4839d"
+        },
+        {
+          "sha": "4442bf2",
+          "message": "Merge pull request #1 from joseph-robert-f/agent/organize-readme",
+          "date": "2026-08-04T14:15:43Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/4442bf2f811fca5de67344a52e591caf93322554"
+        },
+        {
+          "sha": "4fc1b6e",
+          "message": "Organize public repository onboarding",
+          "date": "2026-08-04T12:04:54Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/4fc1b6e4ac27589c1b9302d251730c34b631d3df"
+        },
+        {
+          "sha": "6c88653",
+          "message": "Stabilize GLB repeatability gate",
+          "date": "2026-08-04T03:04:57Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/6c88653a0fc3b705711bcac95b9d82caadf47633"
+        },
+        {
+          "sha": "b2135a0",
+          "message": "Prepare public v0.1 release candidate (G9)",
+          "date": "2026-08-04T02:43:06Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/b2135a022aa54c9aba7818e2b699039827c83907"
+        },
+        {
+          "sha": "5dedc50",
+          "message": "Add hardened VPS operations and recovery (G8)",
+          "date": "2026-08-03T12:23:22Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/5dedc501c31d9439506cf5fc1f38fbdeae0adaa3"
+        },
+        {
+          "sha": "54777af",
+          "message": "Add hardened local Compose service (G7)",
+          "date": "2026-08-03T10:03:59Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/54777afacef7c5cdd30be8637d6cfd091a59f6c8"
+        },
+        {
+          "sha": "32b54f9",
+          "message": "Complete G6 API and worker gate",
+          "date": "2026-08-03T08:04:31Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/32b54f9a7dffb8e6edcf217b62e2d4e005cd744f"
+        }
+      ],
+      "openPRs": [
+        {
+          "number": 3,
+          "title": "deps-service: bump the safe-minor-and-patch group across 1 directory with 4 updates",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/3",
+          "isDraft": false,
+          "createdAt": "2026-08-04T14:17:09Z",
+          "updatedAt": "2026-08-05T15:12:03Z",
+          "ageInDays": 1.5,
+          "idleDays": 0.5,
+          "reviewDecision": null,
+          "additions": 4,
+          "deletions": 4,
+          "headRef": "dependabot/pip/service/safe-minor-and-patch-e48c72f0d6"
+        },
+        {
+          "number": 7,
+          "title": "deps-compose: bump redis from 8.0.1-bookworm to 8.4.0-bookworm",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/7",
+          "isDraft": false,
+          "createdAt": "2026-08-05T15:11:30Z",
+          "updatedAt": "2026-08-05T15:11:30Z",
+          "ageInDays": 0.5,
+          "idleDays": 0.5,
+          "reviewDecision": null,
+          "additions": 1,
+          "deletions": 1,
+          "headRef": "dependabot/docker_compose/redis-8.4.0-bookworm"
+        },
+        {
+          "number": 6,
+          "title": "deps-compose: bump postgres from 16.9-bookworm to 18.3-bookworm",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/6",
+          "isDraft": false,
+          "createdAt": "2026-08-05T15:11:24Z",
+          "updatedAt": "2026-08-05T15:11:25Z",
+          "ageInDays": 0.5,
+          "idleDays": 0.5,
+          "reviewDecision": null,
+          "additions": 1,
+          "deletions": 1,
+          "headRef": "dependabot/docker_compose/postgres-18.3-bookworm"
+        },
+        {
+          "number": 4,
+          "title": "deps-service: bump async-timeout from 4.0.3 to 5.0.1 in /service",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/4",
+          "isDraft": false,
+          "createdAt": "2026-08-04T14:17:13Z",
+          "updatedAt": "2026-08-05T14:37:41Z",
+          "ageInDays": 1.5,
+          "idleDays": 0.5,
+          "reviewDecision": null,
+          "additions": 1,
+          "deletions": 1,
+          "headRef": "dependabot/pip/service/async-timeout-5.0.1"
+        },
+        {
+          "number": 2,
+          "title": "deps-images: bump debian from `63a496b` to `7b140f3` in /docker",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/2",
+          "isDraft": false,
+          "createdAt": "2026-08-04T14:16:15Z",
+          "updatedAt": "2026-08-05T15:10:55Z",
+          "ageInDays": 1.5,
+          "idleDays": 0.5,
+          "reviewDecision": null,
+          "additions": 5,
+          "deletions": 5,
+          "headRef": "dependabot/docker/docker/debian-7b140f3"
+        }
+      ],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "dependabot/pip/service/safe-minor-and-patch-e48c72f0d6",
+          "lastCommit": "2026-08-05T15:12:00Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "dependabot/pip/service/async-timeout-5.0.1",
+          "lastCommit": "2026-08-04T14:17:12Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "dependabot/docker/docker/debian-7b140f3",
+          "lastCommit": "2026-08-04T14:16:14Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "dependabot/docker_compose/redis-8.4.0-bookworm",
+          "lastCommit": "2026-08-05T15:11:29Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "dependabot/docker_compose/postgres-18.3-bookworm",
+          "lastCommit": "2026-08-05T15:11:23Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/blender-3d-print-cli-review-xp4mbg",
+          "lastCommit": "2026-08-04T14:30:12Z",
+          "unmergedCommits": 3
+        }
+      ],
+      "counts": {
+        "commits7d": 20,
+        "commits30d": 20,
+        "openPRs": 5,
+        "openIssues": 0,
+        "branches": 6
+      }
+    },
+    {
+      "name": "career_search",
+      "url": "https://github.com/joseph-robert-f/career_search",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-05T14:57:32Z",
+      "daysSinceLastPush": 0.5,
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "cd12eee",
+          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
+          "date": "2026-08-05T14:57:32Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
+        },
+        {
+          "sha": "1610b30",
+          "message": "Build packages before workspace tests",
+          "date": "2026-08-05T14:52:16Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
+        },
+        {
+          "sha": "b9caa47",
+          "message": "Build Career Clarity voice journal",
+          "date": "2026-08-05T14:38:29Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
+        },
+        {
+          "sha": "8ee286c",
+          "message": "Initial commit",
+          "date": "2026-08-03T12:54:06Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 4,
+        "commits30d": 4,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "ai-news-digest",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest",
+      "description": null,
+      "language": "HTML",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-05T10:47:13Z",
+      "daysSinceLastPush": 0.7,
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "f0eb7b0",
+          "message": "Add 5 August 2026 AI News Digest Report",
+          "date": "2026-08-05T10:47:03Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/f0eb7b0774da1de179e5e5fc1e6388165469cf92"
+        },
+        {
+          "sha": "3cc3559",
+          "message": "Merge pull request #21 from joseph-robert-f/automation/daily-github-a…",
+          "date": "2026-08-04T14:19:26Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/3cc3559d96cd4fb09584e4844bc14b993b4877ea"
+        },
+        {
+          "sha": "9123428",
+          "message": "Add 4 August 2026 AI News Digest Report",
+          "date": "2026-08-04T10:48:12Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/912342849e6a3b914eaa92352a281de93156fb9e"
+        },
+        {
+          "sha": "31455db",
+          "message": "Add 3 August 2026 AI News Digest Report (#31)",
+          "date": "2026-08-03T10:49:23Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/31455db963e38b161ab11e28219086429602b506"
+        },
+        {
+          "sha": "bd9a3dc",
+          "message": "Add 2 August 2026 AI News Digest Report (#30)",
+          "date": "2026-08-02T10:48:19Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/bd9a3dcd4231ec8ee641682e82871c4fb88dd513"
+        },
+        {
+          "sha": "52d8ff0",
+          "message": "Add 1 August 2026 AI News Digest Report (#29)",
+          "date": "2026-08-01T10:43:54Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/52d8ff0df7fd9febe0e3f20fc501dd6aab384b30"
+        },
+        {
+          "sha": "6d064c1",
+          "message": "Add 31 July 2026 AI News Digest Report",
+          "date": "2026-07-31T10:45:58Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/6d064c109331da2745345d4490b73aa384933e03"
+        },
+        {
+          "sha": "85c0fa8",
+          "message": "Add 30 July 2026 AI News Digest Report",
+          "date": "2026-07-30T10:46:07Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/85c0fa8b307e6cddbe59adbbad5404f238ba1725"
+        },
+        {
+          "sha": "ba88126",
+          "message": "Add 29 July 2026 AI News Digest Report",
+          "date": "2026-07-29T10:45:05Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/ba8812605a9aa049aa4c191f0ce3f7a498826998"
+        },
+        {
+          "sha": "90cbe01",
+          "message": "Add 28 July 2026 AI News Digest Report (#28)",
+          "date": "2026-07-28T10:48:30Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/90cbe01532f20073168fbe78b31ca203e645c5eb"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "claude/wonderful-hopper-27a6qq",
+          "lastCommit": "2026-07-02T16:47:33Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-rxdssh",
+          "lastCommit": "2026-08-03T10:49:05Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ltevu3",
+          "lastCommit": "2026-07-22T10:46:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-lkelva",
+          "lastCommit": "2026-07-11T10:44:24Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-j4u3kx",
+          "lastCommit": "2026-07-23T10:44:56Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-imv6i4",
+          "lastCommit": "2026-07-26T10:43:59Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-hfwpz0",
+          "lastCommit": "2026-07-24T10:45:15Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-gkn88p",
+          "lastCommit": "2026-07-19T10:48:23Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-g7t58q",
+          "lastCommit": "2026-07-21T10:46:09Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ehh01k",
+          "lastCommit": "2026-07-13T10:45:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dv51kp",
+          "lastCommit": "2026-07-14T12:20:42Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dj1ubj",
+          "lastCommit": "2026-07-28T10:48:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-db2001",
+          "lastCommit": "2026-07-06T10:49:11Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dag6ss",
+          "lastCommit": "2026-08-01T10:43:37Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-cws7ld",
+          "lastCommit": "2026-07-09T10:44:21Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-6g2vte",
+          "lastCommit": "2026-07-12T11:35:03Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-0hon4m",
+          "lastCommit": "2026-08-02T10:47:55Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 8,
+        "commits30d": 33,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 17
+      }
+    },
+    {
+      "name": "Localize-News",
+      "url": "https://github.com/joseph-robert-f/Localize-News",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-05T08:35:22Z",
+      "daysSinceLastPush": 0.7,
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "7880b8c",
+          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
+          "date": "2026-08-04T14:19:32Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "fix/manual-issue-name-matching",
+          "lastCommit": "2026-05-08T19:30:16Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "feat/portal-page-filter",
+          "lastCommit": "2026-05-08T19:56:14Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 1,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 2
+      }
+    },
+    {
+      "name": "fresh-needs",
+      "url": "https://github.com/joseph-robert-f/fresh-needs",
+      "description": "Freshness-first, open-source donation acceptance publishing for community organizations.",
+      "language": null,
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-07-25T13:34:57Z",
+      "daysSinceLastPush": 11.5,
+      "status": "active",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "f823fb4",
+          "message": "Document Fresh Needs product hypothesis",
+          "date": "2026-07-25T12:17:26Z",
+          "url": "https://github.com/joseph-robert-f/fresh-needs/commit/f823fb4a3268fb673d93d312eb46a7bb31886641"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "personal-news-page-template",
+      "url": "https://github.com/joseph-robert-f/personal-news-page-template",
+      "description": "Set up a personal news site in a few simple clicks! Fork-and-go template for an AI-drafted, human-reviewed daily news page on GitHub Pages.",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-07-14T16:13:55Z",
+      "daysSinceLastPush": 22.4,
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "5a53994",
+          "message": "Lessons learned: LLM cost lives in the loop, not the price sheet",
+          "date": "2026-07-14T16:13:53Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/5a539943af26c447705f053d48462a696b0c5be4"
+        },
+        {
+          "sha": "0b85157",
+          "message": "Cut per-generation cost: effort control, fewer searches, honest cost …",
+          "date": "2026-07-14T16:13:25Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/0b851574858bbd9fc4323cc4812fdee9859dfaf7"
+        },
+        {
+          "sha": "d04e571",
+          "message": "Sprint 7 assets: daily screenshot capture script + first day's set",
+          "date": "2026-07-13T15:20:58Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/d04e5717545cad823d7a16a83f9251e50396f158"
+        },
+        {
+          "sha": "b96a099",
+          "message": "Add lessons learned from the first live deployment cycle",
+          "date": "2026-07-12T15:11:40Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/b96a099ff69240e8ab203a78c281a94b5b3f8906"
+        },
+        {
+          "sha": "07a0faf",
+          "message": "Merge pull request #12 from joseph-robert-f/claude/oss-repo-review-sp…",
+          "date": "2026-07-12T15:08:31Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/07a0faf551a5d30b8fdb81af2250c4ab56b8d801"
+        },
+        {
+          "sha": "b3ae1d7",
+          "message": "Add optional auto-publish mode (publishMode: 'auto')",
+          "date": "2026-07-12T14:02:29Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/b3ae1d7d983cf35c392c8c60313258ce05d5288b"
+        },
+        {
+          "sha": "15776e6",
+          "message": "Survive GitHub's cron delays: catch-up guard window + idempotent sche…",
+          "date": "2026-07-12T12:24:32Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/15776e633a4b4a221e46337540cb422c5ac25d99"
+        },
+        {
+          "sha": "fb9b842",
+          "message": "Require article-level source URLs in the generation prompt",
+          "date": "2026-07-12T12:17:36Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/fb9b842d2a64aa5750e52c253e409e6e0fff290c"
+        },
+        {
+          "sha": "338189e",
+          "message": "Gate review: record the live Gate 6 shakedown and its resolution",
+          "date": "2026-07-11T23:13:49Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/338189e619266f3a538f4ab64f3cf9c08214eb9c"
+        },
+        {
+          "sha": "70d7af6",
+          "message": "Require at least one story and retry once on payload validation failure",
+          "date": "2026-07-11T22:41:24Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/70d7af6bb50e29cdfe7779f400f6057d2788357d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 27,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "Northampton-County-News-",
+      "url": "https://github.com/joseph-robert-f/Northampton-County-News-",
+      "description": null,
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-07-14T16:13:28Z",
+      "daysSinceLastPush": 22.4,
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "b0b476f",
+          "message": "Cut per-generation cost: effort 'medium', 6 searches, honest cost docs",
+          "date": "2026-07-14T16:13:27Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/b0b476f13ad10369e528d456fcfe67dc75bf66ab"
+        },
+        {
+          "sha": "7a5295c",
+          "message": "Switch to auto-publish mode",
+          "date": "2026-07-13T15:05:12Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/7a5295c121029e901f3d02d626837443c2236b7e"
+        },
+        {
+          "sha": "cce8d45",
+          "message": "Merge pull request #4 from joseph-robert-f/daily-digest/2026-07-13",
+          "date": "2026-07-13T15:04:53Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/cce8d452cd565ea6e13cc166e0820741d30d697b"
+        },
+        {
+          "sha": "840bc32",
+          "message": "Merge pull request #2 from joseph-robert-f/daily-digest/2026-07-11",
+          "date": "2026-07-12T15:05:33Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/840bc3217b733d67dbce81a787b0f9c84d23252b"
+        },
+        {
+          "sha": "510990d",
+          "message": "Merge pull request #3 from joseph-robert-f/daily-digest/2026-07-12",
+          "date": "2026-07-12T15:04:42Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/510990dc4f316c7902b05d1147b9f45a3ab7e2c7"
+        },
+        {
+          "sha": "c1442f3",
+          "message": "Add optional auto-publish mode (publishMode: 'auto')",
+          "date": "2026-07-12T14:02:45Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/c1442f30322df1425310aec95484b2c6ce76114e"
+        },
+        {
+          "sha": "d49f639",
+          "message": "Survive GitHub's cron delays: catch-up guard window + idempotent sche…",
+          "date": "2026-07-12T12:24:34Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/d49f639087b9d72d394140169a8bfee9cbb731e1"
+        },
+        {
+          "sha": "abd7f20",
+          "message": "Require article-level source URLs in the generation prompt",
+          "date": "2026-07-12T12:17:38Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/abd7f206b2e2495edc6391b4e74da160a0554bef"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "daily-digest/2026-07-10",
+          "lastCommit": "2026-07-10T17:00:18Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 16,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 1
+      }
+    },
+    {
+      "name": "pantry-pal",
+      "url": "https://github.com/joseph-robert-f/pantry-pal",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-07-04T18:58:51Z",
+      "daysSinceLastPush": 32.3,
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "d936924",
+          "message": "Update .gitignore",
+          "date": "2026-06-14T18:31:54Z",
+          "url": "https://github.com/joseph-robert-f/pantry-pal/commit/d936924a684ba04b5d389202a91ec4c8c9fb03a5"
+        },
+        {
+          "sha": "c80fea0",
+          "message": "Initial build: Pantry Pal web prototype (spec v0.1)",
+          "date": "2026-05-31T17:51:21Z",
+          "url": "https://github.com/joseph-robert-f/pantry-pal/commit/c80fea0b928457169cb603290cc92c31f993f654"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "education_connection",
+      "url": "https://github.com/joseph-robert-f/education_connection",
+      "description": null,
+      "language": "Swift",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-04-29T02:33:24Z",
+      "daysSinceLastPush": 99,
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "1e56022",
+          "message": "Merge pull request #1 from joseph-robert-f/claude/ai-literacy-ios-app…",
+          "date": "2026-04-29T02:33:24Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/1e56022da44090736268e09a16f7edca7eca85ef"
+        },
+        {
+          "sha": "0c5cc73",
+          "message": "Move CI to macos-15 for Xcode 16",
+          "date": "2026-04-29T02:23:12Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/0c5cc73f3924fc892948ce60ac45331587b6b77e"
+        },
+        {
+          "sha": "fcfeb35",
+          "message": "Fix CI: drop Resources/ source path until we actually have resources",
+          "date": "2026-04-29T02:20:50Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/fcfeb353087824a948402cfa8ea656bb264d5173"
+        },
+        {
+          "sha": "89d33dc",
+          "message": "Scaffold AI-Ware Phase 0 foundation",
+          "date": "2026-04-28T11:55:07Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/89d33dc89da870f7b108926cbeab32aca580245b"
+        },
+        {
+          "sha": "33a997f",
+          "message": "Initial commit",
+          "date": "2026-04-28T00:47:46Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/33a997f8bdcfcd0acf879e60c5e8b592790dca0d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "fehr-folio-flow",
+      "url": "https://github.com/joseph-robert-f/fehr-folio-flow",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-04-07T00:53:49Z",
+      "daysSinceLastPush": 121.1,
+      "status": "dormant",
+      "pinned": false,
+      "commits": [],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "OpenClaw-Demo",
+      "url": "https://github.com/joseph-robert-f/OpenClaw-Demo",
+      "description": null,
+      "language": "HTML",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-03-19T19:56:06Z",
+      "daysSinceLastPush": 139.3,
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "158a652",
+          "message": "Add cooling dog collar product to demo site",
+          "date": "2026-03-19T19:56:05Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/158a652e62bf441e358666c97882f9584d56d01e"
+        },
+        {
+          "sha": "ddc5ff6",
+          "message": "Add demo context to memory and user notes",
+          "date": "2026-03-19T19:43:48Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/ddc5ff6eb0ee4a7c42ecbadab95c3edea29d22c6"
+        },
+        {
+          "sha": "1eaf24f",
+          "message": "Add product pages for publishing demo",
+          "date": "2026-03-19T18:44:28Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/1eaf24f5da220c70b28a533275850d2877853cab"
+        },
+        {
+          "sha": "0ba8473",
+          "message": "Expand demo site marketing flow",
+          "date": "2026-03-19T18:41:58Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/0ba8473055892e45170340c4085fd5fc110fc19e"
+        },
+        {
+          "sha": "34d0c63",
+          "message": "Add lightweight demo site",
+          "date": "2026-03-19T17:27:20Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/34d0c63563d832d01cdc8017d85c9c53b001c57a"
+        },
+        {
+          "sha": "787cf1a",
+          "message": "Initial commit",
+          "date": "2026-03-19T17:21:37Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/787cf1a08091e5bba39d40ec9f0c5ae6896c2a18"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "SplitStream_FrontEnd",
+      "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-01-19T21:42:14Z",
+      "daysSinceLastPush": 198.2,
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "fdda4b5",
+          "message": "first commit",
+          "date": "2026-01-19T21:41:51Z",
+          "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd/commit/fdda4b5ae7f2b24d78abc9c62c10f6f313f4a3ea"
+        },
+        {
+          "sha": "fee103b",
+          "message": "Initial commit from Create Next App",
+          "date": "2026-01-19T20:12:52Z",
+          "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd/commit/fee103ba8ae842ee7ed0abb643bbf5cefd38055d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "fix/manual-issue-name-matching · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
+      "ageInDays": 89.3,
+      "idleDays": 89.3,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "feat/portal-page-filter · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
+      "ageInDays": 89.3,
+      "idleDays": 89.3,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
+      "ageInDays": 34.4,
+      "idleDays": 34.4,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-db2001 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
+      "ageInDays": 30.7,
+      "idleDays": 30.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-cws7ld · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
+      "ageInDays": 27.7,
+      "idleDays": 27.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Northampton-County-News-",
+      "title": "daily-digest/2026-07-10 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
+      "ageInDays": 26.4,
+      "idleDays": 26.4,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-lkelva · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
+      "ageInDays": 25.7,
+      "idleDays": 25.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-6g2vte · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
+      "ageInDays": 24.6,
+      "idleDays": 24.6,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-ehh01k · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
+      "ageInDays": 23.7,
+      "idleDays": 23.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-dv51kp · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
+      "ageInDays": 22.6,
+      "idleDays": 22.6,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-gkn88p · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
+      "ageInDays": 17.7,
+      "idleDays": 17.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-g7t58q · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
+      "ageInDays": 15.7,
+      "idleDays": 15.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
+      "ageInDays": 14.7,
+      "idleDays": 14.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-j4u3kx · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-j4u3kx",
+      "ageInDays": 13.7,
+      "idleDays": 13.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-hfwpz0 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-hfwpz0",
+      "ageInDays": 12.7,
+      "idleDays": 12.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-imv6i4 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-imv6i4",
+      "ageInDays": 10.7,
+      "idleDays": 10.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-dj1ubj · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dj1ubj",
+      "ageInDays": 8.7,
+      "idleDays": 8.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-dag6ss · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dag6ss",
+      "ageInDays": 4.7,
+      "idleDays": 4.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-0hon4m · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-0hon4m",
+      "ageInDays": 3.7,
+      "idleDays": 3.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-rxdssh · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-rxdssh",
+      "ageInDays": 2.7,
+      "idleDays": 2.7,
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "headless-blender-character-builder",
+      "title": "claude/blender-3d-print-cli-review-xp4mbg · 3 unmerged",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/tree/claude/blender-3d-print-cli-review-xp4mbg",
+      "ageInDays": 1.5,
+      "idleDays": 1.5,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#3 deps-service: bump the safe-minor-and-patch group across 1 directory with 4 updates",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/3",
+      "ageInDays": 1.5,
+      "idleDays": 0.5,
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#4 deps-service: bump async-timeout from 4.0.3 to 5.0.1 in /service",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/4",
+      "ageInDays": 1.5,
+      "idleDays": 0.5,
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#2 deps-images: bump debian from `63a496b` to `7b140f3` in /docker",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/2",
+      "ageInDays": 1.5,
+      "idleDays": 0.5,
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#7 deps-compose: bump redis from 8.0.1-bookworm to 8.4.0-bookworm",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/7",
+      "ageInDays": 0.5,
+      "idleDays": 0.5,
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#6 deps-compose: bump postgres from 16.9-bookworm to 18.3-bookworm",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/6",
+      "ageInDays": 0.5,
+      "idleDays": 0.5,
+      "isDraft": false,
+      "stale": false
+    }
+  ],
+  "attention": [
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "fix/manual-issue-name-matching · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
+      "ageInDays": 89.3,
+      "idleDays": 89.3,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "feat/portal-page-filter · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
+      "ageInDays": 89.3,
+      "idleDays": 89.3,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
+      "ageInDays": 34.4,
+      "idleDays": 34.4,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-db2001 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
+      "ageInDays": 30.7,
+      "idleDays": 30.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-cws7ld · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
+      "ageInDays": 27.7,
+      "idleDays": 27.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Northampton-County-News-",
+      "title": "daily-digest/2026-07-10 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
+      "ageInDays": 26.4,
+      "idleDays": 26.4,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-lkelva · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
+      "ageInDays": 25.7,
+      "idleDays": 25.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-6g2vte · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
+      "ageInDays": 24.6,
+      "idleDays": 24.6,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-ehh01k · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
+      "ageInDays": 23.7,
+      "idleDays": 23.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-dv51kp · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
+      "ageInDays": 22.6,
+      "idleDays": 22.6,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-gkn88p · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
+      "ageInDays": 17.7,
+      "idleDays": 17.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-g7t58q · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
+      "ageInDays": 15.7,
+      "idleDays": 15.7,
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
+      "ageInDays": 14.7,
+      "idleDays": 14.7,
+      "stale": true
+    }
+  ],
+  "heatmap": [
     {
       "date": "2025-08-07",
       "count": 0
@@ -680,7 +1942,7 @@
     },
     {
       "date": "2026-01-19",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-01-20",
@@ -916,11 +2178,11 @@
     },
     {
       "date": "2026-03-19",
-      "count": 0
+      "count": 6
     },
     {
       "date": "2026-03-20",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-03-21",
@@ -980,15 +2242,15 @@
     },
     {
       "date": "2026-04-04",
-      "count": 0
+      "count": 4
     },
     {
       "date": "2026-04-05",
-      "count": 0
+      "count": 6
     },
     {
       "date": "2026-04-06",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-04-07",
@@ -1004,7 +2266,7 @@
     },
     {
       "date": "2026-04-10",
-      "count": 0
+      "count": 18
     },
     {
       "date": "2026-04-11",
@@ -1012,7 +2274,7 @@
     },
     {
       "date": "2026-04-12",
-      "count": 0
+      "count": 34
     },
     {
       "date": "2026-04-13",
@@ -1020,31 +2282,31 @@
     },
     {
       "date": "2026-04-14",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-04-15",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-04-16",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-04-17",
-      "count": 0
+      "count": 17
     },
     {
       "date": "2026-04-18",
-      "count": 0
+      "count": 8
     },
     {
       "date": "2026-04-19",
-      "count": 0
+      "count": 6
     },
     {
       "date": "2026-04-20",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-04-21",
@@ -1056,7 +2318,7 @@
     },
     {
       "date": "2026-04-23",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-04-24",
@@ -1076,11 +2338,11 @@
     },
     {
       "date": "2026-04-28",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-04-29",
-      "count": 0
+      "count": 4
     },
     {
       "date": "2026-04-30",
@@ -1092,7 +2354,7 @@
     },
     {
       "date": "2026-05-02",
-      "count": 0
+      "count": 5
     },
     {
       "date": "2026-05-03",
@@ -1104,7 +2366,7 @@
     },
     {
       "date": "2026-05-05",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-05-06",
@@ -1112,11 +2374,11 @@
     },
     {
       "date": "2026-05-07",
-      "count": 0
+      "count": 14
     },
     {
       "date": "2026-05-08",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-09",
@@ -1184,23 +2446,23 @@
     },
     {
       "date": "2026-05-25",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-26",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-27",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-28",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-05-29",
-      "count": 0
+      "count": 3
     },
     {
       "date": "2026-05-30",
@@ -1208,7 +2470,7 @@
     },
     {
       "date": "2026-05-31",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-06-01",
@@ -1260,15 +2522,15 @@
     },
     {
       "date": "2026-06-13",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-06-14",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-06-15",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-06-16",
@@ -1296,7 +2558,7 @@
     },
     {
       "date": "2026-06-22",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-06-23",
@@ -1304,7 +2566,7 @@
     },
     {
       "date": "2026-06-24",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-06-25",
@@ -1336,143 +2598,147 @@
     },
     {
       "date": "2026-07-02",
-      "count": 0
+      "count": 9
     },
     {
       "date": "2026-07-03",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-07-04",
-      "count": 0
+      "count": 22
     },
     {
       "date": "2026-07-05",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-06",
-      "count": 0
+      "count": 10
     },
     {
       "date": "2026-07-07",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-08",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-09",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-07-10",
-      "count": 0
+      "count": 14
     },
     {
       "date": "2026-07-11",
-      "count": 0
+      "count": 14
     },
     {
       "date": "2026-07-12",
-      "count": 0
+      "count": 11
     },
     {
       "date": "2026-07-13",
-      "count": 0
+      "count": 4
     },
     {
       "date": "2026-07-14",
-      "count": 0
+      "count": 4
     },
     {
       "date": "2026-07-15",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-16",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-07-17",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-07-18",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-19",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-20",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-21",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-22",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-23",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-24",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-25",
-      "count": 0
+      "count": 2
     },
     {
       "date": "2026-07-26",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-27",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-28",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-29",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-30",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-07-31",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-01",
-      "count": 0
+      "count": 1
     },
     {
       "date": "2026-08-02",
-      "count": 0
+      "count": 5
     },
     {
       "date": "2026-08-03",
-      "count": 0
+      "count": 11
     },
     {
       "date": "2026-08-04",
-      "count": 0
+      "count": 7
     },
     {
       "date": "2026-08-05",
-      "count": 0
+      "count": 10
+    },
+    {
+      "date": "2026-08-06",
+      "count": 1
     }
   ]
 }
