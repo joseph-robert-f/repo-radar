@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T03:31:59.456Z",
+  "generatedAt": "2026-08-06T08:14:34.331Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -19,8 +19,8 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-06T03:31:47Z",
-      "daysSinceLastPush": 0,
+      "pushedAt": "2026-08-06T03:32:06Z",
+      "daysSinceLastPush": 0.2,
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -81,7 +81,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-08-05T15:12:01Z",
-      "daysSinceLastPush": 0.5,
+      "daysSinceLastPush": 0.7,
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -154,8 +154,8 @@
           "isDraft": false,
           "createdAt": "2026-08-04T14:17:09Z",
           "updatedAt": "2026-08-05T15:12:03Z",
-          "ageInDays": 1.6,
-          "idleDays": 0.5,
+          "ageInDays": 1.7,
+          "idleDays": 0.7,
           "reviewDecision": null,
           "additions": 4,
           "deletions": 4,
@@ -168,8 +168,8 @@
           "isDraft": false,
           "createdAt": "2026-08-05T15:11:30Z",
           "updatedAt": "2026-08-05T15:11:30Z",
-          "ageInDays": 0.5,
-          "idleDays": 0.5,
+          "ageInDays": 0.7,
+          "idleDays": 0.7,
           "reviewDecision": null,
           "additions": 1,
           "deletions": 1,
@@ -182,8 +182,8 @@
           "isDraft": false,
           "createdAt": "2026-08-05T15:11:24Z",
           "updatedAt": "2026-08-05T15:11:25Z",
-          "ageInDays": 0.5,
-          "idleDays": 0.5,
+          "ageInDays": 0.7,
+          "idleDays": 0.7,
           "reviewDecision": null,
           "additions": 1,
           "deletions": 1,
@@ -196,8 +196,8 @@
           "isDraft": false,
           "createdAt": "2026-08-04T14:17:13Z",
           "updatedAt": "2026-08-05T14:37:41Z",
-          "ageInDays": 1.6,
-          "idleDays": 0.5,
+          "ageInDays": 1.7,
+          "idleDays": 0.7,
           "reviewDecision": null,
           "additions": 1,
           "deletions": 1,
@@ -210,8 +210,8 @@
           "isDraft": false,
           "createdAt": "2026-08-04T14:16:15Z",
           "updatedAt": "2026-08-05T15:10:55Z",
-          "ageInDays": 1.6,
-          "idleDays": 0.5,
+          "ageInDays": 1.7,
+          "idleDays": 0.7,
           "reviewDecision": null,
           "additions": 5,
           "deletions": 5,
@@ -268,7 +268,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-08-05T14:57:32Z",
-      "daysSinceLastPush": 0.5,
+      "daysSinceLastPush": 0.7,
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -317,7 +317,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-08-05T10:47:13Z",
-      "daysSinceLastPush": 0.7,
+      "daysSinceLastPush": 0.9,
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -488,7 +488,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-08-05T08:35:22Z",
-      "daysSinceLastPush": 0.8,
+      "daysSinceLastPush": 1,
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -530,7 +530,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-07-25T13:34:57Z",
-      "daysSinceLastPush": 11.6,
+      "daysSinceLastPush": 11.8,
       "status": "active",
       "pinned": false,
       "commits": [
@@ -561,7 +561,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-07-14T16:13:55Z",
-      "daysSinceLastPush": 22.5,
+      "daysSinceLastPush": 22.7,
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -646,7 +646,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-07-14T16:13:28Z",
-      "daysSinceLastPush": 22.5,
+      "daysSinceLastPush": 22.7,
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -725,7 +725,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-07-04T18:58:51Z",
-      "daysSinceLastPush": 32.4,
+      "daysSinceLastPush": 32.6,
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -762,7 +762,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-04-29T02:33:24Z",
-      "daysSinceLastPush": 99,
+      "daysSinceLastPush": 99.2,
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -817,7 +817,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-04-07T00:53:49Z",
-      "daysSinceLastPush": 121.1,
+      "daysSinceLastPush": 121.3,
       "status": "dormant",
       "pinned": false,
       "commits": [],
@@ -841,7 +841,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-03-19T19:56:06Z",
-      "daysSinceLastPush": 139.3,
+      "daysSinceLastPush": 139.5,
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -902,7 +902,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "pushedAt": "2026-01-19T21:42:14Z",
-      "daysSinceLastPush": 198.2,
+      "daysSinceLastPush": 198.4,
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -937,8 +937,8 @@
       "repo": "Localize-News",
       "title": "fix/manual-issue-name-matching · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
-      "ageInDays": 89.3,
-      "idleDays": 89.3,
+      "ageInDays": 89.5,
+      "idleDays": 89.5,
       "stale": true
     },
     {
@@ -946,8 +946,8 @@
       "repo": "Localize-News",
       "title": "feat/portal-page-filter · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
-      "ageInDays": 89.3,
-      "idleDays": 89.3,
+      "ageInDays": 89.5,
+      "idleDays": 89.5,
       "stale": true
     },
     {
@@ -955,8 +955,8 @@
       "repo": "ai-news-digest",
       "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
-      "ageInDays": 34.4,
-      "idleDays": 34.4,
+      "ageInDays": 34.6,
+      "idleDays": 34.6,
       "stale": true
     },
     {
@@ -964,8 +964,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-db2001 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
-      "ageInDays": 30.7,
-      "idleDays": 30.7,
+      "ageInDays": 30.9,
+      "idleDays": 30.9,
       "stale": true
     },
     {
@@ -973,8 +973,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-cws7ld · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
-      "ageInDays": 27.7,
-      "idleDays": 27.7,
+      "ageInDays": 27.9,
+      "idleDays": 27.9,
       "stale": true
     },
     {
@@ -982,8 +982,8 @@
       "repo": "Northampton-County-News-",
       "title": "daily-digest/2026-07-10 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
-      "ageInDays": 26.4,
-      "idleDays": 26.4,
+      "ageInDays": 26.6,
+      "idleDays": 26.6,
       "stale": true
     },
     {
@@ -991,8 +991,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-lkelva · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
-      "ageInDays": 25.7,
-      "idleDays": 25.7,
+      "ageInDays": 25.9,
+      "idleDays": 25.9,
       "stale": true
     },
     {
@@ -1000,8 +1000,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-6g2vte · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
-      "ageInDays": 24.7,
-      "idleDays": 24.7,
+      "ageInDays": 24.9,
+      "idleDays": 24.9,
       "stale": true
     },
     {
@@ -1009,8 +1009,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-ehh01k · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
-      "ageInDays": 23.7,
-      "idleDays": 23.7,
+      "ageInDays": 23.9,
+      "idleDays": 23.9,
       "stale": true
     },
     {
@@ -1018,8 +1018,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-dv51kp · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
-      "ageInDays": 22.6,
-      "idleDays": 22.6,
+      "ageInDays": 22.8,
+      "idleDays": 22.8,
       "stale": true
     },
     {
@@ -1027,8 +1027,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-gkn88p · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
-      "ageInDays": 17.7,
-      "idleDays": 17.7,
+      "ageInDays": 17.9,
+      "idleDays": 17.9,
       "stale": true
     },
     {
@@ -1036,8 +1036,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-g7t58q · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
-      "ageInDays": 15.7,
-      "idleDays": 15.7,
+      "ageInDays": 15.9,
+      "idleDays": 15.9,
       "stale": true
     },
     {
@@ -1045,8 +1045,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
-      "ageInDays": 14.7,
-      "idleDays": 14.7,
+      "ageInDays": 14.9,
+      "idleDays": 14.9,
       "stale": true
     },
     {
@@ -1054,8 +1054,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-j4u3kx · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-j4u3kx",
-      "ageInDays": 13.7,
-      "idleDays": 13.7,
+      "ageInDays": 13.9,
+      "idleDays": 13.9,
       "stale": false
     },
     {
@@ -1063,8 +1063,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-hfwpz0 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-hfwpz0",
-      "ageInDays": 12.7,
-      "idleDays": 12.7,
+      "ageInDays": 12.9,
+      "idleDays": 12.9,
       "stale": false
     },
     {
@@ -1072,8 +1072,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-imv6i4 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-imv6i4",
-      "ageInDays": 10.7,
-      "idleDays": 10.7,
+      "ageInDays": 10.9,
+      "idleDays": 10.9,
       "stale": false
     },
     {
@@ -1081,8 +1081,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-dj1ubj · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dj1ubj",
-      "ageInDays": 8.7,
-      "idleDays": 8.7,
+      "ageInDays": 8.9,
+      "idleDays": 8.9,
       "stale": false
     },
     {
@@ -1090,8 +1090,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-dag6ss · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dag6ss",
-      "ageInDays": 4.7,
-      "idleDays": 4.7,
+      "ageInDays": 4.9,
+      "idleDays": 4.9,
       "stale": false
     },
     {
@@ -1099,8 +1099,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-0hon4m · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-0hon4m",
-      "ageInDays": 3.7,
-      "idleDays": 3.7,
+      "ageInDays": 3.9,
+      "idleDays": 3.9,
       "stale": false
     },
     {
@@ -1108,8 +1108,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-rxdssh · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-rxdssh",
-      "ageInDays": 2.7,
-      "idleDays": 2.7,
+      "ageInDays": 2.9,
+      "idleDays": 2.9,
       "stale": false
     },
     {
@@ -1117,8 +1117,8 @@
       "repo": "headless-blender-character-builder",
       "title": "claude/blender-3d-print-cli-review-xp4mbg · 3 unmerged",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/tree/claude/blender-3d-print-cli-review-xp4mbg",
-      "ageInDays": 1.5,
-      "idleDays": 1.5,
+      "ageInDays": 1.7,
+      "idleDays": 1.7,
       "stale": false
     },
     {
@@ -1126,8 +1126,8 @@
       "repo": "headless-blender-character-builder",
       "title": "#3 deps-service: bump the safe-minor-and-patch group across 1 directory with 4 updates",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/3",
-      "ageInDays": 1.6,
-      "idleDays": 0.5,
+      "ageInDays": 1.7,
+      "idleDays": 0.7,
       "isDraft": false,
       "stale": false
     },
@@ -1136,8 +1136,8 @@
       "repo": "headless-blender-character-builder",
       "title": "#4 deps-service: bump async-timeout from 4.0.3 to 5.0.1 in /service",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/4",
-      "ageInDays": 1.6,
-      "idleDays": 0.5,
+      "ageInDays": 1.7,
+      "idleDays": 0.7,
       "isDraft": false,
       "stale": false
     },
@@ -1146,8 +1146,8 @@
       "repo": "headless-blender-character-builder",
       "title": "#2 deps-images: bump debian from `63a496b` to `7b140f3` in /docker",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/2",
-      "ageInDays": 1.6,
-      "idleDays": 0.5,
+      "ageInDays": 1.7,
+      "idleDays": 0.7,
       "isDraft": false,
       "stale": false
     },
@@ -1156,8 +1156,8 @@
       "repo": "headless-blender-character-builder",
       "title": "#7 deps-compose: bump redis from 8.0.1-bookworm to 8.4.0-bookworm",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/7",
-      "ageInDays": 0.5,
-      "idleDays": 0.5,
+      "ageInDays": 0.7,
+      "idleDays": 0.7,
       "isDraft": false,
       "stale": false
     },
@@ -1166,8 +1166,8 @@
       "repo": "headless-blender-character-builder",
       "title": "#6 deps-compose: bump postgres from 16.9-bookworm to 18.3-bookworm",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/6",
-      "ageInDays": 0.5,
-      "idleDays": 0.5,
+      "ageInDays": 0.7,
+      "idleDays": 0.7,
       "isDraft": false,
       "stale": false
     }
@@ -1178,8 +1178,8 @@
       "repo": "Localize-News",
       "title": "fix/manual-issue-name-matching · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
-      "ageInDays": 89.3,
-      "idleDays": 89.3,
+      "ageInDays": 89.5,
+      "idleDays": 89.5,
       "stale": true
     },
     {
@@ -1187,8 +1187,8 @@
       "repo": "Localize-News",
       "title": "feat/portal-page-filter · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
-      "ageInDays": 89.3,
-      "idleDays": 89.3,
+      "ageInDays": 89.5,
+      "idleDays": 89.5,
       "stale": true
     },
     {
@@ -1196,8 +1196,8 @@
       "repo": "ai-news-digest",
       "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
-      "ageInDays": 34.4,
-      "idleDays": 34.4,
+      "ageInDays": 34.6,
+      "idleDays": 34.6,
       "stale": true
     },
     {
@@ -1205,8 +1205,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-db2001 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
-      "ageInDays": 30.7,
-      "idleDays": 30.7,
+      "ageInDays": 30.9,
+      "idleDays": 30.9,
       "stale": true
     },
     {
@@ -1214,8 +1214,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-cws7ld · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
-      "ageInDays": 27.7,
-      "idleDays": 27.7,
+      "ageInDays": 27.9,
+      "idleDays": 27.9,
       "stale": true
     },
     {
@@ -1223,8 +1223,8 @@
       "repo": "Northampton-County-News-",
       "title": "daily-digest/2026-07-10 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
-      "ageInDays": 26.4,
-      "idleDays": 26.4,
+      "ageInDays": 26.6,
+      "idleDays": 26.6,
       "stale": true
     },
     {
@@ -1232,8 +1232,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-lkelva · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
-      "ageInDays": 25.7,
-      "idleDays": 25.7,
+      "ageInDays": 25.9,
+      "idleDays": 25.9,
       "stale": true
     },
     {
@@ -1241,8 +1241,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-6g2vte · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
-      "ageInDays": 24.7,
-      "idleDays": 24.7,
+      "ageInDays": 24.9,
+      "idleDays": 24.9,
       "stale": true
     },
     {
@@ -1250,8 +1250,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-ehh01k · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
-      "ageInDays": 23.7,
-      "idleDays": 23.7,
+      "ageInDays": 23.9,
+      "idleDays": 23.9,
       "stale": true
     },
     {
@@ -1259,8 +1259,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-dv51kp · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
-      "ageInDays": 22.6,
-      "idleDays": 22.6,
+      "ageInDays": 22.8,
+      "idleDays": 22.8,
       "stale": true
     },
     {
@@ -1268,8 +1268,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-gkn88p · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
-      "ageInDays": 17.7,
-      "idleDays": 17.7,
+      "ageInDays": 17.9,
+      "idleDays": 17.9,
       "stale": true
     },
     {
@@ -1277,8 +1277,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-g7t58q · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
-      "ageInDays": 15.7,
-      "idleDays": 15.7,
+      "ageInDays": 15.9,
+      "idleDays": 15.9,
       "stale": true
     },
     {
@@ -1286,8 +1286,8 @@
       "repo": "ai-news-digest",
       "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
-      "ageInDays": 14.7,
-      "idleDays": 14.7,
+      "ageInDays": 14.9,
+      "idleDays": 14.9,
       "stale": true
     }
   ],
