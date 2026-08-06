@@ -266,7 +266,7 @@ check("tasks are sorted by idle time, longest first", () => {
       ],
     }),
   ]);
-  eq(snap.tasks.map((t) => t.idleDays), [50, 20, 3], "idle ordering");
+  eq(snap.tasks.map((t) => t.title.split(" ")[0]), ["b2", "b3", "b1"], "idle ordering");
 });
 
 /* ---------------------------------------------------------------- heatmap */
@@ -316,6 +316,62 @@ check("summary aggregates across repos", () => {
     { repos: 2, activeRepos: 1, openPRs: 1, openIssues: 1, commits7d: 2, needsAttention: 0 },
     "summary",
   );
+});
+
+/* --------------------------------------------------- clock-independence */
+
+check("same facts at a later clock produce a byte-identical snapshot", () => {
+  // The workflow only commits when the snapshot content changed. If any
+  // elapsed-time value were stored in the file, every run would differ and it
+  // would commit every 6 hours forever. Collect the same unchanged repos six
+  // hours apart and the bytes must match (bar generatedAt).
+  const fixture = [
+    repo({
+      name: "steady",
+      pushedAt: ago(3),
+      commitDates: [ago(3), ago(11)],
+      openPRs: [
+        { number: 1, title: "pr", url: "u", isDraft: false, createdAt: ago(20), updatedAt: ago(2), headRef: "a" },
+      ],
+      openIssues: [
+        { number: 2, title: "issue", url: "u", labels: [], createdAt: ago(20), updatedAt: ago(2), assigned: true },
+      ],
+      branches: [{ name: "wip", lastCommit: ago(5), unmergedCommits: 3 }],
+    }),
+  ];
+  const strip = (s) => {
+    const { generatedAt, ...rest } = s;
+    return JSON.stringify(rest, null, 2);
+  };
+  const early = buildSnapshot(fixture, CONFIG, { user: "tester", now: NOW });
+  const later = buildSnapshot(fixture, CONFIG, { user: "tester", now: NOW + 6 * 3600000 });
+  ok(strip(early) === strip(later), "snapshot drifted with the clock alone");
+});
+
+check("assertSnapshot rejects a stored elapsed-time value", () => {
+  const snap = build([repo({ name: "r", pushedAt: ago(1) })]);
+  snap.repos[0].daysSinceLastPush = 1;
+  let threw = false;
+  try {
+    assertSnapshot(snap);
+  } catch {
+    threw = true;
+  }
+  ok(threw, "assertSnapshot should reject a clock-derived field");
+});
+
+check("tasks carry the timestamps the page needs to compute ages", () => {
+  const snap = build([
+    repo({
+      openPRs: [{ number: 1, title: "p", url: "u", isDraft: false, createdAt: ago(9), updatedAt: ago(4), headRef: "x" }],
+      branches: [{ name: "b", lastCommit: ago(6), unmergedCommits: 2 }],
+    }),
+  ]);
+  for (const t of snap.tasks) {
+    ok(Number.isFinite(Date.parse(t.createdAt)), `${t.type} task has parseable createdAt`);
+    ok(Number.isFinite(Date.parse(t.updatedAt)), `${t.type} task has parseable updatedAt`);
+    ok(t.ageInDays === undefined && t.idleDays === undefined, `${t.type} task stores no elapsed days`);
+  }
 });
 
 /* ------------------------------------------------------------- invariants */

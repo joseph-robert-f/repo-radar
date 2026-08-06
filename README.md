@@ -165,17 +165,16 @@ user               GitHub handle
 scope              always "public"
 summary            { repos, activeRepos, openPRs, openIssues, commits7d, needsAttention }
 repos[]            { name, url, description, language, isFork, isArchived, defaultBranch,
-                     pushedAt, daysSinceLastPush, status, pinned,
+                     pushedAt, status, pinned,
                      commits[], openPRs[], openIssues[], branches[], counts{} }
   commits[]        { sha, message, date, url }
-  openPRs[]        { number, title, url, isDraft, createdAt, updatedAt, ageInDays,
-                     idleDays, reviewDecision, additions, deletions, headRef }
-  openIssues[]     { number, title, url, labels[], createdAt, updatedAt, ageInDays,
-                     idleDays, assigned }
+  openPRs[]        { number, title, url, isDraft, createdAt, updatedAt,
+                     reviewDecision, additions, deletions, headRef }
+  openIssues[]     { number, title, url, labels[], createdAt, updatedAt, assigned }
   branches[]       { name, lastCommit, unmergedCommits }
   counts           { commits7d, commits30d, openPRs, openIssues, branches }
 tasks[]            flattened cross-repo work items, most-idle first:
-                   { type: pr|issue|branch, repo, title, url, ageInDays, idleDays,
+                   { type: pr|issue|branch, repo, title, url, createdAt, updatedAt,
                      isDraft?, stale }
 attention[]        tasks where stale === true
 heatmap[]          { date: "YYYY-MM-DD", count } — 365 entries, oldest first
@@ -184,9 +183,19 @@ heatmap[]          { date: "YYYY-MM-DD", count } — 365 entries, oldest first
 `status` is `hot` (<3d) · `active` (<14d) · `idle` (<60d) · `dormant` (60d+), from
 `statusThresholdDays`.
 
-**`ageInDays` vs `idleDays`:** age is time since the item was opened; idle is time
-since it last moved. Staleness keys on `idleDays`, so a long-running PR that got a
-commit yesterday isn't flagged, and a week-old one nobody has touched is.
+**No elapsed-time values are stored.** "9 days old", "idle 3 days" and the like are
+computed by `index.html` at render time from the ISO timestamps above. Two reasons:
+storing them would make every collect produce a different file — so the workflow's
+"don't commit if nothing changed" check could never fire, and the repo would take a
+commit every 6 hours forever — and it would freeze every age at whatever it was when
+the collector last ran, so a 6-hour-old snapshot would show 6-hour-stale ages.
+`assertSnapshot` fails the build if one of these fields reappears.
+
+`status` and `stale` are the exception and are computed at collect time. They're
+threshold crossings rather than continuous drift, so they change rarely, and when
+they do it's real news worth a commit. Staleness keys on time since the item last
+moved, so a long-running PR that got a commit yesterday isn't flagged and a week-old
+one nobody has touched is.
 
 Anything the collector emits must match this shape or the page breaks. `selftest.mjs`
 enforces it.

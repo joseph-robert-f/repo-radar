@@ -287,6 +287,19 @@ function ageLabel(days) {
   if (days < 90) return `${Math.round(days)}d`;
   return `${Math.round(days / 30)}mo`;
 }
+/* Elapsed time is computed here, not stored in the snapshot. Keeping it out of
+   the file means a collect run with no new activity produces a byte-identical
+   snapshot (so the workflow skips the commit), and it means these ages are
+   right now rather than right whenever the collector last ran. */
+const daysSince = (iso) => {
+  const t = Date.parse(iso);
+  return Number.isFinite(t) ? (Date.now() - t) / 86400000 : NaN;
+};
+// "—" rather than "NaN" if a snapshot predates these fields.
+const ageSince = (iso) => {
+  const d = daysSince(iso);
+  return Number.isFinite(d) ? ageLabel(d) : "—";
+};
 
 /* ---------- theme ---------- */
 $("#themeToggle").addEventListener("click", () => {
@@ -334,14 +347,14 @@ function taskRow(t, showFlag) {
   const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
   const tag = t.url ? "a" : "div";
   const flag = showFlag
-    ? `<span class="flag"><span class="dot" style="background:${t.ageInDays > 30 ? "var(--status-critical)" : "var(--status-warning)"}"></span>Stale</span>`
+    ? `<span class="flag"><span class="dot" style="background:${daysSince(t.updatedAt) > 30 ? "var(--status-critical)" : "var(--status-warning)"}"></span>Stale</span>`
     : t.isDraft ? `<span class="flag"><span class="dot" style="background:var(--status-serious)"></span>Draft</span>` : "";
   return `<${tag} class="row"${href}>
     <span class="kind">${KIND_LABEL[t.type]}</span>
     <span class="title">${esc(t.title)}</span>
     ${flag}
     <span class="repo">${esc(t.repo)}</span>
-    <span class="age">${ageLabel(t.ageInDays)}</span>
+    <span class="age">${ageSince(t.createdAt)}</span>
   </${tag}>`;
 }
 
@@ -401,8 +414,8 @@ function renderCards(d) {
   $("#cards").innerHTML = rows.length ? rows.map((r) => {
     const name = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name);
     const commits = r.commits.map((c) => `<li><a href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.message)}</a><span class="when">${relTime(c.date)}</span></li>`);
-    const prs = r.openPRs.map((p) => `<li><a href="${esc(p.url || "#")}" target="_blank" rel="noopener">#${p.number} ${esc(p.title)}</a><span class="when">${ageLabel(p.ageInDays)}</span></li>`);
-    const issues = r.openIssues.map((i) => `<li><a href="${esc(i.url || "#")}" target="_blank" rel="noopener">#${i.number} ${esc(i.title)}</a><span class="when">${ageLabel(i.ageInDays)}</span></li>`);
+    const prs = r.openPRs.map((p) => `<li><a href="${esc(p.url || "#")}" target="_blank" rel="noopener">#${p.number} ${esc(p.title)}</a><span class="when">${ageSince(p.createdAt)}</span></li>`);
+    const issues = r.openIssues.map((i) => `<li><a href="${esc(i.url || "#")}" target="_blank" rel="noopener">#${i.number} ${esc(i.title)}</a><span class="when">${ageSince(i.createdAt)}</span></li>`);
     const branches = r.branches.map((b) => `<li><a href="${esc(r.url ? r.url + "/tree/" + b.name : "#")}" target="_blank" rel="noopener">${esc(b.name)}</a><span class="when">${b.unmergedCommits} ahead</span></li>`);
     const detail = commits.length || prs.length || issues.length || branches.length
       ? `<details class="more"><summary>Details</summary>
@@ -443,11 +456,16 @@ function renderTable(d) {
 }
 
 function renderFreshness(d) {
+  // The collector only rewrites this file when something actually changed, so
+  // an old generatedAt means either a genuinely quiet stretch or a broken
+  // refresh — the badge says both rather than claiming a failure it can't
+  // distinguish. A truly broken collect fails its workflow run, which is the
+  // signal that actually pages you.
   const hrs = (Date.now() - Date.parse(d.generatedAt)) / 3600000;
   const el = $("#freshness");
-  el.className = "freshness" + (hrs > 24 ? " stale" : "");
-  el.innerHTML = hrs > 24
-    ? `<span class="dot"></span>Snapshot is ${Math.round(hrs / 24)} day(s) old — the refresh job may be failing`
+  el.className = "freshness" + (hrs > 48 ? " stale" : "");
+  el.innerHTML = hrs > 48
+    ? `<span class="dot"></span>Unchanged for ${Math.round(hrs / 24)} days — nothing new, or the collector is failing`
     : `Updated ${relTime(d.generatedAt)}`;
 }
 
