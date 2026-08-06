@@ -81,7 +81,10 @@ async function gql(query, variables = {}, attempt = 1) {
     const msg = json.errors.map((e) => e.message).join("; ");
     throw new Error(`GraphQL error: ${msg}`);
   }
-  if (json.data?.rateLimit) lastRateLimit = json.data.rateLimit;
+  // Merge rather than replace: every query selects the same rateLimit fields
+  // now, but a partial selection anywhere would otherwise blank out limit and
+  // resetAt in the final log line.
+  if (json.data?.rateLimit) lastRateLimit = { ...lastRateLimit, ...json.data.rateLimit };
   return json.data;
 }
 
@@ -246,7 +249,7 @@ export function buildHistoryQuery(count) {
     } } }
   }`);
   }
-  return `query Hist(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
+  return `query Hist(${decls.join(", ")}) {\n  rateLimit { limit cost remaining resetAt }${parts.join("")}\n}`;
 }
 
 /**
@@ -319,7 +322,7 @@ export function buildCompareQuery(count) {
     ref(qualifiedName: $q${n}) { compare(headRef: $h${n}) { aheadBy } }
   }`);
   }
-  return `query Cmp(${decls.join(", ")}) {\n  rateLimit { cost remaining }${parts.join("")}\n}`;
+  return `query Cmp(${decls.join(", ")}) {\n  rateLimit { limit cost remaining resetAt }${parts.join("")}\n}`;
 }
 
 /**

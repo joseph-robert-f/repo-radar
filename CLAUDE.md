@@ -208,16 +208,21 @@ job it does, validate, then style.
 - [x] All three GraphQL documents validate against GitHub's published schema
 - [x] Page renders in light, dark, and at 390px with no console errors
 - [x] Snapshot contains no private repo names, no `redacted`/`sample` flags
-- [ ] A real collect run returns repo data, not 401 — **needs a live Actions run**
-- [ ] `workflow_dispatch` succeeds end to end
+- [x] A real collect run returns repo data, not 401
+- [x] The workflow succeeds end to end, collect job through deploy
+- [x] Rate-limit headroom logged in the workflow output
 - [ ] Pages URL loads with real data
 - [ ] A second run with no changes commits nothing
-- [ ] Rate-limit headroom logged in the workflow output
 
-The unchecked items all need one thing: a `workflow_dispatch` run on GitHub. They
-couldn't be done from the sandbox this was built in — its proxy blocks the GraphQL
-endpoint and scopes REST to this repo alone, so there was no way to reach the live API.
-Everything reachable offline was verified instead, including the queries themselves.
+First live run (2026-08-06, run #2 on `main`): 13 public repos, 37 commits/7d, 5 open
+PRs, 0 open issues, 26 tasks, 13 needing attention, 312 commits in the heatmap, 0
+private repos. 7 GraphQL requests, ~28 points against the 5,000/hour budget. The
+snapshot commit landed as `3ad00a2` and deploy went green.
+
+The two remaining boxes: the deploy job reported success but the Pages URL itself was
+never fetched (the sandbox proxy blocks `github.io`), so load it once by hand. The
+no-op-commit path is exercised by the next cron tick that finds nothing changed — check
+that the run logs `only the timestamp moved — not committing` and pushes nothing.
 
 ---
 
