@@ -229,6 +229,15 @@ job it does, validate, then style.
   a tick lands on the hour.
 - **Commits pushed by `github.token` don't trigger workflows**, which is why the collect
   job's own push doesn't cause a loop.
+- **`deploy-pages` can hang in `deployment_queued` and time out after 10 minutes.** It
+  happened on run #5: the artifact uploaded, `configure-pages` succeeded, the
+  environment URL resolved, and GitHub's Pages queue simply never picked the
+  deployment up. Nothing in the repo to fix — re-run the failed job, or wait for the
+  next cron tick, which deploys again anyway. It's only a config problem if it keeps
+  happening; the thing to check then is Settings → Pages → Source still reading
+  "GitHub Actions". Note the failure mode is benign for visitors: the last successful
+  deploy published a matching page and snapshot, so a failed deploy leaves the site
+  stale but self-consistent rather than broken.
 
 ---
 
