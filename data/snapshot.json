@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T12:43:00.377Z",
+  "generatedAt": "2026-08-06T13:10:30.123Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,7 +7,7 @@
     "activeRepos": 6,
     "openPRs": 5,
     "openIssues": 0,
-    "commits7d": 41,
+    "commits7d": 43,
     "needsAttention": 14
   },
   "repos": [
@@ -19,10 +19,22 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-06T12:42:39Z",
+      "pushedAt": "2026-08-06T13:10:16Z",
       "status": "hot",
       "pinned": false,
       "commits": [
+        {
+          "sha": "a68fc82",
+          "message": "Run collect on Node 24, and record the deploy-pages stall (#4)",
+          "date": "2026-08-06T13:10:16Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/a68fc821edb5f2668f24aa215a3d41d6eb94b180"
+        },
+        {
+          "sha": "a69de37",
+          "message": "ci: run collect on Node 24, note the deploy-pages stall",
+          "date": "2026-08-06T13:09:54Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/a69de379fe3e2a12f4cbba92216af41628d58666"
+        },
         {
           "sha": "6ecc6a2",
           "message": "Keep clock-derived values out of the snapshot (#3)",
@@ -46,32 +58,14 @@
           "message": "fix: log complete rate-limit headroom, not just remaining",
           "date": "2026-08-06T03:31:14Z",
           "url": "https://github.com/joseph-robert-f/repo-radar/commit/872388be4c952165e7c957d74116f11ad5d38a23"
-        },
-        {
-          "sha": "2cdb23f",
-          "message": "Phase 2: collect live data from public repos, drop private repo track…",
-          "date": "2026-08-06T02:26:58Z",
-          "url": "https://github.com/joseph-robert-f/repo-radar/commit/2cdb23f5a35b81300b12f067d8a9e2139835a7bf"
-        },
-        {
-          "sha": "69978a9",
-          "message": "test: validate the GraphQL documents against GitHub's published schema",
-          "date": "2026-08-05T22:50:56Z",
-          "url": "https://github.com/joseph-robert-f/repo-radar/commit/69978a9b9008ff395f88f42c954354c12de72d3c"
-        },
-        {
-          "sha": "26030eb",
-          "message": "feat: collect live data from public repos, drop private repo tracking",
-          "date": "2026-08-05T22:47:25Z",
-          "url": "https://github.com/joseph-robert-f/repo-radar/commit/26030eb983a396e6d26732dc8aa8e41010f66e5b"
         }
       ],
       "openPRs": [],
       "openIssues": [],
       "branches": [],
       "counts": {
-        "commits7d": 8,
-        "commits30d": 8,
+        "commits7d": 10,
+        "commits30d": 10,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -2756,7 +2750,7 @@
     },
     {
       "date": "2026-08-06",
-      "count": 6
+      "count": 8
     }
   ]
 }
