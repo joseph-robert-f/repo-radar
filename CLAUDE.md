@@ -1,0 +1,235 @@
+# Repo Radar — working notes
+
+Context for anyone (human or agent) picking this up. Last updated at the end of Phase 2.
+
+---
+
+## What this is
+
+A GitHub Pages dashboard showing activity across **joseph-robert-f's public repos** —
+commits, open PRs, open issues, and live branches — so every in-flight task is visible
+in one place. The point is the thing GitHub itself doesn't give you: a single cross-repo
+view of "what am I actually in the middle of."
+
+Owner: `joseph-robert-f` · Repo: `repo-radar` · Target URL: `https://joseph-robert-f.github.io/repo-radar/`
+
+```
+cron (6h) → scripts/collect.mjs → GitHub GraphQL API
+          → data/snapshot.json (committed)
+          → Pages redeploys
+          → index.html fetches the JSON and renders
+```
+
+No API keys in the browser. No build step. No dependencies. The page is one file that
+reads one JSON file.
+
+---
+
+## Current state
+
+| Phase | State |
+|---|---|
+| 1 — scaffold, Pages deploy workflow | ✅ shipped |
+| 2 — real collector, public-only, config wired up | ✅ shipped |
+| 3 — dashboard polish | ⬜ not started |
+| 4 — task view refinements | ⬜ not started |
+| 5 — verification pass on the live cron | ⬜ partial |
+
+Phase 2 replaced the sample data with a real collector. `scripts/make-sample.mjs` is
+gone, and with it the `sample: true` flag and the yellow scaffold banner.
+
+---
+
+## Decisions already made — and why
+
+Don't silently reverse these. Each was chosen against a real alternative.
+
+### 1. Public repos only — and no flag to change that
+
+**GitHub Pages sites are always public.** Repository visibility and site visibility are
+separate settings; a Pages site published from a private repo is still readable by
+anyone with the URL. Access-controlled Pages requires GitHub Enterprise Cloud, which a
+personal account can't get.
+
+The design went through three positions and landed on the strictest: first "private
+repos, redacted" (`Private project 1 · 2 open PRs`), then "excluded via
+`includePrivateRepos: false`", now **no private data anywhere in the pipeline and no
+switch to turn it on**. Each step removes a class of mistake: redaction can have bugs,
+and a boolean can be flipped by someone who doesn't know what it publishes.
+
+Concretely: the query filters `privacy: PUBLIC`, it goes through `user(login:)` instead
+of `viewer` so token scope can't widen the result, `derive.mjs` drops anything flagged
+private, `assertSnapshot` refuses to write such a snapshot, and the workflow greps the
+committed file.
+
+**If someone asks for private repos on this dashboard, don't just add the flag back.**
+The honest paths are (a) accept the exposure knowingly and say so out loud, or (b) move
+the deploy to Cloudflare Pages or Netlify with real auth in front, keeping GitHub
+Actions as the collector.
+
+### 2. Scheduled collection, not live browser fetch
+
+The browser never calls the API. A cron job writes a static JSON file. Instant page
+loads, no rate limits for visitors, no token exposed client-side.
+
+### 3. GraphQL, not REST
+
+One request covers repos + commits + PRs + issues + branches. REST needs ~5 calls per
+repo. The whole collect run costs a handful of points against a 5,000/hour budget.
+
+### 4. Single-file HTML, no framework
+
+`index.html` contains all CSS and JS inline. No npm, no build, no lockfile to rot. Keep
+it that way unless there's a concrete reason not to.
+
+### 5. Staleness keys on idle time, not age
+
+`ageInDays` is time since the item opened; `idleDays` is time since it last moved.
+`stale` uses `idleDays`. A PR open for 90 days that got a commit yesterday is not a
+problem; a 9-day-old one nobody has touched is. Age-based staleness flagged the wrong
+things.
+
+### 6. Bot commits don't count
+
+Commits whose author login ends in `[bot]` are dropped from the heatmap, the recent-
+commit list, and `commits7d`. Otherwise this repo's own 6-hourly `chore: refresh
+snapshot` commit would show up as a daily streak of activity, which is the dashboard
+measuring itself.
+
+---
+
+## Layout
+
+```
+index.html                    the entire dashboard — inline CSS + JS, no deps
+config.json                   the only file meant to be hand-edited
+data/snapshot.json            generated; what the page reads
+scripts/collect.mjs           network + orchestration: GraphQL → normalized repos
+scripts/derive.mjs            pure logic: status, staleness, tasks, heatmap, guards
+scripts/selftest.mjs          offline tests for derive.mjs — run this before pushing
+scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's schema
+.github/workflows/pages.yml   collect on a 6h cron, then deploy from main
+```
+
+`collect.mjs` and `derive.mjs` are split so the interesting logic is testable without a
+token or a network. If you add a rule about what counts as stale, active, or a task, it
+goes in `derive.mjs` and gets a test in `selftest.mjs`.
+
+The queries are the one part `selftest.mjs` can't reach, so they get their own check:
+`validate-queries.mjs` imports the real query builders from `collect.mjs` and validates
+them against GitHub's published SDL. Run it after touching a query. It needs two dev
+deps (`npm i --no-save @octokit/graphql-schema graphql`), which is why it isn't part of
+the default test run and why the workflow step is `continue-on-error`.
+
+---
+
+## How the collector works
+
+Three GraphQL phases, all paginated and batched:
+
+1. **repos** — `user(login:).repositories(privacy: PUBLIC, ownerAffiliations: [OWNER],
+   orderBy: PUSHED_AT DESC)`, 50/page, pulling the last N commits, 20 open PRs, 20 open
+   issues, and 50 branch refs per repo.
+2. **commit dates** — the 10-commit preview can't fill a year-long heatmap, so a second
+   pass fetches `committedDate` only, since the heatmap window, 8 repos aliased per
+   request, capped at 600 commits/repo/year (it logs a warning if it hits the cap).
+3. **branch leads** — `unmergedCommits` only exists via
+   `ref(qualifiedName: default).compare(headRef: branch).aheadBy`, one comparison per
+   branch, 40 aliased per request. Branches level with the default branch are dropped.
+
+Then `buildSnapshot()` derives everything the page reads, `assertSnapshot()` checks it,
+and it's written to `data/snapshot.json`.
+
+Known limits, all deliberate:
+
+- the heatmap counts default-branch commits only, so work sitting on a feature branch
+  doesn't appear until it merges;
+- `issues` become tasks only when assigned to the configured user — someone else's
+  issue on your repo isn't on your plate, though it still counts on the repo card;
+- PRs and issues are capped at 20 each per repo; the counts on the cards reflect what
+  was fetched, not an unbounded total.
+
+---
+
+## Snapshot schema
+
+Documented in full in `README.md` under "Snapshot schema". `selftest.mjs` is the
+executable version — read it before changing the shape.
+
+---
+
+## Design system — please don't freelance on this
+
+The visuals follow a validated palette. Colors were chosen by rule and checked with a
+contrast/CVD validator, not by eye. All of them are CSS custom properties at the top of
+`index.html`, declared for light, `prefers-color-scheme: dark`, and `[data-theme]` so
+the manual toggle wins over the OS setting.
+
+- **Recency ramp** (hot → dormant) is an *ordinal* scale: one hue, monotone lightness.
+  Light `#1c5cab → #2a78d6 → #5598e7 → #86b6ef`; dark is the same hue re-stepped for the
+  dark surface. It passes lightness-monotone, adjacent-ΔL, and light-end contrast checks
+  in both modes. Don't substitute a red/yellow/green scheme — a dormant repo isn't an
+  error, and severity colors would misstate that.
+- **Status colors** (`--status-good/warning/serious/critical`) are reserved for state
+  and never reused as series colors. They always ship with a text label beside the dot,
+  never color alone.
+- **Text never wears a data color.** Labels and values use the text tokens; a colored
+  dot beside the text carries identity.
+- The heatmap uses a sequential blue ramp with a "Less → More" legend and a per-cell
+  hover tooltip.
+
+If you add a chart, follow the same discipline: pick the form first, assign color by the
+job it does, validate, then style.
+
+---
+
+## Gotchas
+
+- **`file://` doesn't work.** The page fetches `data/snapshot.json`, which browsers
+  block on the file protocol. Use `python3 -m http.server 8000`. The page renders a
+  helpful error explaining this rather than failing silently.
+- **GraphQL always needs a token**, even for public data — unlike REST, there's no
+  anonymous access. Set `DASHBOARD_TOKEN`.
+- **Never commit the token.** Not in `config.json`, not in a `.env`. This repo is public.
+- **Pushing over HTTPS with a PAT** requires `workflow` scope to touch
+  `.github/workflows/`. SSH and GitHub Desktop sidestep it.
+- **The 6-hourly commit is what keeps the cron alive.** Scheduled workflows auto-disable
+  after 60 days of repo inactivity; the snapshot commit resets that clock. The workflow
+  skips the commit when only `generatedAt` moved, so a fully quiet stretch won't push —
+  that's the trade for no empty-commit spam.
+- **Commits pushed by `github.token` don't trigger workflows**, which is why the collect
+  job's own push doesn't cause a loop.
+
+---
+
+## Verification checklist
+
+- [x] `node scripts/selftest.mjs` passes (23 checks)
+- [x] All three GraphQL documents validate against GitHub's published schema
+- [x] Page renders in light, dark, and at 390px with no console errors
+- [x] Snapshot contains no private repo names, no `redacted`/`sample` flags
+- [ ] A real collect run returns repo data, not 401 — **needs a live Actions run**
+- [ ] `workflow_dispatch` succeeds end to end
+- [ ] Pages URL loads with real data
+- [ ] A second run with no changes commits nothing
+- [ ] Rate-limit headroom logged in the workflow output
+
+The unchecked items all need one thing: a `workflow_dispatch` run on GitHub. They
+couldn't be done from the sandbox this was built in — its proxy blocks the GraphQL
+endpoint and scopes REST to this repo alone, so there was no way to reach the live API.
+Everything reachable offline was verified instead, including the queries themselves.
+
+---
+
+## Next up
+
+**Phase 3 — polish.** Month and weekday labels on the heatmap. Card heights are uneven
+within a grid row. The `.card .meta` row wraps awkwardly at 5 items. Sparklines per repo
+if daily history gets retained.
+
+**Phase 4 — task view.** Group-by-repo vs sort-by-idle toggle. Possibly a per-repo notes
+file hand-edited by Joe ("blocked on X, next: Y") rendered onto cards.
+
+**Later.** Daily snapshot history for trend sparklines · "copy last 24h as markdown"
+standup export · weekly digest via a second workflow · extend to repos Joe contributes
+to rather than owns.

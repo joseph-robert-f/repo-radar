@@ -1,35 +1,111 @@
-name: Deploy Pages
+name: Collect and deploy
 
-# Phase 1: deploy-only. No token, no data collection — this exists purely to
-# prove the Pages pipeline works before we build the collector.
-# Phase 5 adds a `collect` job that runs before this one and commits a fresh
-# data/snapshot.json.
+# Two jobs. `collect` hits the GitHub API and commits a fresh
+# data/snapshot.json when the content actually changed; `deploy` publishes the
+# repo to Pages. Deploy only runs on main — a workflow_dispatch from a feature
+# branch collects and commits there without publishing anything.
 
 on:
+  schedule:
+    # Every 6 hours. GitHub cron is best-effort and drifts 10-30 min under
+    # load, which is fine at this cadence.
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: repo-radar-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
+  collect:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Self-test the derivation logic
+        run: node scripts/selftest.mjs
+
+      - name: Validate the GraphQL queries against GitHub's schema
+        # Non-blocking: it needs dev deps this repo otherwise doesn't have, and
+        # a flaky npm shouldn't stop a data refresh. When it does fail it names
+        # the exact field GitHub changed, which beats reading a 422 body.
+        continue-on-error: true
+        run: |
+          npm i --no-save --no-audit --no-fund @octokit/graphql-schema graphql
+          node scripts/validate-queries.mjs
+
+      - name: Collect public repo activity
+        env:
+          # A fine-grained PAT with read-only Metadata/Contents/Pull requests/
+          # Issues. Falls back to the built-in token, which can read public
+          # data but may see less across repos.
+          DASHBOARD_TOKEN: ${{ secrets.DASHBOARD_TOKEN || github.token }}
+        run: node scripts/collect.mjs
+
+      - name: Check the snapshot for private repo names
+        # Defence in depth against the one failure that actually matters on a
+        # public Pages site. `hide` in config.json is the place to list any
+        # public repo whose name shouldn't be on the dashboard either.
+        run: |
+          node -e "
+            const s = JSON.parse(require('fs').readFileSync('data/snapshot.json','utf8'));
+            if (s.scope !== 'public') { console.error('snapshot scope is not public'); process.exit(1); }
+            if (s.sample) { console.error('snapshot is sample data'); process.exit(1); }
+            const bad = s.repos.filter(r => r.isPrivate);
+            if (bad.length) { console.error('private repos in snapshot: ' + bad.map(r => r.name)); process.exit(1); }
+            console.log('snapshot ok — ' + s.repos.length + ' public repos, scope=' + s.scope);
+          "
+
+      - name: Commit the snapshot if it changed
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # generatedAt changes every run, so diff everything except that line —
+          # otherwise every 6 hours produces a no-op commit.
+          if git diff --quiet -- data/snapshot.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "no changes"
+            exit 0
+          fi
+          before=$(git show HEAD:data/snapshot.json | grep -v '"generatedAt"' || true)
+          after=$(grep -v '"generatedAt"' data/snapshot.json || true)
+          if [ "$before" = "$after" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "only the timestamp moved — not committing"
+            git checkout -- data/snapshot.json
+            exit 0
+          fi
+          git add data/snapshot.json
+          git commit -m "chore: refresh snapshot"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
   deploy:
+    needs: collect
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Sanity check the snapshot is valid JSON
-        run: node -e "JSON.parse(require('fs').readFileSync('data/snapshot.json','utf8')); console.log('snapshot ok')"
+        with:
+          # Pick up the snapshot the collect job just pushed.
+          ref: ${{ github.ref }}
 
       - uses: actions/configure-pages@v5
 
