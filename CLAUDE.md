@@ -84,10 +84,32 @@ it that way unless there's a concrete reason not to.
 
 ### 5. Staleness keys on idle time, not age
 
-`ageInDays` is time since the item opened; `idleDays` is time since it last moved.
-`stale` uses `idleDays`. A PR open for 90 days that got a commit yesterday is not a
-problem; a 9-day-old one nobody has touched is. Age-based staleness flagged the wrong
-things.
+A PR open for 90 days that got a commit yesterday is not a problem; a 9-day-old one
+nobody has touched is. `stale` therefore keys on time since the item last moved
+(`updatedAt`), not time since it opened (`createdAt`). Age-based staleness flagged the
+wrong things.
+
+### 5a. The snapshot stores facts, not elapsed time
+
+No `ageInDays`, `idleDays`, or `daysSinceLastPush` in the file — only the ISO
+timestamps they'd be derived from. `index.html` does that arithmetic at render time.
+
+This was learned the hard way. The first version stored them, and because they're
+recomputed against the wall clock every run, a collect with *zero* new activity still
+produced a 200-line diff. The workflow's "only the timestamp moved — not committing"
+check strips `generatedAt` before comparing, so it could never fire: the repo was set
+to take a snapshot commit every 6 hours forever, which is exactly the empty-commit
+spam that check exists to prevent. Storing them also froze every age on the page at
+whatever it was when the collector last ran, so a 6-hour-old snapshot showed 6-hour-
+stale ages.
+
+`assertSnapshot` now refuses to write a snapshot containing any of those three fields,
+and `selftest.mjs` builds the same fixture at two clocks six hours apart and requires
+the bytes to match. If you add a derived value, ask whether it drifts with the clock;
+if it does, it belongs in the page.
+
+`status` and `stale` are the deliberate exceptions — threshold crossings, not
+continuous drift, so they change rarely and a commit is warranted when they do.
 
 ### 6. Bot commits don't count
 
@@ -193,10 +215,18 @@ job it does, validate, then style.
 - **Never commit the token.** Not in `config.json`, not in a `.env`. This repo is public.
 - **Pushing over HTTPS with a PAT** requires `workflow` scope to touch
   `.github/workflows/`. SSH and GitHub Desktop sidestep it.
-- **The 6-hourly commit is what keeps the cron alive.** Scheduled workflows auto-disable
-  after 60 days of repo inactivity; the snapshot commit resets that clock. The workflow
-  skips the commit when only `generatedAt` moved, so a fully quiet stretch won't push —
-  that's the trade for no empty-commit spam.
+- **A quiet stretch genuinely pushes nothing** now that the snapshot holds no
+  clock-derived values. Two consequences to keep in mind. Scheduled workflows
+  auto-disable after 60 days of *repo* inactivity, so 60 days with no commit to this
+  repo and no activity in any tracked repo would switch the cron off — unlikely across
+  13 repos, but that's the failure mode. And `generatedAt` no longer tracks "when did
+  we last check", only "when did something last change", which is why the page's badge
+  reads `Unchanged for N days — nothing new, or the collector is failing` rather than
+  asserting a failure it can't distinguish. A genuinely broken collect fails its
+  workflow run, and that's the signal that actually reaches you.
+- **GitHub's cron drifts hard.** The first scheduled tick was set for 06:00 UTC and ran
+  at 08:14. Treat the 6-hour cadence as approximate; don't build anything that assumes
+  a tick lands on the hour.
 - **Commits pushed by `github.token` don't trigger workflows**, which is why the collect
   job's own push doesn't cause a loop.
 
@@ -211,18 +241,23 @@ job it does, validate, then style.
 - [x] A real collect run returns repo data, not 401
 - [x] The workflow succeeds end to end, collect job through deploy
 - [x] Rate-limit headroom logged in the workflow output
+- [x] The scheduled cron fires and succeeds unattended
+- [x] A collect with no new activity produces a byte-identical snapshot (`selftest.mjs`)
 - [ ] Pages URL loads with real data
-- [ ] A second run with no changes commits nothing
+- [ ] A real cron tick with no new activity commits nothing
 
 First live run (2026-08-06, run #2 on `main`): 13 public repos, 37 commits/7d, 5 open
 PRs, 0 open issues, 26 tasks, 13 needing attention, 312 commits in the heatmap, 0
 private repos. 7 GraphQL requests, ~28 points against the 5,000/hour budget. The
-snapshot commit landed as `3ad00a2` and deploy went green.
+snapshot commit landed as `3ad00a2` and deploy went green. Run #4 was the first
+unattended cron run and also went green.
 
-The two remaining boxes: the deploy job reported success but the Pages URL itself was
-never fetched (the sandbox proxy blocks `github.io`), so load it once by hand. The
-no-op-commit path is exercised by the next cron tick that finds nothing changed — check
-that the run logs `only the timestamp moved — not committing` and pushes nothing.
+The two remaining boxes. The deploy job reports success every run but the Pages URL
+itself has never been fetched — the sandbox this was built in can't reach `github.io`,
+so load it once by hand. And the no-op-commit path is proven in `selftest.mjs` but has
+not yet been seen on a real tick; it couldn't fire at all before the clock-drift fix
+(see decision 5a), so watch for a quiet tick logging `only the timestamp moved — not
+committing`.
 
 ---
 

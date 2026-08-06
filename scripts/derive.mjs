@@ -64,6 +64,17 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
   });
 
   // ---- per-repo ----------------------------------------------------------
+  //
+  // Elapsed-time values (how many days old, how many days idle) are NOT stored.
+  // They are pure functions of the clock and an ISO timestamp that is already
+  // here, so writing them down would make the snapshot differ on every single
+  // run even when nothing happened in any repo — which defeats the workflow's
+  // "don't commit if nothing changed" check, and freezes every age on the page
+  // at whatever it was when the collector last ran. index.html computes them at
+  // render time instead, so they're correct at the moment you look.
+  //
+  // `status` and `stale` DO stay here: they're threshold crossings, not
+  // continuous drift, so they change rarely and when they do it's real news.
   const repos = kept.map((r) => {
     const dates = r.commitDates || [];
     const commits7d = dates.filter((d) => daysBetween(now, d) <= 7).length;
@@ -77,8 +88,6 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       isDraft: !!p.isDraft,
       createdAt: p.createdAt,
       updatedAt: p.updatedAt,
-      ageInDays: round1(daysBetween(now, p.createdAt)),
-      idleDays: round1(daysBetween(now, p.updatedAt)),
       reviewDecision: p.reviewDecision ?? null,
       additions: p.additions ?? 0,
       deletions: p.deletions ?? 0,
@@ -92,8 +101,6 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       labels: i.labels || [],
       createdAt: i.createdAt,
       updatedAt: i.updatedAt,
-      ageInDays: round1(daysBetween(now, i.createdAt)),
-      idleDays: round1(daysBetween(now, i.updatedAt)),
       assigned: !!i.assigned,
     }));
 
@@ -112,7 +119,6 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       isArchived: !!r.isArchived,
       defaultBranch: r.defaultBranch ?? null,
       pushedAt: r.pushedAt,
-      daysSinceLastPush,
       status: overrides[r.name] || statusFor(daysSinceLastPush, thresholds),
       pinned: pin.includes(r.name),
       commits: r.commits || [],
@@ -141,9 +147,10 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
   );
 
   // ---- tasks: one flat cross-repo list of everything in flight ------------
-  // `ageInDays` is how long the thing has been open; `idleDays` is how long it
-  // has sat untouched. Staleness keys on idleDays — a long-lived PR that moved
-  // yesterday is not stale, and a week-old one nobody has touched is.
+  // Each task carries `createdAt` (when it opened) and `updatedAt` (when it
+  // last moved) and lets the page turn those into ages. Staleness keys on time
+  // since it last moved — a long-lived PR that got a commit yesterday is not a
+  // problem, and a week-old one nobody has touched is.
   const tasks = [];
 
   for (const r of repos) {
@@ -153,10 +160,12 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
         repo: r.name,
         title: `#${p.number} ${p.title}`,
         url: p.url,
-        ageInDays: p.ageInDays,
-        idleDays: p.idleDays,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
         isDraft: p.isDraft,
-        stale: p.idleDays > (p.isDraft ? staleDays.draftPr : staleDays.pr),
+        stale:
+          daysBetween(now, p.updatedAt) >
+          (p.isDraft ? staleDays.draftPr : staleDays.pr),
       });
     }
 
@@ -166,9 +175,9 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
         repo: r.name,
         title: `#${i.number} ${i.title}`,
         url: i.url,
-        ageInDays: i.ageInDays,
-        idleDays: i.idleDays,
-        stale: i.idleDays > staleDays.issue,
+        createdAt: i.createdAt,
+        updatedAt: i.updatedAt,
+        stale: daysBetween(now, i.updatedAt) > staleDays.issue,
       });
     }
 
@@ -178,20 +187,25 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
     for (const b of r.branches) {
       if (branchesWithPRs.has(b.name)) continue;
       if (b.unmergedCommits <= 0) continue;
-      const age = round1(daysBetween(now, b.lastCommit));
       tasks.push({
         type: "branch",
         repo: r.name,
         title: `${b.name} · ${b.unmergedCommits} unmerged`,
         url: r.url ? `${r.url}/tree/${b.name}` : null,
-        ageInDays: age,
-        idleDays: age,
-        stale: age > staleDays.branch,
+        createdAt: b.lastCommit,
+        updatedAt: b.lastCommit,
+        stale: daysBetween(now, b.lastCommit) > staleDays.branch,
       });
     }
   }
 
-  tasks.sort((a, b) => b.idleDays - a.idleDays || b.ageInDays - a.ageInDays);
+  // Most-idle first. Sorting on the timestamps rather than on elapsed days
+  // gives the identical order without baking the clock into the file.
+  tasks.sort(
+    (a, b) =>
+      Date.parse(a.updatedAt) - Date.parse(b.updatedAt) ||
+      Date.parse(a.createdAt) - Date.parse(b.createdAt),
+  );
   const attention = tasks.filter((t) => t.stale);
 
   // ---- heatmap: daily commit counts across every tracked repo ------------
@@ -274,9 +288,27 @@ export function assertSnapshot(snap) {
 
   for (const t of snap.tasks) {
     if (!["pr", "issue", "branch"].includes(t.type)) fail(`task has unknown type "${t.type}"`);
-    if (typeof t.ageInDays !== "number") fail(`task "${t.title}" missing ageInDays`);
+    if (!Number.isFinite(Date.parse(t.createdAt))) fail(`task "${t.title}" missing createdAt`);
+    if (!Number.isFinite(Date.parse(t.updatedAt))) fail(`task "${t.title}" missing updatedAt`);
     if (typeof t.stale !== "boolean") fail(`task "${t.title}" missing stale`);
   }
+
+  // Elapsed-day values must not be written down — they're clock-derived, so
+  // storing one would make every run produce a different file and silently
+  // break the workflow's "nothing changed, don't commit" check. See the note
+  // in buildSnapshot. The page computes these from the timestamps instead.
+  const DRIFTING = ["ageInDays", "idleDays", "daysSinceLastPush"];
+  const scan = (obj, where) => {
+    for (const k of DRIFTING) {
+      if (obj && Object.hasOwn(obj, k)) fail(`${where} carries clock-derived "${k}"`);
+    }
+  };
+  for (const r of snap.repos) {
+    scan(r, `repo "${r.name}"`);
+    for (const p of r.openPRs) scan(p, `repo "${r.name}" PR #${p.number}`);
+    for (const i of r.openIssues) scan(i, `repo "${r.name}" issue #${i.number}`);
+  }
+  for (const t of snap.tasks) scan(t, `task "${t.title}"`);
 
   if (snap.attention.length !== snap.tasks.filter((t) => t.stale).length) {
     fail("attention is not the stale subset of tasks");
