@@ -33,7 +33,10 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          # Node 20 went EOL and the runner now forces actions onto 24 anyway,
+          # logging a deprecation warning on every run. collect.mjs needs
+          # nothing newer than native fetch, so it runs fine on either.
+          node-version: "24"
 
       - name: Self-test the derivation logic
         run: node scripts/selftest.mjs
