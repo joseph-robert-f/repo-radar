@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T13:40:33.199Z",
+  "generatedAt": "2026-08-06T23:49:26.337Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-06T13:10:40Z",
+      "pushedAt": "2026-08-06T13:40:40Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -52,12 +52,6 @@
           "message": "Log complete rate-limit headroom, and tick the checklist against the …",
           "date": "2026-08-06T03:31:46Z",
           "url": "https://github.com/joseph-robert-f/repo-radar/commit/12fd5e65faf7703902b9a8319cf07aff8276287d"
-        },
-        {
-          "sha": "872388b",
-          "message": "fix: log complete rate-limit headroom, not just remaining",
-          "date": "2026-08-06T03:31:14Z",
-          "url": "https://github.com/joseph-robert-f/repo-radar/commit/872388be4c952165e7c957d74116f11ad5d38a23"
         }
       ],
       "openPRs": [],
