@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T12:27:51.475Z",
+  "generatedAt": "2026-08-09T18:24:34.955Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,10 +7,74 @@
     "activeRepos": 5,
     "openPRs": 5,
     "openIssues": 1,
-    "commits7d": 43,
+    "commits7d": 39,
     "needsAttention": 16
   },
   "repos": [
+    {
+      "name": "Localize-News",
+      "url": "https://github.com/joseph-robert-f/Localize-News",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-09T15:52:44Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "7880b8c",
+          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
+          "date": "2026-08-04T14:19:32Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "fix/manual-issue-name-matching",
+          "lastCommit": "2026-05-08T19:30:16Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "feat/portal-page-filter",
+          "lastCommit": "2026-05-08T19:56:14Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 1,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 2
+      }
+    },
+    {
+      "name": "repo-radar",
+      "url": "https://github.com/joseph-robert-f/repo-radar",
+      "description": "Phase 1: scaffold, sample data, Pages deploy",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-09T12:27:58Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 10,
+        "commits30d": 10,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
     {
       "name": "ai-news-digest",
       "url": "https://github.com/joseph-robert-f/ai-news-digest",
@@ -87,12 +151,12 @@
       "openPRs": [],
       "openIssues": [
         {
-          "number": 34,
-          "title": "GitHub activity digest — 2026-08-08",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/34",
+          "number": 35,
+          "title": "GitHub activity digest — 2026-08-09",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/35",
           "labels": [],
-          "createdAt": "2026-08-08T13:43:01Z",
-          "updatedAt": "2026-08-08T13:43:01Z",
+          "createdAt": "2026-08-09T13:47:08Z",
+          "updatedAt": "2026-08-09T13:47:08Z",
           "assigned": false
         }
       ],
@@ -199,70 +263,6 @@
         "openPRs": 0,
         "openIssues": 1,
         "branches": 19
-      }
-    },
-    {
-      "name": "Localize-News",
-      "url": "https://github.com/joseph-robert-f/Localize-News",
-      "description": null,
-      "language": "TypeScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-09T06:56:22Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [
-        {
-          "sha": "7880b8c",
-          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
-          "date": "2026-08-04T14:19:32Z",
-          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
-        }
-      ],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [
-        {
-          "name": "fix/manual-issue-name-matching",
-          "lastCommit": "2026-05-08T19:30:16Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "feat/portal-page-filter",
-          "lastCommit": "2026-05-08T19:56:14Z",
-          "unmergedCommits": 1
-        }
-      ],
-      "counts": {
-        "commits7d": 1,
-        "commits30d": 1,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 2
-      }
-    },
-    {
-      "name": "repo-radar",
-      "url": "https://github.com/joseph-robert-f/repo-radar",
-      "description": "Phase 1: scaffold, sample data, Pages deploy",
-      "language": "JavaScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-09T06:37:48Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [],
-      "counts": {
-        "commits7d": 10,
-        "commits30d": 10,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 0
       }
     },
     {
@@ -434,7 +434,7 @@
         }
       ],
       "counts": {
-        "commits7d": 20,
+        "commits7d": 16,
         "commits30d": 20,
         "openPRs": 5,
         "openIssues": 0,
@@ -597,7 +597,7 @@
       "branches": [],
       "counts": {
         "commits7d": 0,
-        "commits30d": 26,
+        "commits30d": 17,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -675,7 +675,7 @@
       ],
       "counts": {
         "commits7d": 0,
-        "commits30d": 16,
+        "commits30d": 14,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 1
