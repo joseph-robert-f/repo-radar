@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T00:56:55.702Z",
+  "generatedAt": "2026-08-10T07:09:44.437Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,7 +7,7 @@
     "activeRepos": 5,
     "openPRs": 5,
     "openIssues": 1,
-    "commits7d": 39,
+    "commits7d": 33,
     "needsAttention": 16
   },
   "repos": [
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-09T18:24:42Z",
+      "pushedAt": "2026-08-10T00:57:04Z",
       "status": "hot",
       "pinned": false,
       "commits": [],
@@ -434,7 +434,7 @@
         }
       ],
       "counts": {
-        "commits7d": 16,
+        "commits7d": 10,
         "commits30d": 20,
         "openPRs": 5,
         "openIssues": 0,
