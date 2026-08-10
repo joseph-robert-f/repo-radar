@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T18:24:34.955Z",
+  "generatedAt": "2026-08-10T00:56:55.702Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -11,6 +11,29 @@
     "needsAttention": 16
   },
   "repos": [
+    {
+      "name": "repo-radar",
+      "url": "https://github.com/joseph-robert-f/repo-radar",
+      "description": "Phase 1: scaffold, sample data, Pages deploy",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-09T18:24:42Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 10,
+        "commits30d": 10,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
     {
       "name": "Localize-News",
       "url": "https://github.com/joseph-robert-f/Localize-News",
@@ -50,29 +73,6 @@
         "openPRs": 0,
         "openIssues": 0,
         "branches": 2
-      }
-    },
-    {
-      "name": "repo-radar",
-      "url": "https://github.com/joseph-robert-f/repo-radar",
-      "description": "Phase 1: scaffold, sample data, Pages deploy",
-      "language": "JavaScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-09T12:27:58Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [],
-      "counts": {
-        "commits7d": 10,
-        "commits30d": 10,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 0
       }
     },
     {
@@ -597,7 +597,7 @@
       "branches": [],
       "counts": {
         "commits7d": 0,
-        "commits30d": 17,
+        "commits30d": 15,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -1297,10 +1297,6 @@
     }
   ],
   "heatmap": [
-    {
-      "date": "2025-08-10",
-      "count": 0
-    },
     {
       "date": "2025-08-11",
       "count": 0
@@ -2756,6 +2752,10 @@
     {
       "date": "2026-08-09",
       "count": 1
+    },
+    {
+      "date": "2026-08-10",
+      "count": 0
     }
   ]
 }
