@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T07:09:44.437Z",
+  "generatedAt": "2026-08-10T12:43:27.962Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,74 +7,10 @@
     "activeRepos": 5,
     "openPRs": 5,
     "openIssues": 1,
-    "commits7d": 33,
+    "commits7d": 30,
     "needsAttention": 16
   },
   "repos": [
-    {
-      "name": "repo-radar",
-      "url": "https://github.com/joseph-robert-f/repo-radar",
-      "description": "Phase 1: scaffold, sample data, Pages deploy",
-      "language": "JavaScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-10T00:57:04Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [],
-      "counts": {
-        "commits7d": 10,
-        "commits30d": 10,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 0
-      }
-    },
-    {
-      "name": "Localize-News",
-      "url": "https://github.com/joseph-robert-f/Localize-News",
-      "description": null,
-      "language": "TypeScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-09T15:52:44Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [
-        {
-          "sha": "7880b8c",
-          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
-          "date": "2026-08-04T14:19:32Z",
-          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
-        }
-      ],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [
-        {
-          "name": "fix/manual-issue-name-matching",
-          "lastCommit": "2026-05-08T19:30:16Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "feat/portal-page-filter",
-          "lastCommit": "2026-05-08T19:56:14Z",
-          "unmergedCommits": 1
-        }
-      ],
-      "counts": {
-        "commits7d": 1,
-        "commits30d": 1,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 2
-      }
-    },
     {
       "name": "ai-news-digest",
       "url": "https://github.com/joseph-robert-f/ai-news-digest",
@@ -83,10 +19,16 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-09T10:48:18Z",
+      "pushedAt": "2026-08-10T10:45:07Z",
       "status": "hot",
       "pinned": false,
       "commits": [
+        {
+          "sha": "9e0ac48",
+          "message": "Add 10 August 2026 AI News Digest Report (#36)",
+          "date": "2026-08-10T10:45:07Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9e0ac4881b717e7c54877da8cda2f6257e3c3ff9"
+        },
         {
           "sha": "9cbfdef",
           "message": "Add 9 August 2026 AI News Digest Report",
@@ -140,12 +82,6 @@
           "message": "Add 2 August 2026 AI News Digest Report (#30)",
           "date": "2026-08-02T10:48:19Z",
           "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/bd9a3dcd4231ec8ee641682e82871c4fb88dd513"
-        },
-        {
-          "sha": "52d8ff0",
-          "message": "Add 1 August 2026 AI News Digest Report (#29)",
-          "date": "2026-08-01T10:43:54Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/52d8ff0df7fd9febe0e3f20fc501dd6aab384b30"
         }
       ],
       "openPRs": [],
@@ -237,6 +173,11 @@
           "unmergedCommits": 1
         },
         {
+          "name": "claude/eager-clarke-d88pg7",
+          "lastCommit": "2026-08-10T10:44:42Z",
+          "unmergedCommits": 1
+        },
+        {
           "name": "claude/eager-clarke-cws7ld",
           "lastCommit": "2026-07-09T10:44:21Z",
           "unmergedCommits": 1
@@ -262,7 +203,71 @@
         "commits30d": 33,
         "openPRs": 0,
         "openIssues": 1,
-        "branches": 19
+        "branches": 20
+      }
+    },
+    {
+      "name": "Localize-News",
+      "url": "https://github.com/joseph-robert-f/Localize-News",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-10T07:40:59Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "7880b8c",
+          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
+          "date": "2026-08-04T14:19:32Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "fix/manual-issue-name-matching",
+          "lastCommit": "2026-05-08T19:30:16Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "feat/portal-page-filter",
+          "lastCommit": "2026-05-08T19:56:14Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 1,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 2
+      }
+    },
+    {
+      "name": "repo-radar",
+      "url": "https://github.com/joseph-robert-f/repo-radar",
+      "description": "Phase 1: scaffold, sample data, Pages deploy",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "pushedAt": "2026-08-10T07:09:56Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 10,
+        "commits30d": 10,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
       }
     },
     {
@@ -434,7 +439,7 @@
         }
       ],
       "counts": {
-        "commits7d": 10,
+        "commits7d": 7,
         "commits30d": 20,
         "openPRs": 5,
         "openIssues": 0,
@@ -1147,6 +1152,15 @@
       "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-22azs4",
       "createdAt": "2026-08-08T10:44:43Z",
       "updatedAt": "2026-08-08T10:44:43Z",
+      "stale": false
+    },
+    {
+      "type": "branch",
+      "repo": "ai-news-digest",
+      "title": "claude/eager-clarke-d88pg7 · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-d88pg7",
+      "createdAt": "2026-08-10T10:44:42Z",
+      "updatedAt": "2026-08-10T10:44:42Z",
       "stale": false
     }
   ],
@@ -2755,7 +2769,7 @@
     },
     {
       "date": "2026-08-10",
-      "count": 0
+      "count": 1
     }
   ]
 }
