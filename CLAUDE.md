@@ -231,6 +231,37 @@ the manual toggle wins over the OS setting.
 If you add a chart, follow the same discipline: pick the form first, assign color by the
 job it does, validate, then style.
 
+### Voice
+
+The page opens with a generated sentence (`stateOfTheWorld()` in `index.html`) saying
+what's actually going on — "29 commits this week across 5 repos. 2 things waiting, the
+oldest for 95 days in Localize-News." A wall of counts makes the reader do that
+synthesis themselves, which is the job the dashboard is supposed to be doing.
+
+It's composed from the data and **never random**: the same snapshot always renders the
+same sentence. Resist the urge to add rotating jokes — a line that changes when the data
+didn't is a line you stop trusting. Whimsy lives in the phrasing, not in surprise.
+
+Same rule for empty states. "Nothing's rotting" is fine; a different quip on every load
+is not.
+
+### Whimsy that's allowed to move
+
+- The logo sweeps once on load, echoing the favicon.
+- Tile numbers count up over 650ms, easing out.
+- Cards lift 2px on hover; heatmap cells scale 1.5×.
+- The all-clear checkmark draws itself in.
+
+All of it sits behind `prefers-reduced-motion: reduce`, which switches off every
+animation and transition. If you add motion, add it there too.
+
+### Task glyphs
+
+PR, issue and branch each get a drawn SVG glyph so the rows differ at a glance. They're
+inline SVG on `currentColor`, not emoji — emoji render differently on every platform and
+can't inherit color. The glyph is redundant with the text label beside it, never the
+only signal.
+
 ---
 
 ## Gotchas

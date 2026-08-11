@@ -198,6 +198,70 @@
     th, td { padding: 7px 11px; }
   }
 
+  /* ---------- logo: the favicon motif, swept once on load ---------- */
+  .logo { width: 22px; height: 22px; flex: none; align-self: center; }
+  .logo .ring { fill: none; stroke: var(--recency-active); stroke-width: 2.5; }
+  .logo .sweep { transform-origin: 16px 16px; animation: sweep 1.5s cubic-bezier(.3,0,.2,1) 1; }
+  @keyframes sweep { from { transform: rotate(-360deg); opacity: 0; } to { transform: rotate(0deg); opacity: 1; } }
+
+  /* ---------- the opening line: what's actually going on ---------- */
+  .headline {
+    font-size: 16.5px; line-height: 1.5; color: var(--text-primary);
+    margin: 0 0 22px; max-width: 62ch; letter-spacing: -0.005em;
+  }
+  .headline .quiet { color: var(--text-secondary); }
+
+  /* ---------- hero row: the single worst offender ---------- */
+  .hero-task {
+    display: flex; align-items: center; gap: 13px; padding: 15px;
+    text-decoration: none; color: inherit; border-bottom: 1px solid var(--gridline);
+  }
+  .hero-task:hover { background: var(--wash); }
+  .hero-task .glyph { color: var(--status-critical); }
+  .hero-task .ht-body { min-width: 0; flex: 1 1 auto; }
+  .hero-task .ht-title { display: block; font-size: 15.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero-task .ht-sub { display: block; font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; }
+  .hero-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-muted); padding: 12px 15px 0;
+  }
+
+  /* ---------- task-type glyphs ---------- */
+  .glyph { width: 15px; height: 15px; flex: none; color: var(--text-muted); }
+  .row .glyph { align-self: center; }
+  .row:hover .glyph { color: var(--text-secondary); }
+
+  /* ---------- all-clear ---------- */
+  .allclear { padding: 22px 16px; display: flex; align-items: center; gap: 12px; }
+  .allclear .mark {
+    width: 26px; height: 26px; flex: none; border-radius: 50%;
+    border: 2px solid var(--status-good); display: grid; place-items: center;
+  }
+  .allclear .mark svg { width: 14px; height: 14px; }
+  .allclear .mark path {
+    stroke: var(--status-good); stroke-width: 2.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 20; stroke-dashoffset: 20; animation: draw .5s .2s forwards;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .allclear .words { font-size: 14px; }
+  .allclear .words b { font-weight: 600; }
+  .allclear .words span { display: block; color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+
+  /* ---------- micro-interactions ---------- */
+  .card { transition: transform .12s ease, border-color .12s ease; }
+  .card:hover { transform: translateY(-2px); border-color: var(--baseline); }
+  .hm i { transition: transform .1s ease; }
+  .hm i[data-d]:hover { transform: scale(1.5); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo .sweep { animation: none; }
+    .allclear .mark path { animation: none; stroke-dashoffset: 0; }
+    .card, .hm i { transition: none; }
+    .card:hover { transform: none; }
+    .hm i[data-d]:hover { transform: none; }
+  }
+
   #tip {
     position: fixed; pointer-events: none; z-index: 50; opacity: 0;
     background: var(--surface-1); color: var(--text-primary);
@@ -214,6 +278,11 @@
 <div class="wrap">
 
   <header class="top">
+    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+      <circle class="ring" cx="16" cy="16" r="13"/>
+      <circle class="ring" cx="16" cy="16" r="5.5"/>
+      <path class="ring sweep" d="M16 16 L26 9" stroke-linecap="round"/>
+    </svg>
     <h1>Repo Radar</h1>
     <span class="freshness" id="freshness"></span>
     <span class="spacer"></span>
@@ -224,6 +293,8 @@
   <div id="loadError" class="banner hidden"></div>
 
   <div id="app" class="hidden">
+
+    <p class="headline" id="headline"></p>
 
     <div class="tiles" id="tiles"></div>
 
@@ -277,8 +348,68 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const STATUS_LABEL = { hot: "Hot", active: "Active", idle: "Idle", dormant: "Dormant" };
 const KIND_LABEL = { pr: "PR", issue: "Issue", branch: "Branch" };
 
+/* Task-type glyphs, so a PR, an issue and a stray branch differ at a glance
+   instead of all reading as identical rows. Drawn rather than emoji: emoji
+   render differently on every platform and can't take currentColor. */
+const GLYPH = {
+  pr: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2a2 2 0 1 0-.5 3.95v4.1a2 2 0 1 0 1 0v-4.1A2 2 0 0 0 4.5 2Zm0 10.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0-8.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm7 6.05v-4.3A2.25 2.25 0 0 0 9.25 3.5H8.06l1.22-1.22-.7-.71L6.31 4l2.27 2.44.71-.71L8.06 4.5h1.19c.69 0 1.25.56 1.25 1.25v4.3a2 2 0 1 0 1 0Zm-.5 3.45a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>`,
+  issue: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM.5 8a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5 2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>`,
+  branch: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11.5 2a2 2 0 0 0-.5 3.95V6.5A1.5 1.5 0 0 1 9.5 8h-3c-.56 0-1.08.16-1.5.44V5.95a2 2 0 1 0-1 0v4.1a2 2 0 1 0 1 .05A1.5 1.5 0 0 1 6.5 9h3A2.5 2.5 0 0 0 12 6.5v-.55A2 2 0 0 0 11.5 2ZM4.5 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm7-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>`,
+};
+
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many || one + "s"}`;
+
+/**
+ * The opening line. The dashboard's whole point is answering "what am I in the
+ * middle of", and a wall of counts makes you work that out yourself — so say it
+ * in a sentence. Composed from the data, never random: the same snapshot always
+ * produces the same line.
+ */
+function stateOfTheWorld(d) {
+  const s = d.summary;
+  const bits = [];
+
+  // Where the week actually went.
+  const busiest = [...d.repos].sort((a, b) => b.counts.commits7d - a.counts.commits7d)[0];
+  if (s.commits7d === 0) {
+    bits.push("Nothing committed anywhere this week.");
+  } else if (busiest && busiest.counts.commits7d >= s.commits7d * 0.6) {
+    bits.push(`${plural(s.commits7d, "commit")} this week, mostly in <b>${esc(busiest.name)}</b>.`);
+  } else {
+    const moving = d.repos.filter((r) => r.counts.commits7d > 0).length;
+    bits.push(`${plural(s.commits7d, "commit")} this week across ${plural(moving, "repo")}.`);
+  }
+
+  // What's actually waiting on you. attention is sorted most-idle-first.
+  const worst = d.attention[0];
+  if (!d.attention.length) {
+    bits.push(
+      s.openPRs || s.openIssues
+        ? `<span class="quiet">Nothing's gone stale — every open thread has moved recently.</span>`
+        : `<span class="quiet">Nothing open, nothing stale. Genuinely clear.</span>`,
+    );
+  } else {
+    const days = Math.round(daysSince(worst.updatedAt));
+    const where = worst.repo;
+    bits.push(
+      d.attention.length === 1
+        ? `One thing is waiting: <b>${esc(worst.title.split(" · ")[0])}</b> in ${esc(where)}, untouched for ${plural(days, "day")}.`
+        : `${plural(d.attention.length, "thing")} waiting, the oldest for ${plural(days, "day")} in <b>${esc(where)}</b>.`,
+    );
+  }
+
+  // A gentle nudge only when the shape of the data warrants one.
+  const dormant = d.repos.filter((r) => r.status === "dormant").length;
+  if (dormant >= Math.ceil(d.repos.length / 2)) {
+    bits.push(`<span class="quiet">${plural(dormant, "repo")} haven't stirred in months.</span>`);
+  }
+
+  return bits.join(" ");
+}
+
 function relTime(iso) {
   const d = (Date.now() - Date.parse(iso)) / 86400000;
+  if (!Number.isFinite(d)) return "—"; // never render NaN if a field is missing
   if (d < 0.042) return "just now";
   if (d < 1) return `${Math.round(d * 24)}h ago`;
   if (d < 30) return `${Math.round(d)}d ago`;
@@ -341,9 +472,28 @@ function renderTiles(d) {
   $("#tiles").innerHTML = tiles.map((t) => `
     <div class="tile${t.hero ? " hero" : ""}">
       <div class="label">${esc(t.label)}</div>
-      <div class="value">${esc(t.value)}</div>
+      <div class="value"${typeof t.value === "number" ? ` data-count="${t.value}"` : ""}>${esc(t.value)}</div>
       ${t.note ? `<div class="note">${esc(t.note)}</div>` : ""}
     </div>`).join("");
+  countUp();
+}
+
+/** Roll each numeric tile up from zero. Skipped entirely for reduced motion. */
+function countUp() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for (const el of document.querySelectorAll(".tile .value[data-count]")) {
+    const target = +el.dataset.count;
+    if (!target) continue;
+    const start = performance.now();
+    const tick = (t) => {
+      const p = Math.min(1, (t - start) / 650);
+      // ease-out so it decelerates into the real number
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = "0";
+    requestAnimationFrame(tick);
+  }
 }
 
 function taskRow(t, showFlag) {
@@ -353,6 +503,7 @@ function taskRow(t, showFlag) {
     ? `<span class="flag"><span class="dot" style="background:${daysSince(t.updatedAt) > 30 ? "var(--status-critical)" : "var(--status-warning)"}"></span>Stale</span>`
     : t.isDraft ? `<span class="flag"><span class="dot" style="background:var(--status-serious)"></span>Draft</span>` : "";
   return `<${tag} class="row"${href}>
+    ${GLYPH[t.type]}
     <span class="kind">${KIND_LABEL[t.type]}</span>
     <span class="title">${esc(t.title)}</span>
     ${flag}
@@ -361,14 +512,36 @@ function taskRow(t, showFlag) {
   </${tag}>`;
 }
 
+/** The single most-neglected item, promoted out of the list so it can't hide. */
+function heroTask(t) {
+  const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
+  const tag = t.url ? "a" : "div";
+  const days = Math.round(daysSince(t.updatedAt));
+  return `<div class="hero-label">Oldest thing here</div>
+    <${tag} class="hero-task"${href}>
+      ${GLYPH[t.type]}
+      <span class="ht-body">
+        <span class="ht-title">${esc(t.title)}</span>
+        <span class="ht-sub">${esc(t.repo)} · waiting ${plural(days, "day")}</span>
+      </span>
+    </${tag}>`;
+}
+
 function renderTasks(d) {
   const open = d.tasks.filter((t) => !t.stale);
-  $("#attention").innerHTML = d.attention.length
-    ? d.attention.map((t) => taskRow(t, true)).join("")
-    : `<div class="empty">Nothing stale. Every open PR, assigned issue, and live branch has moved recently.</div>`;
+  const [worst, ...rest] = d.attention;
+
+  $("#attention").innerHTML = worst
+    ? heroTask(worst) + rest.map((t) => taskRow(t, true)).join("")
+    : `<div class="allclear">
+         <span class="mark"><svg viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5"/></svg></span>
+         <span class="words"><b>Nothing's rotting.</b>
+           <span>Every open PR, assigned issue and live branch has moved recently.</span></span>
+       </div>`;
+
   $("#tasks").innerHTML = open.length
     ? open.map((t) => taskRow(t, false)).join("")
-    : `<div class="empty">No open PRs, assigned issues, or unmerged branches outside the attention list.</div>`;
+    : `<div class="empty">Everything in flight is already up above. Nothing else is open.</div>`;
 }
 
 function renderHeatmap(d) {
@@ -440,7 +613,7 @@ function renderCards(d) {
       </div>
       ${detail}
     </article>`;
-  }).join("") : `<div class="empty">No repos match that filter.</div>`;
+  }).join("") : `<div class="empty">Nothing matches that. Try a shorter search, or the All filter.</div>`;
 }
 
 function renderTable(d) {
@@ -492,6 +665,7 @@ fetch("data/snapshot.json", { cache: "no-store" })
   .then((d) => {
     DATA = d;
     $("#app").classList.remove("hidden");
+    $("#headline").innerHTML = stateOfTheWorld(d);
     renderFreshness(d);
     renderTiles(d);
     renderTasks(d);
