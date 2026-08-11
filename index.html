@@ -195,6 +195,13 @@
 
   /* ---------------- weather (the heatmap) ---------------- */
   .hm-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .hm-months {
+    display: grid; grid-auto-flow: column; gap: 2px; width: max-content;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3); height: 13px;
+  }
+  .hm-months span { white-space: nowrap; overflow: visible; }
   .hm { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 9px); gap: 2px; width: max-content; }
   .hm i { width: 9px; height: 9px; background: var(--hm-0); display: block; transition: transform .1s ease; }
   .hm i[data-l="1"] { background: var(--hm-1); }
@@ -604,8 +611,27 @@ function weatherHTML(d) {
   const cells = Array.from({ length: lead }, () => `<i style="visibility:hidden"></i>`).join("")
     + days.map((x) => `<i data-l="${lvl(x.count)}" data-d="${x.date}" data-n="${x.count}"></i>`).join("");
   const total = days.reduce((n, x) => n + x.count, 0);
+
+  // Month labels: one per column, printed only where the month turns over, so
+  // you can tell which patch of weather is which. An unlabelled grid is pretty
+  // and says nothing.
+  const weeks = Math.ceil((lead + days.length) / 7);
+  let lastMonth = -1;
+  const months = Array.from({ length: weeks }, (_, w) => {
+    const di = w * 7 - lead;
+    const day = days[Math.max(0, di)];
+    if (!day) return `<span></span>`;
+    const m = new Date(day.date + "T00:00:00Z").getUTCMonth();
+    if (di < 0 || m === lastMonth) return `<span></span>`;
+    lastMonth = m;
+    return `<span>${MONTHS[m].slice(0, 3)}</span>`;
+  }).join("");
+
   return `<div class="box"><h3>The Year in Weather</h3>
-    <div class="hm-scroll"><div class="hm" id="heatmap">${cells}</div></div>
+    <div class="hm-scroll">
+      <div class="hm-months" style="grid-template-columns:repeat(${weeks},9px)">${months}</div>
+      <div class="hm" id="heatmap">${cells}</div>
+    </div>
     <div class="hm-legend"><span>Dry</span>
       <i style="background:var(--hm-0)"></i><i style="background:var(--hm-1)"></i><i style="background:var(--hm-2)"></i><i style="background:var(--hm-3)"></i><i style="background:var(--hm-4)"></i>
       <span>Wet</span><span style="margin-left:auto">${total} commits</span></div></div>`;

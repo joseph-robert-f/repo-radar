@@ -172,6 +172,28 @@ carries several phrasings, picked by a hash of the repo's name, so a page with f
 quiet projects doesn't print the same headline four times — but the same snapshot
 always sets the same page. Nothing is random.
 
+### Publishing the paper
+
+**GitHub Pages serves exactly one site per repository.** `repo-radar` gets
+`https://joseph-robert-f.github.io/repo-radar/` and nothing else — there is no way to
+run the paper and the dashboard as two separate GitHub sites out of this repo, on
+separate branches or otherwise. Whichever workflow deployed most recently is the site.
+
+Three ways to live with that:
+
+| | What you get | Cost |
+|---|---|---|
+| **Preview** — Actions → *Publish the broadsheet* → Run workflow on this branch | Paper live at the site URL right now | main's next 6-hourly cron publishes the dashboard over it |
+| **Merge this branch** | Paper at `/`, dashboard at `/dashboard.html`, both permanent | The paper becomes the front door |
+| **Second repository** | Two genuinely separate sites and URLs | A second repo to keep in sync |
+
+The second-repo route: create `repo-radar-paper`, enable Pages on it, and add a step to
+this repo's workflow that pushes `index.html` and `data/snapshot.json` across with a
+deploy key. The paper stays authored here; only the published copy is duplicated.
+
+The preview workflow (`.github/workflows/paper.yml`) deliberately has **no schedule** —
+a cron there would fight main's cron every six hours and whichever ran last would win.
+
 ### Why the pictures aren't AI images
 
 Every article gets an engraving, and they're **drawn in code** rather than generated

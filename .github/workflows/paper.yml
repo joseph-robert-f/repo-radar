@@ -1,0 +1,66 @@
+name: Publish the broadsheet
+
+# Publishes this branch — the newspaper front page — to the repo's Pages site
+# on demand.
+#
+# READ THIS BEFORE USING IT. GitHub Pages serves exactly ONE site per
+# repository. There is no way to run the paper and the dashboard as two
+# separate GitHub sites out of this repo, whatever branch they live on. So:
+#
+#   * This is a PREVIEW mechanism. Dispatch it and the paper goes live at
+#     https://joseph-robert-f.github.io/repo-radar/ — until main's 6-hourly
+#     cron deploys the dashboard over the top of it, which is at most 6 hours.
+#   * To make the paper permanent, merge this branch to main. index.html is the
+#     paper and the dashboard stays reachable at /dashboard.html.
+#   * To run both continuously you need a SECOND repository with its own Pages
+#     site. See "Publishing the paper" in README.md.
+#
+# Deliberately no schedule: a cron here would fight main's cron every 6 hours
+# and whichever ran last would win, which is a confusing way to lose an
+# afternoon. Collection stays main's job; this only republishes what is already
+# committed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity check the snapshot the paper will render
+        run: |
+          node -e "
+            const s = JSON.parse(require('fs').readFileSync('data/snapshot.json','utf8'));
+            if (s.scope !== 'public') { console.error('snapshot scope is not public'); process.exit(1); }
+            const bad = s.repos.filter(r => r.isPrivate);
+            if (bad.length) { console.error('private repos in snapshot'); process.exit(1); }
+            console.log('setting ' + s.repos.length + ' stories from a snapshot taken ' + s.generatedAt);
+          "
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Say what just happened
+        run: |
+          echo "The broadsheet is live at ${{ steps.deploy.outputs.page_url }}"
+          echo "main's next scheduled run will publish the dashboard over it."
