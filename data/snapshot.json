@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T00:56:15.363Z",
+  "generatedAt": "2026-08-11T01:50:33.884Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,8 +7,8 @@
     "activeRepos": 5,
     "openPRs": 5,
     "openIssues": 1,
-    "commits7d": 29,
-    "needsAttention": 16
+    "commits7d": 31,
+    "needsAttention": 2
   },
   "repos": [
     {
@@ -19,64 +19,77 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-10T18:42:18Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [],
-      "counts": {
-        "commits7d": 10,
-        "commits30d": 10,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 0
-      }
-    },
-    {
-      "name": "career_search",
-      "url": "https://github.com/joseph-robert-f/career_search",
-      "description": null,
-      "language": "TypeScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "pushedAt": "2026-08-10T17:17:28Z",
+      "lastActivityAt": "2026-08-11T01:50:16.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
         {
-          "sha": "cd12eee",
-          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
-          "date": "2026-08-05T14:57:32Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
+          "sha": "c1658df",
+          "message": "Stop the dashboard measuring itself, and keep scratch branches out of…",
+          "date": "2026-08-11T01:50:16Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/c1658df518b3fc3e617678fa109b40fd87fcf662"
         },
         {
-          "sha": "1610b30",
-          "message": "Build packages before workspace tests",
-          "date": "2026-08-05T14:52:16Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
+          "sha": "a2c9fc8",
+          "message": "fix: stop the dashboard measuring itself, and keep scratch branches o…",
+          "date": "2026-08-11T01:49:44Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/a2c9fc8e8f8b39c2c774951c814ae80123596dc4"
         },
         {
-          "sha": "b9caa47",
-          "message": "Build Career Clarity voice journal",
-          "date": "2026-08-05T14:38:29Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
+          "sha": "a68fc82",
+          "message": "Run collect on Node 24, and record the deploy-pages stall (#4)",
+          "date": "2026-08-06T13:10:16Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/a68fc821edb5f2668f24aa215a3d41d6eb94b180"
         },
         {
-          "sha": "8ee286c",
-          "message": "Initial commit",
-          "date": "2026-08-03T12:54:06Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
+          "sha": "a69de37",
+          "message": "ci: run collect on Node 24, note the deploy-pages stall",
+          "date": "2026-08-06T13:09:54Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/a69de379fe3e2a12f4cbba92216af41628d58666"
+        },
+        {
+          "sha": "6ecc6a2",
+          "message": "Keep clock-derived values out of the snapshot (#3)",
+          "date": "2026-08-06T12:42:39Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/6ecc6a201920dd50d91a4592519e7db797448506"
+        },
+        {
+          "sha": "0b463ce",
+          "message": "fix: keep clock-derived values out of the snapshot",
+          "date": "2026-08-06T12:41:56Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/0b463ce373f03bff2d3d3252559c29769a172c94"
+        },
+        {
+          "sha": "12fd5e6",
+          "message": "Log complete rate-limit headroom, and tick the checklist against the …",
+          "date": "2026-08-06T03:31:46Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/12fd5e65faf7703902b9a8319cf07aff8276287d"
+        },
+        {
+          "sha": "872388b",
+          "message": "fix: log complete rate-limit headroom, not just remaining",
+          "date": "2026-08-06T03:31:14Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/872388be4c952165e7c957d74116f11ad5d38a23"
+        },
+        {
+          "sha": "2cdb23f",
+          "message": "Phase 2: collect live data from public repos, drop private repo track…",
+          "date": "2026-08-06T02:26:58Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/2cdb23f5a35b81300b12f067d8a9e2139835a7bf"
+        },
+        {
+          "sha": "69978a9",
+          "message": "test: validate the GraphQL documents against GitHub's published schema",
+          "date": "2026-08-05T22:50:56Z",
+          "url": "https://github.com/joseph-robert-f/repo-radar/commit/69978a9b9008ff395f88f42c954354c12de72d3c"
         }
       ],
       "openPRs": [],
       "openIssues": [],
       "branches": [],
       "counts": {
-        "commits7d": 3,
-        "commits30d": 4,
+        "commits7d": 12,
+        "commits30d": 12,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -90,7 +103,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-10T13:37:11Z",
+      "lastActivityAt": "2026-08-10T13:37:06.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -266,7 +279,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-10T10:45:07Z",
+      "lastActivityAt": "2026-08-10T10:45:07.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -454,6 +467,54 @@
       }
     },
     {
+      "name": "career_search",
+      "url": "https://github.com/joseph-robert-f/career_search",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-05T14:57:32.000Z",
+      "status": "active",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "cd12eee",
+          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
+          "date": "2026-08-05T14:57:32Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
+        },
+        {
+          "sha": "1610b30",
+          "message": "Build packages before workspace tests",
+          "date": "2026-08-05T14:52:16Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
+        },
+        {
+          "sha": "b9caa47",
+          "message": "Build Career Clarity voice journal",
+          "date": "2026-08-05T14:38:29Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
+        },
+        {
+          "sha": "8ee286c",
+          "message": "Initial commit",
+          "date": "2026-08-03T12:54:06Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 3,
+        "commits30d": 4,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
       "name": "Localize-News",
       "url": "https://github.com/joseph-robert-f/Localize-News",
       "description": null,
@@ -461,8 +522,8 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-08-10T07:40:59Z",
-      "status": "hot",
+      "lastActivityAt": "2026-08-04T14:19:32.000Z",
+      "status": "active",
       "pinned": false,
       "commits": [
         {
@@ -502,7 +563,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-07-25T13:34:57Z",
+      "lastActivityAt": "2026-07-25T12:17:26.000Z",
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -532,7 +593,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-07-14T16:13:55Z",
+      "lastActivityAt": "2026-07-14T16:13:53.000Z",
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -616,7 +677,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-07-14T16:13:28Z",
+      "lastActivityAt": "2026-07-14T16:13:27.000Z",
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -667,6 +728,18 @@
           "message": "Require article-level source URLs in the generation prompt",
           "date": "2026-07-12T12:17:38Z",
           "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/abd7f206b2e2495edc6391b4e74da160a0554bef"
+        },
+        {
+          "sha": "2849e30",
+          "message": "Require at least one story and retry once on payload validation failure",
+          "date": "2026-07-11T22:41:25Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/2849e308d77b18ab88dedc6ce619ddb2f6526821"
+        },
+        {
+          "sha": "157e9a5",
+          "message": "Give AI generation a 30-minute cap with a 3-minute idle abort",
+          "date": "2026-07-11T22:00:52Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/157e9a5166a6957b887dd1947f11706686041579"
         }
       ],
       "openPRs": [],
@@ -694,7 +767,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-07-04T18:58:51Z",
+      "lastActivityAt": "2026-06-14T18:31:54.000Z",
       "status": "idle",
       "pinned": false,
       "commits": [
@@ -730,7 +803,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-04-29T02:33:24Z",
+      "lastActivityAt": "2026-04-29T02:33:24.000Z",
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -784,7 +857,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-04-07T00:53:49Z",
+      "lastActivityAt": "2026-04-07T00:53:49Z",
       "status": "dormant",
       "pinned": false,
       "commits": [],
@@ -807,7 +880,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-03-19T19:56:06Z",
+      "lastActivityAt": "2026-03-19T19:56:05.000Z",
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -867,7 +940,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "pushedAt": "2026-01-19T21:42:14Z",
+      "lastActivityAt": "2026-01-19T21:41:51.000Z",
       "status": "dormant",
       "pinned": false,
       "commits": [
@@ -916,177 +989,6 @@
       "stale": true
     },
     {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
-      "createdAt": "2026-07-02T16:47:33Z",
-      "updatedAt": "2026-07-02T16:47:33Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-db2001 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
-      "createdAt": "2026-07-06T10:49:11Z",
-      "updatedAt": "2026-07-06T10:49:11Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-cws7ld · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
-      "createdAt": "2026-07-09T10:44:21Z",
-      "updatedAt": "2026-07-09T10:44:21Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "Northampton-County-News-",
-      "title": "daily-digest/2026-07-10 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
-      "createdAt": "2026-07-10T17:00:18Z",
-      "updatedAt": "2026-07-10T17:00:18Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-lkelva · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
-      "createdAt": "2026-07-11T10:44:24Z",
-      "updatedAt": "2026-07-11T10:44:24Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-6g2vte · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
-      "createdAt": "2026-07-12T11:35:03Z",
-      "updatedAt": "2026-07-12T11:35:03Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-ehh01k · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
-      "createdAt": "2026-07-13T10:45:02Z",
-      "updatedAt": "2026-07-13T10:45:02Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-dv51kp · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
-      "createdAt": "2026-07-14T12:20:42Z",
-      "updatedAt": "2026-07-14T12:20:42Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-gkn88p · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
-      "createdAt": "2026-07-19T10:48:23Z",
-      "updatedAt": "2026-07-19T10:48:23Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-g7t58q · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
-      "createdAt": "2026-07-21T10:46:09Z",
-      "updatedAt": "2026-07-21T10:46:09Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
-      "createdAt": "2026-07-22T10:46:02Z",
-      "updatedAt": "2026-07-22T10:46:02Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-j4u3kx · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-j4u3kx",
-      "createdAt": "2026-07-23T10:44:56Z",
-      "updatedAt": "2026-07-23T10:44:56Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-hfwpz0 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-hfwpz0",
-      "createdAt": "2026-07-24T10:45:15Z",
-      "updatedAt": "2026-07-24T10:45:15Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-imv6i4 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-imv6i4",
-      "createdAt": "2026-07-26T10:43:59Z",
-      "updatedAt": "2026-07-26T10:43:59Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-dj1ubj · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dj1ubj",
-      "createdAt": "2026-07-28T10:48:02Z",
-      "updatedAt": "2026-07-28T10:48:02Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-dag6ss · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dag6ss",
-      "createdAt": "2026-08-01T10:43:37Z",
-      "updatedAt": "2026-08-01T10:43:37Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-0hon4m · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-0hon4m",
-      "createdAt": "2026-08-02T10:47:55Z",
-      "updatedAt": "2026-08-02T10:47:55Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-rxdssh · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-rxdssh",
-      "createdAt": "2026-08-03T10:49:05Z",
-      "updatedAt": "2026-08-03T10:49:05Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "headless-blender-character-builder",
-      "title": "claude/blender-3d-print-cli-review-xp4mbg · 3 unmerged",
-      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/tree/claude/blender-3d-print-cli-review-xp4mbg",
-      "createdAt": "2026-08-04T14:30:12Z",
-      "updatedAt": "2026-08-04T14:30:12Z",
-      "stale": false
-    },
-    {
       "type": "pr",
       "repo": "headless-blender-character-builder",
       "title": "#4 deps-service: bump async-timeout from 4.0.3 to 5.0.1 in /service",
@@ -1104,33 +1006,6 @@
       "createdAt": "2026-08-05T15:11:30Z",
       "updatedAt": "2026-08-05T15:11:30Z",
       "isDraft": false,
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-rac7ie · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-rac7ie",
-      "createdAt": "2026-08-06T10:45:53Z",
-      "updatedAt": "2026-08-06T10:45:53Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-22azs4 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-22azs4",
-      "createdAt": "2026-08-08T10:44:43Z",
-      "updatedAt": "2026-08-08T10:44:43Z",
-      "stale": false
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-d88pg7 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-d88pg7",
-      "createdAt": "2026-08-10T10:44:42Z",
-      "updatedAt": "2026-08-10T10:44:42Z",
       "stale": false
     },
     {
@@ -1181,132 +1056,6 @@
       "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
       "createdAt": "2026-05-08T19:56:14Z",
       "updatedAt": "2026-05-08T19:56:14Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/wonderful-hopper-27a6qq · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/wonderful-hopper-27a6qq",
-      "createdAt": "2026-07-02T16:47:33Z",
-      "updatedAt": "2026-07-02T16:47:33Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-db2001 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-db2001",
-      "createdAt": "2026-07-06T10:49:11Z",
-      "updatedAt": "2026-07-06T10:49:11Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-cws7ld · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-cws7ld",
-      "createdAt": "2026-07-09T10:44:21Z",
-      "updatedAt": "2026-07-09T10:44:21Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "Northampton-County-News-",
-      "title": "daily-digest/2026-07-10 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Northampton-County-News-/tree/daily-digest/2026-07-10",
-      "createdAt": "2026-07-10T17:00:18Z",
-      "updatedAt": "2026-07-10T17:00:18Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-lkelva · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-lkelva",
-      "createdAt": "2026-07-11T10:44:24Z",
-      "updatedAt": "2026-07-11T10:44:24Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-6g2vte · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-6g2vte",
-      "createdAt": "2026-07-12T11:35:03Z",
-      "updatedAt": "2026-07-12T11:35:03Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-ehh01k · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ehh01k",
-      "createdAt": "2026-07-13T10:45:02Z",
-      "updatedAt": "2026-07-13T10:45:02Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-dv51kp · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-dv51kp",
-      "createdAt": "2026-07-14T12:20:42Z",
-      "updatedAt": "2026-07-14T12:20:42Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-gkn88p · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-gkn88p",
-      "createdAt": "2026-07-19T10:48:23Z",
-      "updatedAt": "2026-07-19T10:48:23Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-g7t58q · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-g7t58q",
-      "createdAt": "2026-07-21T10:46:09Z",
-      "updatedAt": "2026-07-21T10:46:09Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-ltevu3 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-ltevu3",
-      "createdAt": "2026-07-22T10:46:02Z",
-      "updatedAt": "2026-07-22T10:46:02Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-j4u3kx · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-j4u3kx",
-      "createdAt": "2026-07-23T10:44:56Z",
-      "updatedAt": "2026-07-23T10:44:56Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-hfwpz0 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-hfwpz0",
-      "createdAt": "2026-07-24T10:45:15Z",
-      "updatedAt": "2026-07-24T10:45:15Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "ai-news-digest",
-      "title": "claude/eager-clarke-imv6i4 · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest/tree/claude/eager-clarke-imv6i4",
-      "createdAt": "2026-07-26T10:43:59Z",
-      "updatedAt": "2026-07-26T10:43:59Z",
       "stale": true
     }
   ],
@@ -2769,7 +2518,7 @@
     },
     {
       "date": "2026-08-11",
-      "count": 0
+      "count": 2
     }
   ]
 }
