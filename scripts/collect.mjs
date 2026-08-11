@@ -43,6 +43,8 @@ const HISTORY_PAGE = 100; // commits per history page
 const HISTORY_MAX_PAGES = 6; // 600 commits/repo/year before we stop and say so
 const HISTORY_BATCH = 8; // repos aliased into one history request
 const COMPARE_BATCH = 40; // branch comparisons aliased into one request
+// Over-fetch the commit preview so bot commits can't crowd out every real one.
+const HISTORY_PREVIEW_FACTOR = 4;
 
 const isBot = (login) => !!login && /\[bot\]$/.test(login);
 
@@ -160,7 +162,7 @@ async function fetchRepos(login, commitsPerRepo) {
       login,
       cursor,
       page: REPO_PAGE,
-      commits: commitsPerRepo,
+      commits: commitsPerRepo * HISTORY_PREVIEW_FACTOR,
     });
     const user = data.user;
     if (!user) throw new Error(`no such GitHub user: ${login}`);
@@ -173,7 +175,7 @@ async function fetchRepos(login, commitsPerRepo) {
 }
 
 /** Turn a raw GraphQL repo node into the shape derive.mjs wants. */
-function normalizeRepo(node, login) {
+function normalizeRepo(node, login, commitsPerRepo = 10) {
   const defaultBranch = node.defaultBranchRef?.name ?? null;
   const recent = node.defaultBranchRef?.target?.history?.nodes ?? [];
 
@@ -187,8 +189,13 @@ function normalizeRepo(node, login) {
     isArchived: node.isArchived,
     pushedAt: node.pushedAt,
     defaultBranch,
+    // Filter bots first, then take N. Doing it the other way round emptied the
+    // preview on this very repo: its last N commits are all `chore: refresh
+    // snapshot` from the bot, so the card showed "10 commits/7d" with nothing
+    // to show. HISTORY_PREVIEW_FACTOR over-fetches to leave room for that.
     commits: recent
       .filter((c) => !isBot(c.author?.user?.login))
+      .slice(0, commitsPerRepo)
       .map((c) => ({
         sha: c.oid.slice(0, 7),
         message: c.messageHeadline,
@@ -382,7 +389,8 @@ async function main() {
 
   console.log(`Collecting public repos for ${login}…`);
 
-  const rawNodes = await fetchRepos(login, config.lookback?.commitsPerRepo ?? 10);
+  const commitsPerRepo = config.lookback?.commitsPerRepo ?? 10;
+  const rawNodes = await fetchRepos(login, commitsPerRepo);
 
   // Belt and braces: privacy:PUBLIC should make this impossible, but if the API
   // ever hands back a private repo we stop rather than publish it.
@@ -394,7 +402,7 @@ async function main() {
   }
   console.log(`  ${rawNodes.length} public repos`);
 
-  const repos = rawNodes.map((n) => normalizeRepo(n, login));
+  const repos = rawNodes.map((n) => normalizeRepo(n, login, commitsPerRepo));
 
   console.log("  fetching a year of commit dates…");
   await fetchCommitDates(login, repos, since);

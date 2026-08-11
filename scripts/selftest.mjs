@@ -39,6 +39,8 @@ const CONFIG = {
   hide: ["hidden-repo"],
   pin: ["pinned-repo"],
   statusOverrides: { "forced-repo": "dormant" },
+  branchIgnore: ["claude/*", "daily-digest/*"],
+  minUnmergedCommits: 2,
   includeForks: false,
   includeArchived: false,
   lookback: { commitsPerRepo: 10, heatmapWeeks: 52 },
@@ -260,9 +262,9 @@ check("tasks are sorted by idle time, longest first", () => {
     repo({
       name: "r",
       branches: [
-        { name: "b1", lastCommit: ago(3), unmergedCommits: 1 },
-        { name: "b2", lastCommit: ago(50), unmergedCommits: 1 },
-        { name: "b3", lastCommit: ago(20), unmergedCommits: 1 },
+        { name: "b1", lastCommit: ago(3), unmergedCommits: 2 },
+        { name: "b2", lastCommit: ago(50), unmergedCommits: 2 },
+        { name: "b3", lastCommit: ago(20), unmergedCommits: 2 },
       ],
     }),
   ]);
@@ -316,6 +318,82 @@ check("summary aggregates across repos", () => {
     { repos: 2, activeRepos: 1, openPRs: 1, openIssues: 1, commits7d: 2, needsAttention: 0 },
     "summary",
   );
+});
+
+/* --------------------------------------------- branch noise and activity */
+
+check("branchIgnore patterns keep scratch branches out of the task list", () => {
+  const snap = build([
+    repo({
+      name: "noisy",
+      branches: [
+        { name: "claude/eager-clarke-27a6qq", lastCommit: ago(30), unmergedCommits: 4 },
+        { name: "daily-digest/2026-07-10", lastCommit: ago(30), unmergedCommits: 4 },
+        { name: "feat/real-work", lastCommit: ago(30), unmergedCommits: 4 },
+      ],
+    }),
+  ]);
+  eq(snap.tasks.map((t) => t.title), ["feat/real-work · 4 unmerged"], "task titles");
+  eq(snap.repos[0].counts.branches, 3, "all live branches still counted on the card");
+});
+
+check("minUnmergedCommits drops one-commit branches", () => {
+  const snap = build([
+    repo({
+      branches: [
+        { name: "tiny", lastCommit: ago(30), unmergedCommits: 1 },
+        { name: "real", lastCommit: ago(30), unmergedCommits: 2 },
+      ],
+    }),
+  ]);
+  eq(snap.tasks.map((t) => t.title), ["real · 2 unmerged"], "task titles");
+});
+
+check("status ignores the dashboard's own bot push", () => {
+  // repo-radar's pushedAt is bumped every 6h by its own snapshot commit. If
+  // status keyed on that it would be permanently "hot" and sorted first.
+  const snap = build([
+    repo({
+      name: "repo-radar",
+      pushedAt: ago(0.01), // the bot pushed moments ago
+      commitDates: [ago(6)], // last human commit was six days back
+    }),
+  ]);
+  eq(snap.repos[0].status, "active", "status from real activity, not the bot push");
+  eq(snap.repos[0].lastActivityAt, ago(6), "lastActivityAt is the human commit");
+  ok(snap.repos[0].pushedAt === undefined, "pushedAt is not emitted");
+});
+
+check("a work branch counts as activity, an ignored one does not", () => {
+  const withWork = build([
+    repo({ name: "a", pushedAt: ago(90), commitDates: [ago(90)],
+      branches: [{ name: "feat/x", lastCommit: ago(1), unmergedCommits: 3 }] }),
+  ]);
+  eq(withWork.repos[0].status, "hot", "recent work branch keeps the repo hot");
+
+  const scratchOnly = build([
+    repo({ name: "b", pushedAt: ago(90), commitDates: [ago(90)],
+      branches: [{ name: "claude/throwaway", lastCommit: ago(1), unmergedCommits: 3 }] }),
+  ]);
+  eq(scratchOnly.repos[0].status, "dormant", "an ignored branch is not activity");
+});
+
+check("repos with no commits at all fall back to pushedAt", () => {
+  const snap = build([repo({ name: "empty", pushedAt: ago(5), commitDates: [] })]);
+  eq(snap.repos[0].lastActivityAt, ago(5), "falls back to pushedAt");
+  eq(snap.repos[0].status, "active", "status still derived");
+});
+
+check("assertSnapshot rejects a snapshot that still emits pushedAt", () => {
+  const snap = build([repo({ name: "r" })]);
+  snap.repos[0].pushedAt = ago(0);
+  let threw = false;
+  try {
+    assertSnapshot(snap);
+  } catch {
+    threw = true;
+  }
+  ok(threw, "assertSnapshot should reject pushedAt");
 });
 
 /* --------------------------------------------------- clock-independence */

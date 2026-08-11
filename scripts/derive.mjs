@@ -30,6 +30,17 @@ const daysBetween = (nowMs, iso) =>
   iso == null ? null : (nowMs - Date.parse(iso)) / DAY;
 const ymd = (ms) => new Date(ms).toISOString().slice(0, 10);
 
+/** Minimal glob: `*` matches any run of characters. Enough for branch prefixes. */
+const globToRe = (g) =>
+  new RegExp(
+    "^" +
+      g
+        .split("*")
+        .map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+        .join(".*") +
+      "$",
+  );
+
 function statusFor(days, thresholds) {
   if (days < thresholds.hot) return "hot";
   if (days < thresholds.active) return "active";
@@ -51,6 +62,15 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
   const pin = config.pin || [];
   const overrides = config.statusOverrides || {};
   const heatmapDays = Math.round((config.lookback?.heatmapWeeks ?? 52) * 7) + 1;
+  const ignoreRes = (config.branchIgnore || []).map(globToRe);
+  const minUnmerged = config.minUnmergedCommits ?? 1;
+
+  // Scratch branches — the ones an agent or a scheduled job leaves behind —
+  // otherwise bury real work. A branch that matches an ignore pattern, or that
+  // is fewer than minUnmergedCommits ahead, still shows in the repo's branch
+  // count; it just doesn't become a task competing for attention.
+  const isWorkBranch = (b) =>
+    b.unmergedCommits >= minUnmerged && !ignoreRes.some((re) => re.test(b.name));
 
   // ---- filter ------------------------------------------------------------
   // Private repos are excluded at the API query, then again here: a snapshot
@@ -79,7 +99,6 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
     const dates = r.commitDates || [];
     const commits7d = dates.filter((d) => daysBetween(now, d) <= 7).length;
     const commits30d = dates.filter((d) => daysBetween(now, d) <= 30).length;
-    const daysSinceLastPush = round1(Math.max(0, daysBetween(now, r.pushedAt)));
 
     const openPRs = (r.openPRs || []).map((p) => ({
       number: p.number,
@@ -109,6 +128,27 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       lastCommit: b.lastCommit,
       unmergedCommits: b.unmergedCommits ?? 0,
     }));
+    const workBranches = branches.filter(isWorkBranch);
+
+    // When did a human last do something here?
+    //
+    // NOT `pushedAt`: this dashboard commits its own snapshot to its own repo
+    // every 6 hours, which bumped repo-radar's pushedAt and left it permanently
+    // "hot" and sorted first — the dashboard measuring itself, the same trap
+    // decision 6 dodged for commits. It also meant the file changed on every
+    // single run, so the workflow's "nothing changed, don't commit" check could
+    // never fire.
+    //
+    // So: the newest of the non-bot default-branch commits and the real work
+    // branches, falling back to pushedAt only when a repo has neither.
+    const activity = [
+      ...dates.map(Date.parse),
+      ...workBranches.map((b) => Date.parse(b.lastCommit)),
+    ].filter(Number.isFinite);
+    const lastActivityAt = activity.length
+      ? new Date(Math.max(...activity)).toISOString()
+      : r.pushedAt;
+    const idleDaysForStatus = Math.max(0, daysBetween(now, lastActivityAt));
 
     return {
       name: r.name,
@@ -118,8 +158,8 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       isFork: !!r.isFork,
       isArchived: !!r.isArchived,
       defaultBranch: r.defaultBranch ?? null,
-      pushedAt: r.pushedAt,
-      status: overrides[r.name] || statusFor(daysSinceLastPush, thresholds),
+      lastActivityAt,
+      status: overrides[r.name] || statusFor(idleDaysForStatus, thresholds),
       pinned: pin.includes(r.name),
       commits: r.commits || [],
       openPRs,
@@ -143,7 +183,7 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
   repos.sort(
     (a, b) =>
       pinRank(a.name) - pinRank(b.name) ||
-      Date.parse(b.pushedAt) - Date.parse(a.pushedAt),
+      Date.parse(b.lastActivityAt) - Date.parse(a.lastActivityAt),
   );
 
   // ---- tasks: one flat cross-repo list of everything in flight ------------
@@ -184,9 +224,8 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
     // A branch with an open PR is already represented by that PR — counting it
     // again would double every piece of reviewed work in the task list.
     const branchesWithPRs = new Set(r.openPRs.map((p) => p.headRef));
-    for (const b of r.branches) {
+    for (const b of r.branches.filter(isWorkBranch)) {
       if (branchesWithPRs.has(b.name)) continue;
-      if (b.unmergedCommits <= 0) continue;
       tasks.push({
         type: "branch",
         repo: r.name,
@@ -278,6 +317,13 @@ export function assertSnapshot(snap) {
     if (r.isPrivate) fail(`repo "${r.name}" is marked private`);
     if (r.redacted) fail(`repo "${r.name}" carries a redaction flag — that path is gone`);
     if (!r.name || !r.url) fail(`repo "${r.name}" missing name or url`);
+    if (!Number.isFinite(Date.parse(r.lastActivityAt))) {
+      fail(`repo "${r.name}" missing lastActivityAt`);
+    }
+    if (Object.hasOwn(r, "pushedAt")) {
+      fail(`repo "${r.name}" still carries pushedAt — this dashboard's own bot
+        push bumps it, so status and ordering must key on lastActivityAt`);
+    }
     if (!["hot", "active", "idle", "dormant"].includes(r.status)) {
       fail(`repo "${r.name}" has unknown status "${r.status}"`);
     }

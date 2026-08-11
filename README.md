@@ -150,6 +150,8 @@ scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's sche
 | `hide` | Repo names to omit entirely |
 | `pin` | Repo names to sort to the top, in this order |
 | `statusOverrides` | Force a repo's status, e.g. `{"old-thing": "dormant"}` |
+| `branchIgnore` | Glob patterns (`*` only) for branches that shouldn't become tasks — agent and scheduled-job scratch. They still count on the repo card |
+| `minUnmergedCommits` | A branch must be at least this far ahead to become a task. Default `1`, i.e. off — raise it to hide one-commit branches, but note that catches genuine parked fixes too |
 | `lookback.commitsPerRepo` | How many recent commits to show on a card |
 | `lookback.heatmapWeeks` | Heatmap window (52 → 365 days) |
 | `staleDays` | Idle-day thresholds that flag a PR / draft / branch / issue |
@@ -165,7 +167,7 @@ user               GitHub handle
 scope              always "public"
 summary            { repos, activeRepos, openPRs, openIssues, commits7d, needsAttention }
 repos[]            { name, url, description, language, isFork, isArchived, defaultBranch,
-                     pushedAt, status, pinned,
+                     lastActivityAt, status, pinned,
                      commits[], openPRs[], openIssues[], branches[], counts{} }
   commits[]        { sha, message, date, url }
   openPRs[]        { number, title, url, isDraft, createdAt, updatedAt,

@@ -8,6 +8,9 @@
   "pin": [],
   "statusOverrides": {},
 
+  "branchIgnore": ["claude/*", "daily-digest/*"],
+  "minUnmergedCommits": 1,
+
   "lookback": {
     "commitsPerRepo": 10,
     "heatmapWeeks": 52

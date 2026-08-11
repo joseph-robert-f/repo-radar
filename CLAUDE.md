@@ -111,12 +111,40 @@ if it does, it belongs in the page.
 `status` and `stale` are the deliberate exceptions — threshold crossings, not
 continuous drift, so they change rarely and a commit is warranted when they do.
 
-### 6. Bot commits don't count
+### 6. Bot commits don't count — and neither do bot pushes
 
 Commits whose author login ends in `[bot]` are dropped from the heatmap, the recent-
 commit list, and `commits7d`. Otherwise this repo's own 6-hourly `chore: refresh
 snapshot` commit would show up as a daily streak of activity, which is the dashboard
 measuring itself.
+
+That filter wasn't enough on its own. `pushedAt` still moved every 6 hours when the bot
+pushed, so repo-radar sat permanently at "hot" and first in the list, and the snapshot
+differed on every run — blocking the no-op commit check all over again. So the snapshot
+carries **`lastActivityAt`**, not `pushedAt`: the newest of the non-bot default-branch
+commits and the surviving work branches, falling back to `pushedAt` only for a repo
+with neither. `assertSnapshot` rejects a snapshot that still emits `pushedAt`.
+
+Related trap: the commit preview fetches N commits and *then* drops bots. On this repo
+the last N were all bot commits, so the card read "10 commits/7d" with an empty Details
+list. `collect.mjs` now over-fetches (`HISTORY_PREVIEW_FACTOR`) and slices after
+filtering.
+
+### 6a. Scratch branches aren't tasks
+
+`branchIgnore` (globs) and `minUnmergedCommits` in `config.json` keep agent and
+scheduled-job branches out of the task list. They still count on the repo card — they're
+real branches, just not work anybody is going to pick up.
+
+This mattered a lot: on the first real look, 24 of 29 tasks were branches and 20 of
+those were `claude/eager-clarke-*` in one repo, burying all five genuine open PRs.
+
+`minUnmergedCommits` defaults to **1** (off) on purpose. Raising it to 2 looked
+tempting, but on real data its only unique effect was hiding two conventionally-named,
+three-month-old branches in Localize-News — exactly the forgotten work this dashboard
+is for. The `dependabot/*` branches it would also have caught were already removed by
+the "branch has an open PR" de-duplication.
+
 
 ---
 
