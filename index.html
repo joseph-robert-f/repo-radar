@@ -4,50 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Repo Radar</title>
-<!-- Inline so there's no second request and no 404 in the console. Radar sweep
-     in the recency ramp's base hue. -->
+<title>The Repo Radar</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%232a78d6' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%232a78d6' stroke-width='2.5'/%3E%3Cpath d='M16 16 L26 9' stroke='%231c5cab' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
+  /* Newsprint reuses the validated tokens from the dashboard: the warm off-white
+     surfaces and near-black text already read as paper and ink, and the recency
+     ramp still carries the only data color on the page (the weather box). */
   :root {
     color-scheme: light;
-    --surface-1: #fcfcfb;
-    --plane: #f9f9f7;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --text-muted: #898781;
-    --gridline: #e1e0d9;
-    --baseline: #c3c2b7;
-    --border: rgba(11,11,11,0.10);
-    --wash: rgba(11,11,11,0.035);
+    --paper: #f7f6f1;
+    --paper-2: #fcfcfb;
+    --ink: #12110f;
+    --ink-2: #45433e;
+    --ink-3: #7c7a73;
+    --rule: #c3c2b7;
+    --rule-faint: #e1e0d9;
 
-    /* recency ramp — ordinal, one hue, validated light→dark */
     --recency-hot: #1c5cab;
     --recency-active: #2a78d6;
     --recency-idle: #5598e7;
     --recency-dormant: #86b6ef;
-
-    /* heatmap sequential blue */
-    --hm-0: #eceae4; --hm-1: #cde2fb; --hm-2: #9ec5f4; --hm-3: #5598e7; --hm-4: #1c5cab;
-
-    /* status — fixed, never themed */
-    --status-good: #0ca30c;
+    --hm-0: #e3e1d9; --hm-1: #cde2fb; --hm-2: #9ec5f4; --hm-3: #5598e7; --hm-4: #1c5cab;
     --status-warning: #fab219;
-    --status-serious: #ec835a;
     --status-critical: #d03b3b;
   }
   @media (prefers-color-scheme: dark) {
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
-      --surface-1: #1a1a19;
-      --plane: #0d0d0d;
-      --text-primary: #ffffff;
-      --text-secondary: #c3c2b7;
-      --text-muted: #898781;
-      --gridline: #2c2c2a;
-      --baseline: #383835;
-      --border: rgba(255,255,255,0.10);
-      --wash: rgba(255,255,255,0.04);
+      --paper: #131312;
+      --paper-2: #1a1a19;
+      --ink: #f4f3ef;
+      --ink-2: #c3c2b7;
+      --ink-3: #898781;
+      --rule: #3a3a37;
+      --rule-faint: #2c2c2a;
       --recency-hot: #86b6ef;
       --recency-active: #5598e7;
       --recency-idle: #2a78d6;
@@ -57,287 +47,250 @@
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --surface-1: #1a1a19;
-    --plane: #0d0d0d;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --text-muted: #898781;
-    --gridline: #2c2c2a;
-    --baseline: #383835;
-    --border: rgba(255,255,255,0.10);
-    --wash: rgba(255,255,255,0.04);
-    --recency-hot: #86b6ef;
-    --recency-active: #5598e7;
-    --recency-idle: #2a78d6;
-    --recency-dormant: #184f95;
+    --paper: #131312; --paper-2: #1a1a19;
+    --ink: #f4f3ef; --ink-2: #c3c2b7; --ink-3: #898781;
+    --rule: #3a3a37; --rule-faint: #2c2c2a;
+    --recency-hot: #86b6ef; --recency-active: #5598e7; --recency-idle: #2a78d6; --recency-dormant: #184f95;
     --hm-0: #2c2c2a; --hm-1: #184f95; --hm-2: #256abf; --hm-3: #3987e5; --hm-4: #86b6ef;
   }
 
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--plane);
-    color: var(--text-primary);
-    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.55 Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 28px 20px 72px; }
+  .sheet { max-width: 1180px; margin: 0 auto; padding: 26px 22px 70px; }
+  a { color: inherit; }
 
-  /* ---------- header ---------- */
-  header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
-  h1 { font-size: 21px; font-weight: 620; margin: 0; letter-spacing: -0.01em; }
-  .sub { color: var(--text-secondary); font-size: 13px; }
-  .spacer { flex: 1 1 auto; }
-  button.ghost {
-    font: inherit; font-size: 13px; color: var(--text-secondary);
-    background: none; border: 1px solid var(--border); border-radius: 7px;
-    padding: 5px 11px; cursor: pointer;
+  /* ---------------- masthead ---------------- */
+  .masthead { border-bottom: 3px double var(--ink); padding-bottom: 10px; margin-bottom: 8px; }
+  .mast-top {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); border-bottom: 1px solid var(--rule);
+    padding-bottom: 7px; margin-bottom: 12px;
   }
-  button.ghost:hover { background: var(--wash); color: var(--text-primary); }
-  button.ghost[aria-pressed="true"] { background: var(--wash); color: var(--text-primary); border-color: var(--baseline); }
-
-  .freshness { font-size: 12.5px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; }
-  .freshness.stale { color: var(--text-primary); }
-  .freshness.stale .dot { background: var(--status-warning); }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: inline-block; }
-
-  /* ---------- stat tiles ---------- */
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 26px; }
-  .tile {
-    background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px;
-    padding: 14px 16px 15px;
+  .mast-top .spacer { flex: 1 1 auto; }
+  .mast-top button {
+    font: inherit; letter-spacing: 0.14em; text-transform: uppercase;
+    background: none; border: 1px solid var(--rule); border-radius: 2px;
+    color: var(--ink-2); padding: 3px 8px; cursor: pointer;
   }
-  .tile .label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 5px; }
-  .tile .value { font-size: 27px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
-  .tile.hero .value { font-size: 48px; letter-spacing: -0.03em; }
-  .tile .note { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+  .mast-top button:hover { background: var(--paper-2); color: var(--ink); }
+  .mast-top a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .mast-top a:hover { color: var(--ink); }
 
-  /* ---------- sections ---------- */
-  section { margin-bottom: 30px; }
-  h2 { font-size: 13px; font-weight: 620; text-transform: uppercase; letter-spacing: 0.055em; color: var(--text-secondary); margin: 0 0 11px; }
-  .panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; overflow: hidden; }
-  .empty { padding: 20px 16px; color: var(--text-secondary); font-size: 13.5px; }
+  h1.nameplate {
+    margin: 0; text-align: center; font-weight: 700;
+    font-size: clamp(38px, 8.5vw, 78px); line-height: 0.94;
+    letter-spacing: -0.02em; font-variant: small-caps;
+  }
+  .nameplate .radar { display: inline-block; width: .78em; height: .78em; vertical-align: -0.06em; margin-right: .12em; }
+  .nameplate .radar circle, .nameplate .radar path { fill: none; stroke: currentColor; stroke-width: 2.4; }
+  .nameplate .radar .sweep { transform-origin: 16px 16px; animation: sweep 1.6s cubic-bezier(.3,0,.2,1) 1; }
+  @keyframes sweep { from { transform: rotate(-360deg); opacity: 0; } to { transform: rotate(0); opacity: 1; } }
 
-  /* ---------- task rows ---------- */
-  .row { display: flex; align-items: center; gap: 11px; padding: 11px 15px; border-top: 1px solid var(--gridline); text-decoration: none; color: inherit; }
-  .row:first-child { border-top: none; }
-  .row:hover { background: var(--wash); }
-  .row .kind { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); width: 52px; flex: none; }
-  .row .title { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
-  .row .repo { color: var(--text-secondary); font-size: 12.5px; flex: none; }
-  .row .age { color: var(--text-muted); font-size: 12.5px; flex: none; width: 66px; text-align: right; font-variant-numeric: tabular-nums; }
-  .flag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); flex: none; }
+  .mast-rule {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center;
+    margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--rule);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-2);
+  }
 
-  /* ---------- heatmap ---------- */
-  .hm-scroll { overflow-x: auto; padding: 15px; }
-  .hm { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 11px); gap: 3px; width: max-content; }
-  .hm i { width: 11px; height: 11px; border-radius: 2.5px; background: var(--hm-0); display: block; }
+  /* ---------------- the lede ---------------- */
+  .lede {
+    font-size: 18.5px; line-height: 1.5; text-align: center;
+    max-width: 70ch; margin: 16px auto 20px; color: var(--ink);
+  }
+  .lede b { font-weight: 700; }
+  .lede .quiet { color: var(--ink-2); }
+
+  /* ---------------- grid ---------------- */
+  .press { display: grid; grid-template-columns: 2.1fr 1fr; gap: 0 26px; align-items: start; }
+  .col-main { min-width: 0; border-right: 1px solid var(--rule); padding-right: 26px; }
+  .col-rail { min-width: 0; }
+  .below { border-top: 3px double var(--ink); margin-top: 24px; padding-top: 20px; }
+  .below-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; }
+  .below-grid > * { min-width: 0; }
+  .below-grid > * + * { border-left: 1px solid var(--rule-faint); padding-left: 24px; }
+
+  /* ---------------- articles ---------------- */
+  article { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--rule-faint); }
+  article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .kicker {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 7px;
+    display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  }
+  .kicker .pip { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .pip.hot { background: var(--recency-hot); }
+  .pip.active { background: var(--recency-active); }
+  .pip.idle { background: var(--recency-idle); }
+  .pip.dormant { background: var(--recency-dormant); }
+
+  h2.hed { margin: 0 0 8px; line-height: 1.08; letter-spacing: -0.015em; font-weight: 700; }
+  .lead h2.hed { font-size: clamp(30px, 4.4vw, 44px); }
+  .second h2.hed { font-size: 24px; }
+  .brief-story h2.hed { font-size: 18.5px; }
+  h2.hed a { text-decoration: none; }
+  h2.hed a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .deck { font-size: 16px; color: var(--ink-2); font-style: italic; margin: 0 0 11px; line-height: 1.45; }
+  .lead .deck { font-size: 18px; }
+
+  .byline {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 10px;
+  }
+
+  .body p { margin: 0 0 9px; }
+  .body p:last-child { margin-bottom: 0; }
+  .body .dateline { font-variant: small-caps; letter-spacing: 0.04em; font-weight: 700; }
+  .lead .body { columns: 2; column-gap: 24px; font-size: 15.5px; }
+  .lead .body p { break-inside: avoid; }
+  .second .body, .brief-story .body { font-size: 14.5px; }
+
+  figure { margin: 0 0 12px; }
+  figure svg { display: block; width: 100%; height: auto; border: 1px solid var(--rule); background: var(--paper-2); }
+  figcaption {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px; color: var(--ink-3); margin-top: 5px; line-height: 1.4;
+  }
+
+  /* ---------------- boxed rail items ---------------- */
+  .box { border: 1px solid var(--ink); padding: 14px 15px; margin-bottom: 20px; background: var(--paper-2); }
+  .box.rules { border-width: 3px; border-style: double; }
+  .box h3 {
+    margin: 0 0 10px; font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink);
+    padding-bottom: 7px; border-bottom: 1px solid var(--rule);
+  }
+  .notice { display: block; text-decoration: none; padding: 8px 0; border-bottom: 1px dotted var(--rule); }
+  .notice:last-child { border-bottom: none; padding-bottom: 0; }
+  .notice:hover .n-title { text-decoration: underline; text-underline-offset: 2px; }
+  .n-title { display: block; font-size: 14.5px; line-height: 1.35; }
+  .n-meta {
+    display: block; margin-top: 3px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .n-meta .warn { color: var(--status-warning); }
+  .n-meta .crit { color: var(--status-critical); }
+  .allclear { font-size: 14.5px; color: var(--ink-2); font-style: italic; }
+
+  /* ---------------- in brief ---------------- */
+  .brief-item { padding: 7px 0; border-bottom: 1px dotted var(--rule); }
+  .brief-item:last-child { border-bottom: none; }
+  .brief-item .bi-name { font-weight: 700; }
+  .brief-item .bi-name a { text-decoration: none; }
+  .brief-item .bi-name a:hover { text-decoration: underline; }
+  .brief-item .bi-meta { color: var(--ink-3); font-size: 13.5px; }
+
+  /* ---------------- weather (the heatmap) ---------------- */
+  .hm-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .hm { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 9px); gap: 2px; width: max-content; }
+  .hm i { width: 9px; height: 9px; background: var(--hm-0); display: block; transition: transform .1s ease; }
   .hm i[data-l="1"] { background: var(--hm-1); }
   .hm i[data-l="2"] { background: var(--hm-2); }
   .hm i[data-l="3"] { background: var(--hm-3); }
   .hm i[data-l="4"] { background: var(--hm-4); }
-  .hm-legend { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); padding: 0 15px 14px; }
-  .hm-legend i { width: 11px; height: 11px; border-radius: 2.5px; display: block; }
-
-  /* ---------- filters ---------- */
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
-  input[type="search"] {
-    font: inherit; font-size: 13.5px; padding: 6px 11px; border-radius: 7px;
-    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); min-width: 190px;
+  .hm i[data-d]:hover { transform: scale(1.6); }
+  .hm-legend {
+    display: flex; align-items: center; gap: 5px; margin-top: 8px;
+    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10.5px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3);
   }
-  input[type="search"]:focus { outline: 2px solid var(--recency-active); outline-offset: 1px; }
+  .hm-legend i { width: 9px; height: 9px; display: block; }
 
-  /* ---------- repo cards ---------- */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 11px; }
-  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; padding: 14px 15px; }
-  .card.pinned { border-color: var(--baseline); }
-  .card h3 { margin: 0; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-  .card h3 a { color: inherit; text-decoration: none; }
-  .card h3 a:hover { text-decoration: underline; }
-  .card .desc { color: var(--text-secondary); font-size: 13px; margin: 6px 0 0; min-height: 19px; }
-  .card .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 12.5px; margin-top: 10px; }
-  .card .meta b { font-weight: 600; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
-  .card h3 a { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pin { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 400; border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; flex: none; }
-  .status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); font-weight: 400; margin-left: auto; flex: none; }
-  .status .dot.hot { background: var(--recency-hot); }
-  .status .dot.active { background: var(--recency-active); }
-  .status .dot.idle { background: var(--recency-idle); }
-  .status .dot.dormant { background: var(--recency-dormant); }
-  details.more { margin-top: 11px; border-top: 1px solid var(--gridline); padding-top: 9px; }
-  details.more summary { cursor: pointer; font-size: 12.5px; color: var(--text-secondary); list-style: none; }
-  details.more summary::-webkit-details-marker { display: none; }
-  details.more summary::before { content: "▸ "; color: var(--text-muted); }
-  details.more[open] summary::before { content: "▾ "; }
-  details.more ul { margin: 9px 0 0; padding: 0; list-style: none; }
-  details.more li { font-size: 12.5px; padding: 3px 0; color: var(--text-secondary); display: flex; gap: 8px; }
-  details.more li a { color: var(--text-primary); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  details.more li a:hover { text-decoration: underline; }
-  details.more li .when { color: var(--text-muted); flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
-  details.more .grouphd { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 9px; }
+  /* ---------------- colophon ---------------- */
+  footer {
+    border-top: 1px solid var(--rule); margin-top: 26px; padding-top: 13px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.07em; color: var(--ink-3); text-align: center; line-height: 1.7;
+  }
 
-  /* ---------- table view ---------- */
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th, td { text-align: left; padding: 8px 15px; border-top: 1px solid var(--gridline); }
-  th { color: var(--text-secondary); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; border-top: none; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  td a { color: var(--text-primary); }
+  .banner {
+    border: 1px solid var(--status-warning); background: var(--paper-2);
+    padding: 14px 16px; margin-bottom: 20px; font-size: 15px;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
   .hidden { display: none !important; }
-
-  /* ---------- narrow screens ---------- */
-  @media (max-width: 640px) {
-    .wrap { padding: 20px 14px 56px; }
-    .tile.hero .value { font-size: 38px; }
-    /* task rows: let the title own a full line instead of ellipsing to nothing */
-    .row { flex-wrap: wrap; row-gap: 4px; padding: 10px 13px; }
-    .row .title { order: 1; flex: 1 1 100%; white-space: normal; overflow: visible; }
-    .row .kind { order: 2; width: auto; }
-    .row .flag { order: 3; }
-    .row .repo { order: 4; }
-    .row .age { order: 5; width: auto; margin-left: auto; }
-    th, td { padding: 7px 11px; }
-  }
-
-  /* ---------- logo: the favicon motif, swept once on load ---------- */
-  .logo { width: 22px; height: 22px; flex: none; align-self: center; }
-  .logo .ring { fill: none; stroke: var(--recency-active); stroke-width: 2.5; }
-  .logo .sweep { transform-origin: 16px 16px; animation: sweep 1.5s cubic-bezier(.3,0,.2,1) 1; }
-  @keyframes sweep { from { transform: rotate(-360deg); opacity: 0; } to { transform: rotate(0deg); opacity: 1; } }
-
-  /* ---------- the opening line: what's actually going on ---------- */
-  .headline {
-    font-size: 16.5px; line-height: 1.5; color: var(--text-primary);
-    margin: 0 0 22px; max-width: 62ch; letter-spacing: -0.005em;
-  }
-  .headline .quiet { color: var(--text-secondary); }
-
-  /* ---------- hero row: the single worst offender ---------- */
-  .hero-task {
-    display: flex; align-items: center; gap: 13px; padding: 15px;
-    text-decoration: none; color: inherit; border-bottom: 1px solid var(--gridline);
-  }
-  .hero-task:hover { background: var(--wash); }
-  .hero-task .glyph { color: var(--status-critical); }
-  .hero-task .ht-body { min-width: 0; flex: 1 1 auto; }
-  .hero-task .ht-title { display: block; font-size: 15.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .hero-task .ht-sub { display: block; font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; }
-  .hero-label {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--text-muted); padding: 12px 15px 0;
-  }
-
-  /* ---------- task-type glyphs ---------- */
-  .glyph { width: 15px; height: 15px; flex: none; color: var(--text-muted); }
-  .row .glyph { align-self: center; }
-  .row:hover .glyph { color: var(--text-secondary); }
-
-  /* ---------- all-clear ---------- */
-  .allclear { padding: 22px 16px; display: flex; align-items: center; gap: 12px; }
-  .allclear .mark {
-    width: 26px; height: 26px; flex: none; border-radius: 50%;
-    border: 2px solid var(--status-good); display: grid; place-items: center;
-  }
-  .allclear .mark svg { width: 14px; height: 14px; }
-  .allclear .mark path {
-    stroke: var(--status-good); stroke-width: 2.5; fill: none;
-    stroke-linecap: round; stroke-linejoin: round;
-    stroke-dasharray: 20; stroke-dashoffset: 20; animation: draw .5s .2s forwards;
-  }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  .allclear .words { font-size: 14px; }
-  .allclear .words b { font-weight: 600; }
-  .allclear .words span { display: block; color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
-
-  /* ---------- micro-interactions ---------- */
-  .card { transition: transform .12s ease, border-color .12s ease; }
-  .card:hover { transform: translateY(-2px); border-color: var(--baseline); }
-  .hm i { transition: transform .1s ease; }
-  .hm i[data-d]:hover { transform: scale(1.5); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .logo .sweep { animation: none; }
-    .allclear .mark path { animation: none; stroke-dashoffset: 0; }
-    .card, .hm i { transition: none; }
-    .card:hover { transform: none; }
-    .hm i[data-d]:hover { transform: none; }
-  }
 
   #tip {
     position: fixed; pointer-events: none; z-index: 50; opacity: 0;
-    background: var(--surface-1); color: var(--text-primary);
-    border: 1px solid var(--border); border-radius: 7px;
-    padding: 5px 9px; font-size: 12.5px; white-space: nowrap;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.13); transition: opacity .09s;
+    background: var(--ink); color: var(--paper);
+    border-radius: 3px; padding: 4px 8px;
+    font-family: ui-sans-serif, system-ui, sans-serif; font-size: 11.5px;
+    white-space: nowrap; transition: opacity .09s;
   }
-  footer { color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--gridline); padding-top: 14px; }
-  .banner { background: var(--surface-1); border: 1px solid var(--status-warning); border-radius: 11px; padding: 14px 16px; margin-bottom: 20px; font-size: 13.5px; }
-  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; background: var(--wash); padding: 1px 5px; border-radius: 4px; }
+
+  /* ---------------- narrow ---------------- */
+  @media (max-width: 900px) {
+    .press { grid-template-columns: 1fr; gap: 0; }
+    .col-main { border-right: none; padding-right: 0; }
+    .col-rail { border-top: 3px double var(--ink); margin-top: 22px; padding-top: 18px; }
+    .below-grid { grid-template-columns: 1fr; }
+    .below-grid > * + * { border-left: none; padding-left: 0; border-top: 1px solid var(--rule-faint); padding-top: 16px; margin-top: 16px; }
+    .lead .body { columns: 1; }
+  }
+  @media (max-width: 560px) {
+    .sheet { padding: 18px 14px 54px; }
+    .lede { font-size: 16.5px; text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nameplate .radar .sweep { animation: none; }
+    .hm i { transition: none; }
+    .hm i[data-d]:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="sheet">
 
-  <header class="top">
-    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
-      <circle class="ring" cx="16" cy="16" r="13"/>
-      <circle class="ring" cx="16" cy="16" r="5.5"/>
-      <path class="ring sweep" d="M16 16 L26 9" stroke-linecap="round"/>
-    </svg>
-    <h1>Repo Radar</h1>
-    <span class="freshness" id="freshness"></span>
-    <span class="spacer"></span>
-    <button class="ghost" id="viewToggle" aria-pressed="false">Table view</button>
-    <button class="ghost" id="themeToggle">Theme</button>
-  </header>
+  <div class="masthead">
+    <div class="mast-top">
+      <span id="edition">—</span>
+      <span class="spacer"></span>
+      <a href="dashboard.html">Data view</a>
+      <button id="themeToggle" type="button">Theme</button>
+    </div>
+    <h1 class="nameplate">
+      <svg class="radar" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="13"/><circle cx="16" cy="16" r="5.5"/>
+        <path class="sweep" d="M16 16 L26 9" stroke-linecap="round"/>
+      </svg>The Repo Radar</h1>
+    <div class="mast-rule">
+      <span>All the commits fit to print</span>
+      <span>·</span>
+      <span id="dateline">—</span>
+      <span>·</span>
+      <span id="scopeline">Public repositories only</span>
+    </div>
+  </div>
 
   <div id="loadError" class="banner hidden"></div>
 
-  <div id="app" class="hidden">
+  <div id="paper" class="hidden">
+    <p class="lede" id="lede"></p>
 
-    <p class="headline" id="headline"></p>
+    <div class="press">
+      <div class="col-main" id="colMain"></div>
+      <div class="col-rail" id="colRail"></div>
+    </div>
 
-    <div class="tiles" id="tiles"></div>
+    <div class="below">
+      <div class="below-grid" id="belowGrid"></div>
+    </div>
 
-    <section id="attentionSection">
-      <h2>Needs attention</h2>
-      <div class="panel" id="attention"></div>
-    </section>
-
-    <section id="tasksSection">
-      <h2>Active tasks</h2>
-      <div class="panel" id="tasks"></div>
-    </section>
-
-    <section id="heatmapSection">
-      <h2>Commit activity · all repos, last 52 weeks</h2>
-      <div class="panel">
-        <div class="hm-scroll"><div class="hm" id="heatmap"></div></div>
-        <div class="hm-legend">
-          <span>Less</span>
-          <i style="background:var(--hm-0)"></i><i style="background:var(--hm-1)"></i><i style="background:var(--hm-2)"></i><i style="background:var(--hm-3)"></i><i style="background:var(--hm-4)"></i>
-          <span>More</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="reposSection">
-      <h2>Public repositories</h2>
-      <div class="filters">
-        <input type="search" id="q" placeholder="Filter repos…" aria-label="Filter repositories">
-        <button class="ghost" data-f="all" aria-pressed="true">All</button>
-        <button class="ghost" data-f="active" aria-pressed="false">Active</button>
-        <button class="ghost" data-f="prs" aria-pressed="false">Has open PRs</button>
-        <button class="ghost" data-f="dormant" aria-pressed="false">Dormant</button>
-      </div>
-      <div class="cards" id="cards"></div>
-    </section>
-
-    <section id="tableSection" class="hidden">
-      <h2>All data</h2>
-      <div class="panel" style="overflow-x:auto"><table id="table"></table></div>
-    </section>
-
-    <footer id="foot"></footer>
+    <footer id="colophon"></footer>
   </div>
 </div>
 <div id="tip" role="tooltip"></div>
@@ -345,340 +298,394 @@
 <script>
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const STATUS_LABEL = { hot: "Hot", active: "Active", idle: "Idle", dormant: "Dormant" };
-const KIND_LABEL = { pr: "PR", issue: "Issue", branch: "Branch" };
 
-/* Task-type glyphs, so a PR, an issue and a stray branch differ at a glance
-   instead of all reading as identical rows. Drawn rather than emoji: emoji
-   render differently on every platform and can't take currentColor. */
-const GLYPH = {
-  pr: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2a2 2 0 1 0-.5 3.95v4.1a2 2 0 1 0 1 0v-4.1A2 2 0 0 0 4.5 2Zm0 10.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0-8.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm7 6.05v-4.3A2.25 2.25 0 0 0 9.25 3.5H8.06l1.22-1.22-.7-.71L6.31 4l2.27 2.44.71-.71L8.06 4.5h1.19c.69 0 1.25.56 1.25 1.25v4.3a2 2 0 1 0 1 0Zm-.5 3.45a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>`,
-  issue: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM.5 8a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5 2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>`,
-  branch: `<svg class="glyph" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11.5 2a2 2 0 0 0-.5 3.95V6.5A1.5 1.5 0 0 1 9.5 8h-3c-.56 0-1.08.16-1.5.44V5.95a2 2 0 1 0-1 0v4.1a2 2 0 1 0 1 .05A1.5 1.5 0 0 1 6.5 9h3A2.5 2.5 0 0 0 12 6.5v-.55A2 2 0 0 0 11.5 2ZM4.5 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm7-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>`,
-};
-
-const plural = (n, one, many) => `${n} ${n === 1 ? one : many || one + "s"}`;
-
-/**
- * The opening line. The dashboard's whole point is answering "what am I in the
- * middle of", and a wall of counts makes you work that out yourself — so say it
- * in a sentence. Composed from the data, never random: the same snapshot always
- * produces the same line.
- */
-function stateOfTheWorld(d) {
-  const s = d.summary;
-  const bits = [];
-
-  // Where the week actually went.
-  const busiest = [...d.repos].sort((a, b) => b.counts.commits7d - a.counts.commits7d)[0];
-  if (s.commits7d === 0) {
-    bits.push("Nothing committed anywhere this week.");
-  } else if (busiest && busiest.counts.commits7d >= s.commits7d * 0.6) {
-    bits.push(`${plural(s.commits7d, "commit")} this week, mostly in <b>${esc(busiest.name)}</b>.`);
-  } else {
-    const moving = d.repos.filter((r) => r.counts.commits7d > 0).length;
-    bits.push(`${plural(s.commits7d, "commit")} this week across ${plural(moving, "repo")}.`);
-  }
-
-  // What's actually waiting on you. attention is sorted most-idle-first.
-  const worst = d.attention[0];
-  if (!d.attention.length) {
-    bits.push(
-      s.openPRs || s.openIssues
-        ? `<span class="quiet">Nothing's gone stale — every open thread has moved recently.</span>`
-        : `<span class="quiet">Nothing open, nothing stale. Genuinely clear.</span>`,
-    );
-  } else {
-    const days = Math.round(daysSince(worst.updatedAt));
-    const where = worst.repo;
-    bits.push(
-      d.attention.length === 1
-        ? `One thing is waiting: <b>${esc(worst.title.split(" · ")[0])}</b> in ${esc(where)}, untouched for ${plural(days, "day")}.`
-        : `${plural(d.attention.length, "thing")} waiting, the oldest for ${plural(days, "day")} in <b>${esc(where)}</b>.`,
-    );
-  }
-
-  // A gentle nudge only when the shape of the data warrants one.
-  const dormant = d.repos.filter((r) => r.status === "dormant").length;
-  if (dormant >= Math.ceil(d.repos.length / 2)) {
-    bits.push(`<span class="quiet">${plural(dormant, "repo")} haven't stirred in months.</span>`);
-  }
-
-  return bits.join(" ");
-}
-
-function relTime(iso) {
-  const d = (Date.now() - Date.parse(iso)) / 86400000;
-  if (!Number.isFinite(d)) return "—"; // never render NaN if a field is missing
-  if (d < 0.042) return "just now";
-  if (d < 1) return `${Math.round(d * 24)}h ago`;
-  if (d < 30) return `${Math.round(d)}d ago`;
-  if (d < 365) return `${Math.round(d / 30)}mo ago`;
-  return `${(d / 365).toFixed(1)}y ago`;
-}
-function ageLabel(days) {
-  if (days < 1) return "<1d";
-  if (days < 90) return `${Math.round(days)}d`;
-  return `${Math.round(days / 30)}mo`;
-}
-/* Elapsed time is computed here, not stored in the snapshot. Keeping it out of
-   the file means a collect run with no new activity produces a byte-identical
-   snapshot (so the workflow skips the commit), and it means these ages are
-   right now rather than right whenever the collector last ran. */
+/* ---------- time, computed at render so nothing is stored in the snapshot ---------- */
 const daysSince = (iso) => {
   const t = Date.parse(iso);
   return Number.isFinite(t) ? (Date.now() - t) / 86400000 : NaN;
 };
-// "—" rather than "NaN" if a snapshot predates these fields.
-const ageSince = (iso) => {
+function relTime(iso) {
   const d = daysSince(iso);
-  return Number.isFinite(d) ? ageLabel(d) : "—";
+  if (!Number.isFinite(d)) return "—";
+  const unit = (n, w) => `${n} ${n === 1 ? w : w + "s"} ago`;
+  if (d < 0.042) return "moments ago";
+  if (d < 1) return unit(Math.max(1, Math.round(d * 24)), "hour");
+  if (d < 30) return unit(Math.round(d), "day");
+  if (d < 365) return unit(Math.round(d / 30), "month");
+  return `${(d / 365).toFixed(1)} years ago`;
+}
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const longDate = (iso) => {
+  const d = new Date(iso);
+  return Number.isFinite(d.getTime())
+    ? `${["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][d.getUTCDay()]}, ${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`
+    : "—";
+};
+const monthYear = (iso) => {
+  const d = new Date(iso);
+  return Number.isFinite(d.getTime()) ? `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}` : "some time past";
 };
 
-/* ---------- theme ---------- */
-$("#themeToggle").addEventListener("click", () => {
-  const cur = document.documentElement.getAttribute("data-theme");
-  const sysDark = matchMedia("(prefers-color-scheme: dark)").matches;
-  const next = cur ? (cur === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
-  document.documentElement.setAttribute("data-theme", next);
-});
+/* ---------- newspaper diction ---------- */
+const NUMBERS = ["no","one","two","three","four","five","six","seven","eight","nine","ten",
+  "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+const spell = (n) => (n <= 20 ? NUMBERS[n] : String(n));
+const Spell = (n) => { const w = spell(n); return w[0].toUpperCase() + w.slice(1); };
+const plural = (n, one, many) => `${spell(n)} ${n === 1 ? one : many || one + "s"}`;
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const Plural = (n, one, many) => cap(plural(n, one, many));
+// Two-letter fragments in repo names are almost always initialisms — "ai", "ui",
+// "db" — so set them full caps rather than "Ai".
+const titleCase = (s) => s.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim()
+  .split(" ").filter(Boolean)
+  .map((w) => (w.length <= 2 ? w.toUpperCase() : w[0].toUpperCase() + w.slice(1)))
+  .join(" ");
+
+/* ---------- deterministic engravings -------------------------------------
+   No image files and no API: each article's art is drawn from a hash of the
+   repo name, so it is stable forever and every new repo gets its own without
+   anyone doing anything. Ink density tracks activity, so a busy project looks
+   heavily worked and a dormant one looks faint — the picture carries the same
+   signal as the placement.                                                  */
+function seedFrom(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+  return h >>> 0;
+}
+function rng(seed) {
+  let a = seed;
+  return () => {
+    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/** One of six woodcut motifs, chosen by the repo's own name. */
+function motif(kind, r, W, H) {
+  const p = [];
+  if (kind === 0) { // ridgelines
+    for (let k = 0; k < 3; k++) {
+      const base = H * (0.55 + k * 0.13);
+      let d = `M0 ${H} L0 ${base}`;
+      for (let x = 0; x <= W; x += W / 7) d += ` L${x} ${base - r() * H * 0.3 * (1 - k * 0.25)}`;
+      p.push(`<path d="${d} L${W} ${H} Z" fill="currentColor" opacity="${0.16 + k * 0.16}"/>`);
+    }
+  } else if (kind === 1) { // swell
+    for (let k = 0; k < 5; k++) {
+      const y = H * (0.42 + k * 0.12);
+      let d = `M0 ${y}`;
+      for (let x = 0; x <= W; x += W / 6) d += ` Q ${x + W / 12} ${y - 7 - r() * 9}, ${x + W / 6} ${y}`;
+      p.push(`<path d="${d}" fill="none" stroke="currentColor" stroke-width="${1.6 - k * 0.15}" opacity="${0.5 - k * 0.06}"/>`);
+    }
+  } else if (kind === 2) { // skyline
+    let x = 0;
+    while (x < W) {
+      const w = 12 + r() * 26, h = H * (0.2 + r() * 0.5);
+      p.push(`<rect x="${x}" y="${H - h}" width="${w - 3}" height="${h}" fill="currentColor" opacity="${0.2 + r() * 0.4}"/>`);
+      x += w;
+    }
+  } else if (kind === 3) { // orbit
+    const cx = W * 0.5, cy = H * 0.52;
+    p.push(`<circle cx="${cx}" cy="${cy}" r="${H * 0.2}" fill="currentColor" opacity="0.5"/>`);
+    for (let k = 0; k < 3; k++) {
+      p.push(`<ellipse cx="${cx}" cy="${cy}" rx="${H * (0.3 + k * 0.13)}" ry="${H * (0.1 + k * 0.05)}"
+        fill="none" stroke="currentColor" stroke-width="1.3" opacity="${0.4 - k * 0.08}"
+        transform="rotate(${-24 + k * 18} ${cx} ${cy})"/>`);
+    }
+  } else if (kind === 4) { // cog
+    const cx = W * 0.5, cy = H * 0.52, R = H * 0.3, teeth = 10;
+    let d = "";
+    for (let i = 0; i < teeth * 2; i++) {
+      const ang = (i / (teeth * 2)) * Math.PI * 2;
+      const rad = i % 2 ? R : R * 1.24;
+      d += `${i ? "L" : "M"}${cx + Math.cos(ang) * rad} ${cy + Math.sin(ang) * rad} `;
+    }
+    p.push(`<path d="${d}Z" fill="currentColor" opacity="0.42"/>`);
+    p.push(`<circle cx="${cx}" cy="${cy}" r="${R * 0.4}" fill="var(--paper-2)"/>`);
+  } else { // canopy
+    for (let k = 0; k < 14; k++) {
+      const cx = r() * W, cy = H * (0.3 + r() * 0.5), rad = 6 + r() * 20;
+      p.push(`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="currentColor" opacity="${0.09 + r() * 0.2}"/>`);
+    }
+    p.push(`<rect x="${W * 0.46}" y="${H * 0.6}" width="4" height="${H * 0.4}" fill="currentColor" opacity="0.45"/>`);
+  }
+  return p.join("");
+}
+
+/**
+ * @param {object} repo
+ * @param {number} h  block height — bigger stories get bigger pictures
+ */
+function engraving(repo, h) {
+  const W = 300, H = h;
+  const seed = seedFrom(repo.name);
+  const r = rng(seed);
+  // Ink weight follows how alive the project is.
+  const heat = { hot: 1, active: 0.74, idle: 0.46, dormant: 0.26 }[repo.status] ?? 0.5;
+  const rows = Math.round(H / 7);
+  const hatch = [];
+  for (let i = 0; i < rows; i++) {
+    const y = (i + 0.5) * (H / rows);
+    const w = (0.35 + r() * 0.9) * heat;
+    hatch.push(`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="currentColor" stroke-width="${w.toFixed(2)}" opacity="${(0.1 + r() * 0.16).toFixed(2)}"/>`);
+  }
+  // Halftone dots, denser where the project is busier.
+  const dots = [];
+  const cols = 30;
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < Math.round(H / 10); j++) {
+      if (r() > 0.28 + heat * 0.42) continue;
+      const cx = (i + 0.5) * (W / cols), cy = (j + 0.5) * 10;
+      dots.push(`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(0.5 + r() * 1.5 * heat).toFixed(2)}" fill="currentColor" opacity="${(0.14 + r() * 0.3).toFixed(2)}"/>`);
+    }
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Engraving for ${esc(repo.name)}" style="color:var(--ink)">
+    <rect width="${W}" height="${H}" fill="var(--paper-2)"/>
+    ${hatch.join("")}
+    ${motif(seed % 6, r, W, H)}
+    ${dots.join("")}
+  </svg>`;
+}
+
+/* ---------- the words ---------- */
+/**
+ * Headlines. Several projects usually land in the same category, so each
+ * category carries a few phrasings and the repo's own name picks one — a front
+ * page that ran "Slows After a Busy Month" four times would read like a form
+ * letter. Chosen by hash, so it's varied but never changes between loads.
+ */
+function headline(r) {
+  const S = titleCase(r.name);
+  const c = r.counts;
+  const pick = (opts) => opts[seedFrom(r.name) % opts.length];
+
+  if (c.commits7d >= 10) return pick([
+    `${S} Logs ${Spell(c.commits7d)} Commits in Seven Days`,
+    `Busy Week at ${S}: ${Spell(c.commits7d)} Commits`,
+    `${Spell(c.commits7d)} Commits Land at ${S}`,
+  ]);
+  if (c.commits7d > 0 && c.openPRs > 0) return pick([
+    `${S} Presses On as ${Spell(c.openPRs)} Reviews Wait`,
+    `Work and Backlog Both Grow at ${S}`,
+    `${S} Ships While ${Spell(c.openPRs)} Reviews Queue`,
+  ]);
+  if (c.openPRs >= 3) return pick([
+    `${Spell(c.openPRs)} Reviews Pile Up at ${S}`,
+    `Review Queue Lengthens at ${S}`,
+  ]);
+  if (c.commits7d > 0) return pick([
+    `Work Continues Quietly at ${S}`,
+    `${S} Ticks Along`,
+    `Steady Hands at ${S}`,
+  ]);
+  if (c.openPRs > 0) return pick([
+    `${S} Idles With ${Plural(c.openPRs, "Review")} Outstanding`,
+    `${Plural(c.openPRs, "Review")} Await a Verdict at ${S}`,
+  ]);
+  if (r.status === "dormant") return pick([
+    `${S} Lies Quiet Since ${monthYear(r.lastActivityAt)}`,
+    `No Word From ${S} Since ${monthYear(r.lastActivityAt)}`,
+  ]);
+  if (c.commits30d > 0) return pick([
+    `${S} Slows After a Busy Month`,
+    `Quiet Week Follows a Full Month at ${S}`,
+    `${S} Rests After ${Plural(c.commits30d, "Commit")}`,
+    `The Pace Eases at ${S}`,
+  ]);
+  return pick([`${S} Holds Steady`, `Nothing Stirring at ${S}`, `${S} Stands Pat`]);
+}
+
+function deck(r) {
+  const c = r.counts, bits = [];
+  if (c.openPRs) bits.push(plural(c.openPRs, "open review"));
+  if (c.openIssues) bits.push(plural(c.openIssues, "open issue"));
+  if (c.branches) bits.push(plural(c.branches, "live branch", "live branches"));
+  if (!bits.length) bits.push("nothing outstanding");
+  return cap(`${bits.join(", ")} — last touched ${relTime(r.lastActivityAt)}.`);
+}
+
+function bodyCopy(r, user) {
+  const c = r.counts, ps = [];
+  const S = titleCase(r.name);
+  const first = [];
+  first.push(`<span class="dateline">${esc(user)} —</span>`);
+  // Repo descriptions rarely end in punctuation; without this the next
+  // sentence runs straight into them.
+  const stop = (s) => (/[.!?]$/.test(s.trim()) ? esc(s.trim()) : esc(s.trim()) + ".");
+  first.push(r.description
+    ? stop(r.description)
+    : `The ${esc(r.language || "untyped")} project known as ${esc(r.name)} carries no description of itself.`);
+  if (c.commits7d) {
+    first.push(`${Spell(c.commits7d)} ${c.commits7d === 1 ? "commit has" : "commits have"} landed in the past week, ${spell(c.commits30d)} in the month.`);
+  } else if (c.commits30d) {
+    first.push(`Nothing has landed this week, though ${plural(c.commits30d, "commit")} arrived over the month.`);
+  } else {
+    first.push(`No commits have landed in thirty days.`);
+  }
+  ps.push(first.join(" "));
+
+  const second = [];
+  if (c.openPRs) {
+    second.push(`${Spell(c.openPRs)} ${c.openPRs === 1 ? "review remains" : "reviews remain"} open${
+      r.openPRs[0] ? `, the foremost being <em>${esc(r.openPRs[0].title)}</em>` : ""}.`);
+  }
+  if (c.openIssues) second.push(`${Spell(c.openIssues)} ${c.openIssues === 1 ? "issue stands" : "issues stand"} unresolved.`);
+  if (c.branches) {
+    second.push(`${Spell(c.branches)} ${c.branches === 1 ? "branch lives" : "branches live"} apart from ${esc(r.defaultBranch || "the trunk")}.`);
+  }
+  if (!second.length) second.push(`Nothing is presently outstanding; the trunk stands clear.`);
+  ps.push(second.join(" "));
+
+  if (r.commits.length) {
+    ps.push(`Most recently: <em>${esc(r.commits[0].message)}</em>.`);
+  }
+  return ps.map((p) => `<p>${p}</p>`).join("");
+}
+
+/* ---------- the front page ---------- */
+function stateOfTheWorld(d) {
+  const s = d.summary, bits = [];
+  const busiest = [...d.repos].sort((a, b) => b.counts.commits7d - a.counts.commits7d)[0];
+  if (s.commits7d === 0) bits.push("The presses were still this week — not a single commit anywhere.");
+  else if (busiest && busiest.counts.commits7d >= s.commits7d * 0.6)
+    bits.push(`${Spell(s.commits7d)} commits this week, the bulk of them at <b>${esc(titleCase(busiest.name))}</b>.`);
+  else {
+    const moving = d.repos.filter((r) => r.counts.commits7d > 0).length;
+    bits.push(`${Spell(s.commits7d)} commits this week across ${plural(moving, "project")}.`);
+  }
+  const worst = d.attention[0];
+  if (!worst) {
+    bits.push(`<span class="quiet">Nothing has gone stale; every open thread has moved recently.</span>`);
+  } else {
+    bits.push(`${Plural(d.attention.length, "matter")} await attention, the oldest for ${plural(Math.round(daysSince(worst.updatedAt)), "day")} at <b>${esc(titleCase(worst.repo))}</b>.`);
+  }
+  return bits.join(" ");
+}
+
+function articleHTML(r, tier, user) {
+  const art = { lead: 200, second: 132, brief: 96 }[tier];
+  const link = (t) => (r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${t}</a>` : t);
+  return `<article class="${tier === "lead" ? "lead" : tier === "second" ? "second" : "brief-story"}">
+    <div class="kicker"><span class="pip ${r.status}"></span>${esc(r.status)}${r.language ? ` · ${esc(r.language)}` : ""}${r.pinned ? " · Pinned" : ""}</div>
+    <h2 class="hed">${link(esc(headline(r)))}</h2>
+    <p class="deck">${esc(deck(r))}</p>
+    ${art ? `<figure>${engraving(r, art)}<figcaption>An impression of ${esc(r.name)}, struck from its name; ink weight follows activity.</figcaption></figure>` : ""}
+    <div class="byline">Filed by the Collector</div>
+    <div class="body">${bodyCopy(r, user)}</div>
+  </article>`;
+}
+
+function noticesHTML(d) {
+  if (!d.attention.length) {
+    return `<div class="box rules"><h3>Stop Press</h3>
+      <p class="allclear">Nothing is rotting. Every open review, assigned issue and live branch has moved recently.</p></div>`;
+  }
+  const rows = d.attention.map((t) => {
+    const days = Math.round(daysSince(t.updatedAt));
+    const cls = days > 30 ? "crit" : "warn";
+    const tag = t.url ? "a" : "div";
+    const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
+    return `<${tag} class="notice"${href}>
+      <span class="n-title">${esc(t.title)}</span>
+      <span class="n-meta">${esc(t.type)} · ${esc(t.repo)} · <span class="${cls}">waiting ${plural(days, "day")}</span></span>
+    </${tag}>`;
+  }).join("");
+  return `<div class="box rules"><h3>Stop Press — ${plural(d.attention.length, "matter")} waiting</h3>${rows}</div>`;
+}
+
+function weatherHTML(d) {
+  const days = d.heatmap || [];
+  if (!days.length) return "";
+  const max = Math.max(1, ...days.map((x) => x.count));
+  const lvl = (n) => (n === 0 ? 0 : Math.min(4, Math.ceil((n / max) * 4)));
+  const lead = new Date(days[0].date + "T00:00:00Z").getUTCDay();
+  const cells = Array.from({ length: lead }, () => `<i style="visibility:hidden"></i>`).join("")
+    + days.map((x) => `<i data-l="${lvl(x.count)}" data-d="${x.date}" data-n="${x.count}"></i>`).join("");
+  const total = days.reduce((n, x) => n + x.count, 0);
+  return `<div class="box"><h3>The Year in Weather</h3>
+    <div class="hm-scroll"><div class="hm" id="heatmap">${cells}</div></div>
+    <div class="hm-legend"><span>Dry</span>
+      <i style="background:var(--hm-0)"></i><i style="background:var(--hm-1)"></i><i style="background:var(--hm-2)"></i><i style="background:var(--hm-3)"></i><i style="background:var(--hm-4)"></i>
+      <span>Wet</span><span style="margin-left:auto">${total} commits</span></div></div>`;
+}
 
 /* ---------- tooltip ---------- */
 const tip = $("#tip");
 function showTip(e, text) {
-  tip.textContent = text;
-  tip.style.opacity = "1";
-  const r = tip.getBoundingClientRect();
-  let x = e.clientX + 12, y = e.clientY - r.height - 10;
-  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 12;
+  tip.textContent = text; tip.style.opacity = "1";
+  const b = tip.getBoundingClientRect();
+  let x = e.clientX + 12, y = e.clientY - b.height - 10;
+  if (x + b.width > innerWidth - 8) x = e.clientX - b.width - 12;
   if (y < 8) y = e.clientY + 16;
   tip.style.left = x + "px"; tip.style.top = y + "px";
 }
 const hideTip = () => (tip.style.opacity = "0");
 
-/* ---------- render ---------- */
-let DATA = null;
-let filter = "all";
-
-function renderTiles(d) {
-  const s = d.summary;
-  const tiles = [
-    { label: "Commits this week", value: s.commits7d, note: "across all repos", hero: true },
-    { label: "Open PRs", value: s.openPRs },
-    { label: "Open issues", value: s.openIssues },
-    { label: "Active repos", value: `${s.activeRepos}`, note: `of ${s.repos} tracked` },
-    { label: "Needs attention", value: s.needsAttention, note: s.needsAttention ? "stale items below" : "all clear" },
-  ];
-  $("#tiles").innerHTML = tiles.map((t) => `
-    <div class="tile${t.hero ? " hero" : ""}">
-      <div class="label">${esc(t.label)}</div>
-      <div class="value"${typeof t.value === "number" ? ` data-count="${t.value}"` : ""}>${esc(t.value)}</div>
-      ${t.note ? `<div class="note">${esc(t.note)}</div>` : ""}
-    </div>`).join("");
-  countUp();
-}
-
-/** Roll each numeric tile up from zero. Skipped entirely for reduced motion. */
-function countUp() {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  for (const el of document.querySelectorAll(".tile .value[data-count]")) {
-    const target = +el.dataset.count;
-    if (!target) continue;
-    const start = performance.now();
-    const tick = (t) => {
-      const p = Math.min(1, (t - start) / 650);
-      // ease-out so it decelerates into the real number
-      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    el.textContent = "0";
-    requestAnimationFrame(tick);
-  }
-}
-
-function taskRow(t, showFlag) {
-  const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
-  const tag = t.url ? "a" : "div";
-  const flag = showFlag
-    ? `<span class="flag"><span class="dot" style="background:${daysSince(t.updatedAt) > 30 ? "var(--status-critical)" : "var(--status-warning)"}"></span>Stale</span>`
-    : t.isDraft ? `<span class="flag"><span class="dot" style="background:var(--status-serious)"></span>Draft</span>` : "";
-  return `<${tag} class="row"${href}>
-    ${GLYPH[t.type]}
-    <span class="kind">${KIND_LABEL[t.type]}</span>
-    <span class="title">${esc(t.title)}</span>
-    ${flag}
-    <span class="repo">${esc(t.repo)}</span>
-    <span class="age">${ageSince(t.createdAt)}</span>
-  </${tag}>`;
-}
-
-/** The single most-neglected item, promoted out of the list so it can't hide. */
-function heroTask(t) {
-  const href = t.url ? ` href="${esc(t.url)}" target="_blank" rel="noopener"` : "";
-  const tag = t.url ? "a" : "div";
-  const days = Math.round(daysSince(t.updatedAt));
-  return `<div class="hero-label">Oldest thing here</div>
-    <${tag} class="hero-task"${href}>
-      ${GLYPH[t.type]}
-      <span class="ht-body">
-        <span class="ht-title">${esc(t.title)}</span>
-        <span class="ht-sub">${esc(t.repo)} · waiting ${plural(days, "day")}</span>
-      </span>
-    </${tag}>`;
-}
-
-function renderTasks(d) {
-  const open = d.tasks.filter((t) => !t.stale);
-  const [worst, ...rest] = d.attention;
-
-  $("#attention").innerHTML = worst
-    ? heroTask(worst) + rest.map((t) => taskRow(t, true)).join("")
-    : `<div class="allclear">
-         <span class="mark"><svg viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5"/></svg></span>
-         <span class="words"><b>Nothing's rotting.</b>
-           <span>Every open PR, assigned issue and live branch has moved recently.</span></span>
-       </div>`;
-
-  $("#tasks").innerHTML = open.length
-    ? open.map((t) => taskRow(t, false)).join("")
-    : `<div class="empty">Everything in flight is already up above. Nothing else is open.</div>`;
-}
-
-function renderHeatmap(d) {
-  const days = d.heatmap || [];
-  if (!days.length) { $("#heatmapSection").classList.add("hidden"); return; }
-  const max = Math.max(1, ...days.map((x) => x.count));
-  const lvl = (n) => (n === 0 ? 0 : Math.min(4, Math.ceil((n / max) * 4)));
-  // pad so the first column starts on Sunday
-  const lead = new Date(days[0].date + "T00:00:00Z").getUTCDay();
-  const pad = Array.from({ length: lead }, () => null);
-  $("#heatmap").innerHTML = pad.map(() => `<i style="visibility:hidden"></i>`).join("")
-    + days.map((x) => `<i data-l="${lvl(x.count)}" data-d="${x.date}" data-n="${x.count}"></i>`).join("");
-}
-$("#heatmap").addEventListener("mouseover", (e) => {
-  const c = e.target.closest("i[data-d]"); if (!c) return;
-  const n = +c.dataset.n;
-  showTip(e, `${n} commit${n === 1 ? "" : "s"} · ${c.dataset.d}`);
-});
-$("#heatmap").addEventListener("mousemove", (e) => {
-  const c = e.target.closest("i[data-d]"); if (!c) { hideTip(); return; }
-  const n = +c.dataset.n;
-  showTip(e, `${n} commit${n === 1 ? "" : "s"} · ${c.dataset.d}`);
-});
-$("#heatmap").addEventListener("mouseleave", hideTip);
-
-function repoMatches(r, q) {
-  if (q && !(`${r.name} ${r.description || ""} ${r.language || ""}`.toLowerCase().includes(q))) return false;
-  if (filter === "active") return r.status === "hot" || r.status === "active";
-  if (filter === "prs") return r.counts.openPRs > 0;
-  if (filter === "dormant") return r.status === "dormant";
-  return true;
-}
-
-function listBlock(title, items) {
-  if (!items.length) return "";
-  return `<div class="grouphd">${esc(title)}</div><ul>${items.join("")}</ul>`;
-}
-
-function renderCards(d) {
-  if (!d.repos.length) {
-    $("#cards").innerHTML = `<div class="empty">No public repos in this snapshot yet — the collector hasn't run, or every repo is filtered out by <code>hide</code> in <code>config.json</code>.</div>`;
-    return;
-  }
-  const q = $("#q").value.trim().toLowerCase();
-  const rows = d.repos.filter((r) => repoMatches(r, q));
-  $("#cards").innerHTML = rows.length ? rows.map((r) => {
-    const name = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name);
-    const commits = r.commits.map((c) => `<li><a href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.message)}</a><span class="when">${relTime(c.date)}</span></li>`);
-    const prs = r.openPRs.map((p) => `<li><a href="${esc(p.url || "#")}" target="_blank" rel="noopener">#${p.number} ${esc(p.title)}</a><span class="when">${ageSince(p.createdAt)}</span></li>`);
-    const issues = r.openIssues.map((i) => `<li><a href="${esc(i.url || "#")}" target="_blank" rel="noopener">#${i.number} ${esc(i.title)}</a><span class="when">${ageSince(i.createdAt)}</span></li>`);
-    const branches = r.branches.map((b) => `<li><a href="${esc(r.url ? r.url + "/tree/" + b.name : "#")}" target="_blank" rel="noopener">${esc(b.name)}</a><span class="when">${b.unmergedCommits} ahead</span></li>`);
-    const detail = commits.length || prs.length || issues.length || branches.length
-      ? `<details class="more"><summary>Details</summary>
-           ${listBlock("Recent commits", commits)}
-           ${listBlock("Open PRs", prs)}
-           ${listBlock("Open issues", issues)}
-           ${listBlock("Branches", branches)}
-         </details>`
-      : "";
-    return `<article class="card${r.pinned ? " pinned" : ""}">
-      <h3>${name}${r.pinned ? `<span class="pin" title="Pinned in config.json">Pinned</span>` : ""}<span class="status"><span class="dot ${r.status}"></span>${STATUS_LABEL[r.status]}</span></h3>
-      <p class="desc">${esc(r.description || "")}</p>
-      <div class="meta">
-        ${r.language ? `<span>${esc(r.language)}</span>` : ""}
-        <span><b>${r.counts.commits7d}</b> commits/7d</span>
-        <span><b>${r.counts.openPRs}</b> PRs</span>
-        <span><b>${r.counts.openIssues}</b> issues</span>
-        <span>${relTime(r.lastActivityAt)}</span>
-      </div>
-      ${detail}
-    </article>`;
-  }).join("") : `<div class="empty">Nothing matches that. Try a shorter search, or the All filter.</div>`;
-}
-
-function renderTable(d) {
-  const head = `<thead><tr><th>Repo</th><th>Status</th><th>Language</th><th class="num">Commits 7d</th><th class="num">PRs</th><th class="num">Issues</th><th class="num">Branches</th><th>Last push</th></tr></thead>`;
-  const body = d.repos.map((r) => `<tr>
-    <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</td>
-    <td>${STATUS_LABEL[r.status]}</td>
-    <td>${esc(r.language || "—")}</td>
-    <td class="num">${r.counts.commits7d}</td>
-    <td class="num">${r.counts.openPRs}</td>
-    <td class="num">${r.counts.openIssues}</td>
-    <td class="num">${r.counts.branches}</td>
-    <td>${relTime(r.lastActivityAt)}</td>
-  </tr>`).join("");
-  $("#table").innerHTML = head + `<tbody>${body}</tbody>`;
-}
-
-function renderFreshness(d) {
-  // The collector only rewrites this file when something actually changed, so
-  // an old generatedAt means either a genuinely quiet stretch or a broken
-  // refresh — the badge says both rather than claiming a failure it can't
-  // distinguish. A truly broken collect fails its workflow run, which is the
-  // signal that actually pages you.
-  const hrs = (Date.now() - Date.parse(d.generatedAt)) / 3600000;
-  const el = $("#freshness");
-  el.className = "freshness" + (hrs > 48 ? " stale" : "");
-  el.innerHTML = hrs > 48
-    ? `<span class="dot"></span>Unchanged for ${Math.round(hrs / 24)} days — nothing new, or the collector is failing`
-    : `Updated ${relTime(d.generatedAt)}`;
-}
-
-/* ---------- filters ---------- */
-$("#q").addEventListener("input", () => renderCards(DATA));
-document.querySelectorAll("[data-f]").forEach((b) => b.addEventListener("click", () => {
-  filter = b.dataset.f;
-  document.querySelectorAll("[data-f]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-  renderCards(DATA);
-}));
-$("#viewToggle").addEventListener("click", (e) => {
-  const on = e.target.getAttribute("aria-pressed") !== "true";
-  e.target.setAttribute("aria-pressed", String(on));
-  $("#tableSection").classList.toggle("hidden", !on);
-  ["#reposSection", "#heatmapSection"].forEach((s) => $(s).classList.toggle("hidden", on));
+$("#themeToggle").addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const sysDark = matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme", cur ? (cur === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark"));
 });
 
-/* ---------- boot ---------- */
+/* ---------- press run ---------- */
 fetch("data/snapshot.json", { cache: "no-store" })
   .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
   .then((d) => {
-    DATA = d;
-    $("#app").classList.remove("hidden");
-    $("#headline").innerHTML = stateOfTheWorld(d);
-    renderFreshness(d);
-    renderTiles(d);
-    renderTasks(d);
-    renderHeatmap(d);
-    renderCards(d);
-    renderTable(d);
-    $("#foot").innerHTML = `${d.repos.length} public repos tracked for ${esc(d.user)} · snapshot generated ${esc(d.generatedAt)} · private repos are not collected`;
+    $("#paper").classList.remove("hidden");
+
+    $("#dateline").textContent = longDate(d.generatedAt);
+    $("#scopeline").textContent = `${d.repos.length} public repositories · ${esc(d.user)}`;
+    // Edition number counts snapshots since the paper was founded, one per day.
+    const founded = Date.parse("2026-08-05T00:00:00Z");
+    const no = Math.max(1, Math.round((Date.parse(d.generatedAt) - founded) / 86400000) + 1);
+    $("#edition").textContent = `Vol. I · No. ${no} · Late Edition`;
+    $("#lede").innerHTML = stateOfTheWorld(d);
+
+    // Placement is the ranking: the snapshot already orders repos by real
+    // activity, so position on the page is the story's importance.
+    const live = d.repos.filter((r) => r.status !== "dormant");
+    const dormant = d.repos.filter((r) => r.status === "dormant");
+    const [lead, ...restLive] = live.length ? live : d.repos;
+    const seconds = restLive.slice(0, 2);
+    const rest = restLive.slice(2);
+
+    $("#colMain").innerHTML = lead ? articleHTML(lead, "lead", d.user) : `<p class="lede">No public repositories to report.</p>`;
+    $("#colRail").innerHTML = noticesHTML(d) + weatherHTML(d)
+      + (dormant.length
+        ? `<div class="box"><h3>In Brief</h3>${dormant.map((r) => `
+            <div class="brief-item">
+              <span class="bi-name">${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</span>
+              <span class="bi-meta"> — quiet since ${esc(monthYear(r.lastActivityAt))}.</span>
+            </div>`).join("")}</div>`
+        : "");
+
+    $("#belowGrid").innerHTML = [...seconds.map((r) => articleHTML(r, "second", d.user)),
+      ...rest.map((r) => articleHTML(r, "brief", d.user))].join("") || `<p>Nothing further to report.</p>`;
+
+    const hm = $("#heatmap");
+    if (hm) {
+      const move = (e) => {
+        const c = e.target.closest("i[data-d]");
+        if (!c) { hideTip(); return; }
+        showTip(e, `${c.dataset.n} commits · ${c.dataset.d}`);
+      };
+      hm.addEventListener("mouseover", move);
+      hm.addEventListener("mousemove", move);
+      hm.addEventListener("mouseleave", hideTip);
+    }
+
+    $("#colophon").innerHTML =
+      `The Repo Radar is set from <code>data/snapshot.json</code>, gathered every six hours by a scheduled job.<br>
+       Private repositories are not collected. Engravings are struck deterministically from each project's name.<br>
+       Impression taken ${esc(d.generatedAt)}. <a href="dashboard.html">The data view</a> remains available to subscribers.`;
   })
   .catch((err) => {
     const b = $("#loadError");
     b.classList.remove("hidden");
-    b.innerHTML = `<b>Couldn't load data/snapshot.json</b> (${esc(err.message)}).<br>
-      Opening this file directly with <code>file://</code> won't work — browsers block the fetch.
+    b.innerHTML = `<b>The presses have jammed.</b> Couldn't load <code>data/snapshot.json</code> (${esc(err.message)}).<br>
+      Opening this file over <code>file://</code> won't work — browsers block the fetch.
       Run <code>python3 -m http.server 8000</code> in the repo and open <code>http://localhost:8000</code>.`;
   });
 </script>

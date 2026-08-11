@@ -129,8 +129,13 @@ Opening `index.html` via `file://` won't work — browsers block the `fetch` of
 
 ## Layout
 
+> **This branch is the broadsheet edition.** `index.html` is a newspaper front page;
+> the original dashboard is preserved at `dashboard.html` and the two link to each
+> other. See "The broadsheet" below.
+
 ```
-index.html                    the entire dashboard — inline CSS + JS, no deps
+index.html                    the newspaper front page — inline CSS + JS, no deps
+dashboard.html                the original dashboard, still live at /dashboard.html
 config.json                   the only file you hand-edit
 data/snapshot.json            generated; what the page reads
 scripts/collect.mjs           fetches from the GraphQL API, writes the snapshot
@@ -139,6 +144,40 @@ scripts/selftest.mjs          offline tests for derive.mjs — no network
 scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's schema
 .github/workflows/pages.yml   collect on a 6h cron, then deploy from main
 ```
+
+## The broadsheet
+
+A newspaper front page and this dashboard want the same thing: rank the stories and
+let position carry the ranking. So on this branch each project is an article, and
+**where it sits and how big it runs is the data**.
+
+| Placement | Who gets it |
+|---|---|
+| Lead — full width of the main column, largest engraving, two-column body | the most recently active project |
+| Second front — a third of the page each | the next two |
+| Standard — smaller engraving | remaining live projects |
+| In Brief — one line, no art | dormant projects |
+| Stop Press — boxed, top of the rail | anything stale |
+| The Year in Weather | the commit heatmap |
+
+Headlines, decks and body copy are all generated from the snapshot. Each category
+carries several phrasings, picked by a hash of the repo's name, so a page with four
+quiet projects doesn't print the same headline four times — but the same snapshot
+always sets the same page. Nothing is random.
+
+### Why the pictures aren't AI images
+
+Every article gets an engraving, and they're **drawn in code** rather than generated
+by an image model. Each is seeded from a hash of the repo's name, so it is stable
+forever and any repo added later gets its own with no manual step. Ink weight follows
+`status`, so a busy project looks heavily worked and a dormant one looks faint — the
+picture carries the same signal as the placement.
+
+The alternative — real generated images committed to `art/` — is a reasonable thing to
+want, and the seam for it is one function (`engraving()`). It was not taken here
+because it puts binary blobs in a public repo, needs a manual step for every new repo,
+and either goes stale or has to be regenerated on a schedule, which would undo the
+byte-stable-snapshot work that stops this repo committing every six hours forever.
 
 ## `config.json`
 
