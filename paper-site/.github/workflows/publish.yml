@@ -1,0 +1,83 @@
+name: Set the paper
+
+# This repository is presentation only. The data comes from repo-radar, which
+# does the collecting; here we fetch the snapshot it publishes, commit it when
+# it has actually changed, and deploy the front page.
+#
+# No secrets and no cross-repo credentials: repo-radar is public, so its
+# snapshot is readable over raw.githubusercontent.com with no auth at all. The
+# page still reads a static file sitting next to it, so visitors never make a
+# request to GitHub — the property the whole project is built on.
+
+on:
+  schedule:
+    # Offset from repo-radar's own 6-hourly cron so we run after it, not with
+    # it. GitHub's scheduler drifts by up to an hour or two anyway; the offset
+    # only has to be bigger than the collect job's runtime, which is ~20s.
+    - cron: "30 3,9,15,21 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: paper
+  cancel-in-progress: false
+
+env:
+  SNAPSHOT_URL: https://raw.githubusercontent.com/joseph-robert-f/repo-radar/main/data/snapshot.json
+
+jobs:
+  set:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the latest snapshot from repo-radar
+        run: |
+          mkdir -p data
+          curl -fsSL --retry 4 --retry-delay 3 "$SNAPSHOT_URL" -o data/snapshot.fetched.json
+          node -e "
+            const s = JSON.parse(require('fs').readFileSync('data/snapshot.fetched.json','utf8'));
+            if (s.scope !== 'public') { console.error('snapshot scope is not public'); process.exit(1); }
+            if (s.sample) { console.error('snapshot is sample data'); process.exit(1); }
+            const bad = s.repos.filter(r => r.isPrivate);
+            if (bad.length) { console.error('private repos in snapshot: ' + bad.map(r => r.name)); process.exit(1); }
+            console.log('fetched ' + s.repos.length + ' stories, taken ' + s.generatedAt);
+          "
+          mv data/snapshot.fetched.json data/snapshot.json
+
+      - name: Commit the snapshot if it changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/snapshot.json; then
+            echo "no change"; exit 0
+          fi
+          # generatedAt moves whenever repo-radar recollects; everything else only
+          # moves when something actually happened. Compare without it so a quiet
+          # day doesn't take a commit.
+          before=$(git show HEAD:data/snapshot.json 2>/dev/null | grep -v '"generatedAt"' || true)
+          after=$(grep -v '"generatedAt"' data/snapshot.json || true)
+          if [ "$before" = "$after" ]; then
+            echo "only the timestamp moved — not committing"
+            git checkout -- data/snapshot.json
+            exit 0
+          fi
+          git add data/snapshot.json
+          git commit -m "chore: set from a fresh snapshot"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+    outputs:
+      page: ${{ steps.deploy.outputs.page_url }}

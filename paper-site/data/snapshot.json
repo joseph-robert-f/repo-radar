@@ -1,0 +1,2304 @@
+{
+  "generatedAt": "2026-08-11T18:14:23.376Z",
+  "user": "joseph-robert-f",
+  "scope": "public",
+  "summary": {
+    "repos": 12,
+    "activeRepos": 4,
+    "openPRs": 0,
+    "openIssues": 1,
+    "commits7d": 20,
+    "needsAttention": 2
+  },
+  "repos": [
+    {
+      "name": "headless-blender-character-builder",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder",
+      "description": "Deterministic, keyless Blender 4.5 pipeline for bounded JSON characters, inspectable .blend/GLB, and print-oriented STL artifacts.",
+      "language": "Python",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-11T16:35:25.000Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "9258d6d",
+          "message": "Merge pull request #12 from joseph-robert-f/agent/update-debian-base",
+          "date": "2026-08-11T16:35:25Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/9258d6d6ac786bd24eecbfa88b66db05a3c88f3e"
+        },
+        {
+          "sha": "dadcf91",
+          "message": "Update Debian base image",
+          "date": "2026-08-11T15:58:35Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/dadcf9159236d5a144d25c8871fc7cc74dd9b1bf"
+        },
+        {
+          "sha": "0c87960",
+          "message": "Merge pull request #11 from joseph-robert-f/agent/public-readiness",
+          "date": "2026-08-11T13:13:02Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/0c87960d15e5f7e3fbbab09c6f36c4f6bd76318b"
+        },
+        {
+          "sha": "e115219",
+          "message": "Merge pull request #10 from joseph-robert-f/agent/dependency-audit",
+          "date": "2026-08-11T13:11:17Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/e115219d4f1437bbaed873d5890d214c9aed4fc8"
+        },
+        {
+          "sha": "c66031e",
+          "message": "Support OCI-index Caddy inspection",
+          "date": "2026-08-11T03:49:35Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/c66031ef31ceacc44d638f5e2628111c64c1c1d2"
+        },
+        {
+          "sha": "8d73d21",
+          "message": "Improve public onboarding and release ergonomics",
+          "date": "2026-08-11T02:55:41Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/8d73d21b5387f1c10403b3d153faa954d32e45c4"
+        },
+        {
+          "sha": "faf1654",
+          "message": "Add maintainer-controlled dependency audit",
+          "date": "2026-08-11T01:53:50Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/faf1654e38d651e08d72a92ea094d4e43353a8fd"
+        },
+        {
+          "sha": "720a716",
+          "message": "Merge pull request #5 from joseph-robert-f/agent/fix-main-ci",
+          "date": "2026-08-05T15:10:34Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/720a7162f9f1f17b312b8e2df29aabb229d4a9aa"
+        },
+        {
+          "sha": "5750c9f",
+          "message": "Fix BuildKit parent image reference",
+          "date": "2026-08-05T14:50:00Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/5750c9fff1bb43f7184e54dcf4eb71a0cc2ef4dc"
+        },
+        {
+          "sha": "679b02c",
+          "message": "Fix main CI portability",
+          "date": "2026-08-05T14:38:07Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/679b02caca6a2ecdd0d4d6315a235eca1af4839d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "claude/blender-3d-print-cli-review-xp4mbg",
+          "lastCommit": "2026-08-04T14:30:12Z",
+          "unmergedCommits": 3
+        }
+      ],
+      "counts": {
+        "commits7d": 10,
+        "commits30d": 27,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 1
+      }
+    },
+    {
+      "name": "ai-news-digest",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest",
+      "description": null,
+      "language": "HTML",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-11T10:47:27.000Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "0242890",
+          "message": "Add 11 August 2026 AI News Digest Report",
+          "date": "2026-08-11T10:47:27Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/024289061f701e3a32bc7e3e70278ea93bcd039d"
+        },
+        {
+          "sha": "9e0ac48",
+          "message": "Add 10 August 2026 AI News Digest Report (#36)",
+          "date": "2026-08-10T10:45:07Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9e0ac4881b717e7c54877da8cda2f6257e3c3ff9"
+        },
+        {
+          "sha": "9cbfdef",
+          "message": "Add 9 August 2026 AI News Digest Report",
+          "date": "2026-08-09T10:48:13Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9cbfdefca5b7ce7c8b42b83fee878045be4e48f6"
+        },
+        {
+          "sha": "4435cb3",
+          "message": "Add 8 August 2026 AI News Digest Report (#33)",
+          "date": "2026-08-08T10:45:01Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/4435cb3f1f1f20ee7d80f6e3c740e643e3a6cdb0"
+        },
+        {
+          "sha": "7e0339d",
+          "message": "Add 7 August 2026 AI News Digest Report",
+          "date": "2026-08-07T10:47:21Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7e0339d8a518e324118b627a2e5f01730f050037"
+        },
+        {
+          "sha": "7fed534",
+          "message": "Add 6 August 2026 AI News Digest Report",
+          "date": "2026-08-06T10:46:27Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7fed53422e708b5f980933b8b8187f02cea42cbc"
+        },
+        {
+          "sha": "f0eb7b0",
+          "message": "Add 5 August 2026 AI News Digest Report",
+          "date": "2026-08-05T10:47:03Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/f0eb7b0774da1de179e5e5fc1e6388165469cf92"
+        },
+        {
+          "sha": "3cc3559",
+          "message": "Merge pull request #21 from joseph-robert-f/automation/daily-github-a…",
+          "date": "2026-08-04T14:19:26Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/3cc3559d96cd4fb09584e4844bc14b993b4877ea"
+        },
+        {
+          "sha": "9123428",
+          "message": "Add 4 August 2026 AI News Digest Report",
+          "date": "2026-08-04T10:48:12Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/912342849e6a3b914eaa92352a281de93156fb9e"
+        },
+        {
+          "sha": "31455db",
+          "message": "Add 3 August 2026 AI News Digest Report (#31)",
+          "date": "2026-08-03T10:49:23Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/31455db963e38b161ab11e28219086429602b506"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [
+        {
+          "number": 35,
+          "title": "GitHub activity digest — 2026-08-09",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/35",
+          "labels": [],
+          "createdAt": "2026-08-09T13:47:08Z",
+          "updatedAt": "2026-08-09T13:47:08Z",
+          "assigned": false
+        }
+      ],
+      "branches": [
+        {
+          "name": "claude/wonderful-hopper-27a6qq",
+          "lastCommit": "2026-07-02T16:47:33Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-rxdssh",
+          "lastCommit": "2026-08-03T10:49:05Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-rac7ie",
+          "lastCommit": "2026-08-06T10:45:53Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ltevu3",
+          "lastCommit": "2026-07-22T10:46:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-lkelva",
+          "lastCommit": "2026-07-11T10:44:24Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-j4u3kx",
+          "lastCommit": "2026-07-23T10:44:56Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-imv6i4",
+          "lastCommit": "2026-07-26T10:43:59Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-hfwpz0",
+          "lastCommit": "2026-07-24T10:45:15Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-gkn88p",
+          "lastCommit": "2026-07-19T10:48:23Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-g7t58q",
+          "lastCommit": "2026-07-21T10:46:09Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ehh01k",
+          "lastCommit": "2026-07-13T10:45:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dv51kp",
+          "lastCommit": "2026-07-14T12:20:42Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dj1ubj",
+          "lastCommit": "2026-07-28T10:48:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-db2001",
+          "lastCommit": "2026-07-06T10:49:11Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dag6ss",
+          "lastCommit": "2026-08-01T10:43:37Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-d88pg7",
+          "lastCommit": "2026-08-10T10:44:42Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-cws7ld",
+          "lastCommit": "2026-07-09T10:44:21Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-22azs4",
+          "lastCommit": "2026-08-08T10:44:43Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-6g2vte",
+          "lastCommit": "2026-07-12T11:35:03Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-0hon4m",
+          "lastCommit": "2026-08-02T10:47:55Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 7,
+        "commits30d": 33,
+        "openPRs": 0,
+        "openIssues": 1,
+        "branches": 20
+      }
+    },
+    {
+      "name": "career_search",
+      "url": "https://github.com/joseph-robert-f/career_search",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-05T14:57:32.000Z",
+      "status": "active",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "cd12eee",
+          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
+          "date": "2026-08-05T14:57:32Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
+        },
+        {
+          "sha": "1610b30",
+          "message": "Build packages before workspace tests",
+          "date": "2026-08-05T14:52:16Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
+        },
+        {
+          "sha": "b9caa47",
+          "message": "Build Career Clarity voice journal",
+          "date": "2026-08-05T14:38:29Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
+        },
+        {
+          "sha": "8ee286c",
+          "message": "Initial commit",
+          "date": "2026-08-03T12:54:06Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 3,
+        "commits30d": 4,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "Localize-News",
+      "url": "https://github.com/joseph-robert-f/Localize-News",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-04T14:19:32.000Z",
+      "status": "active",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "7880b8c",
+          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
+          "date": "2026-08-04T14:19:32Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "fix/manual-issue-name-matching",
+          "lastCommit": "2026-05-08T19:30:16Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "feat/portal-page-filter",
+          "lastCommit": "2026-05-08T19:56:14Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 2
+      }
+    },
+    {
+      "name": "fresh-needs",
+      "url": "https://github.com/joseph-robert-f/fresh-needs",
+      "description": "Freshness-first, open-source donation acceptance publishing for community organizations.",
+      "language": null,
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-07-25T12:17:26.000Z",
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "f823fb4",
+          "message": "Document Fresh Needs product hypothesis",
+          "date": "2026-07-25T12:17:26Z",
+          "url": "https://github.com/joseph-robert-f/fresh-needs/commit/f823fb4a3268fb673d93d312eb46a7bb31886641"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 1,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "personal-news-page-template",
+      "url": "https://github.com/joseph-robert-f/personal-news-page-template",
+      "description": "Set up a personal news site in a few simple clicks! Fork-and-go template for an AI-drafted, human-reviewed daily news page on GitHub Pages.",
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-07-14T16:13:53.000Z",
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "5a53994",
+          "message": "Lessons learned: LLM cost lives in the loop, not the price sheet",
+          "date": "2026-07-14T16:13:53Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/5a539943af26c447705f053d48462a696b0c5be4"
+        },
+        {
+          "sha": "0b85157",
+          "message": "Cut per-generation cost: effort control, fewer searches, honest cost …",
+          "date": "2026-07-14T16:13:25Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/0b851574858bbd9fc4323cc4812fdee9859dfaf7"
+        },
+        {
+          "sha": "d04e571",
+          "message": "Sprint 7 assets: daily screenshot capture script + first day's set",
+          "date": "2026-07-13T15:20:58Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/d04e5717545cad823d7a16a83f9251e50396f158"
+        },
+        {
+          "sha": "b96a099",
+          "message": "Add lessons learned from the first live deployment cycle",
+          "date": "2026-07-12T15:11:40Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/b96a099ff69240e8ab203a78c281a94b5b3f8906"
+        },
+        {
+          "sha": "07a0faf",
+          "message": "Merge pull request #12 from joseph-robert-f/claude/oss-repo-review-sp…",
+          "date": "2026-07-12T15:08:31Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/07a0faf551a5d30b8fdb81af2250c4ab56b8d801"
+        },
+        {
+          "sha": "b3ae1d7",
+          "message": "Add optional auto-publish mode (publishMode: 'auto')",
+          "date": "2026-07-12T14:02:29Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/b3ae1d7d983cf35c392c8c60313258ce05d5288b"
+        },
+        {
+          "sha": "15776e6",
+          "message": "Survive GitHub's cron delays: catch-up guard window + idempotent sche…",
+          "date": "2026-07-12T12:24:32Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/15776e633a4b4a221e46337540cb422c5ac25d99"
+        },
+        {
+          "sha": "fb9b842",
+          "message": "Require article-level source URLs in the generation prompt",
+          "date": "2026-07-12T12:17:36Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/fb9b842d2a64aa5750e52c253e409e6e0fff290c"
+        },
+        {
+          "sha": "338189e",
+          "message": "Gate review: record the live Gate 6 shakedown and its resolution",
+          "date": "2026-07-11T23:13:49Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/338189e619266f3a538f4ab64f3cf9c08214eb9c"
+        },
+        {
+          "sha": "70d7af6",
+          "message": "Require at least one story and retry once on payload validation failure",
+          "date": "2026-07-11T22:41:24Z",
+          "url": "https://github.com/joseph-robert-f/personal-news-page-template/commit/70d7af6bb50e29cdfe7779f400f6057d2788357d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 3,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "Northampton-County-News-",
+      "url": "https://github.com/joseph-robert-f/Northampton-County-News-",
+      "description": null,
+      "language": "JavaScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-07-14T16:13:27.000Z",
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "b0b476f",
+          "message": "Cut per-generation cost: effort 'medium', 6 searches, honest cost docs",
+          "date": "2026-07-14T16:13:27Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/b0b476f13ad10369e528d456fcfe67dc75bf66ab"
+        },
+        {
+          "sha": "7a5295c",
+          "message": "Switch to auto-publish mode",
+          "date": "2026-07-13T15:05:12Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/7a5295c121029e901f3d02d626837443c2236b7e"
+        },
+        {
+          "sha": "cce8d45",
+          "message": "Merge pull request #4 from joseph-robert-f/daily-digest/2026-07-13",
+          "date": "2026-07-13T15:04:53Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/cce8d452cd565ea6e13cc166e0820741d30d697b"
+        },
+        {
+          "sha": "840bc32",
+          "message": "Merge pull request #2 from joseph-robert-f/daily-digest/2026-07-11",
+          "date": "2026-07-12T15:05:33Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/840bc3217b733d67dbce81a787b0f9c84d23252b"
+        },
+        {
+          "sha": "510990d",
+          "message": "Merge pull request #3 from joseph-robert-f/daily-digest/2026-07-12",
+          "date": "2026-07-12T15:04:42Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/510990dc4f316c7902b05d1147b9f45a3ab7e2c7"
+        },
+        {
+          "sha": "c1442f3",
+          "message": "Add optional auto-publish mode (publishMode: 'auto')",
+          "date": "2026-07-12T14:02:45Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/c1442f30322df1425310aec95484b2c6ce76114e"
+        },
+        {
+          "sha": "d49f639",
+          "message": "Survive GitHub's cron delays: catch-up guard window + idempotent sche…",
+          "date": "2026-07-12T12:24:34Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/d49f639087b9d72d394140169a8bfee9cbb731e1"
+        },
+        {
+          "sha": "abd7f20",
+          "message": "Require article-level source URLs in the generation prompt",
+          "date": "2026-07-12T12:17:38Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/abd7f206b2e2495edc6391b4e74da160a0554bef"
+        },
+        {
+          "sha": "2849e30",
+          "message": "Require at least one story and retry once on payload validation failure",
+          "date": "2026-07-11T22:41:25Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/2849e308d77b18ab88dedc6ce619ddb2f6526821"
+        },
+        {
+          "sha": "157e9a5",
+          "message": "Give AI generation a 30-minute cap with a 3-minute idle abort",
+          "date": "2026-07-11T22:00:52Z",
+          "url": "https://github.com/joseph-robert-f/Northampton-County-News-/commit/157e9a5166a6957b887dd1947f11706686041579"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "daily-digest/2026-07-10",
+          "lastCommit": "2026-07-10T17:00:18Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 3,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 1
+      }
+    },
+    {
+      "name": "pantry-pal",
+      "url": "https://github.com/joseph-robert-f/pantry-pal",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-06-14T18:31:54.000Z",
+      "status": "idle",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "d936924",
+          "message": "Update .gitignore",
+          "date": "2026-06-14T18:31:54Z",
+          "url": "https://github.com/joseph-robert-f/pantry-pal/commit/d936924a684ba04b5d389202a91ec4c8c9fb03a5"
+        },
+        {
+          "sha": "c80fea0",
+          "message": "Initial build: Pantry Pal web prototype (spec v0.1)",
+          "date": "2026-05-31T17:51:21Z",
+          "url": "https://github.com/joseph-robert-f/pantry-pal/commit/c80fea0b928457169cb603290cc92c31f993f654"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "education_connection",
+      "url": "https://github.com/joseph-robert-f/education_connection",
+      "description": null,
+      "language": "Swift",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-04-29T02:33:24.000Z",
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "1e56022",
+          "message": "Merge pull request #1 from joseph-robert-f/claude/ai-literacy-ios-app…",
+          "date": "2026-04-29T02:33:24Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/1e56022da44090736268e09a16f7edca7eca85ef"
+        },
+        {
+          "sha": "0c5cc73",
+          "message": "Move CI to macos-15 for Xcode 16",
+          "date": "2026-04-29T02:23:12Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/0c5cc73f3924fc892948ce60ac45331587b6b77e"
+        },
+        {
+          "sha": "fcfeb35",
+          "message": "Fix CI: drop Resources/ source path until we actually have resources",
+          "date": "2026-04-29T02:20:50Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/fcfeb353087824a948402cfa8ea656bb264d5173"
+        },
+        {
+          "sha": "89d33dc",
+          "message": "Scaffold AI-Ware Phase 0 foundation",
+          "date": "2026-04-28T11:55:07Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/89d33dc89da870f7b108926cbeab32aca580245b"
+        },
+        {
+          "sha": "33a997f",
+          "message": "Initial commit",
+          "date": "2026-04-28T00:47:46Z",
+          "url": "https://github.com/joseph-robert-f/education_connection/commit/33a997f8bdcfcd0acf879e60c5e8b592790dca0d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "fehr-folio-flow",
+      "url": "https://github.com/joseph-robert-f/fehr-folio-flow",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-04-07T00:53:49Z",
+      "status": "dormant",
+      "pinned": false,
+      "commits": [],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "OpenClaw-Demo",
+      "url": "https://github.com/joseph-robert-f/OpenClaw-Demo",
+      "description": null,
+      "language": "HTML",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-03-19T19:56:05.000Z",
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "158a652",
+          "message": "Add cooling dog collar product to demo site",
+          "date": "2026-03-19T19:56:05Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/158a652e62bf441e358666c97882f9584d56d01e"
+        },
+        {
+          "sha": "ddc5ff6",
+          "message": "Add demo context to memory and user notes",
+          "date": "2026-03-19T19:43:48Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/ddc5ff6eb0ee4a7c42ecbadab95c3edea29d22c6"
+        },
+        {
+          "sha": "1eaf24f",
+          "message": "Add product pages for publishing demo",
+          "date": "2026-03-19T18:44:28Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/1eaf24f5da220c70b28a533275850d2877853cab"
+        },
+        {
+          "sha": "0ba8473",
+          "message": "Expand demo site marketing flow",
+          "date": "2026-03-19T18:41:58Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/0ba8473055892e45170340c4085fd5fc110fc19e"
+        },
+        {
+          "sha": "34d0c63",
+          "message": "Add lightweight demo site",
+          "date": "2026-03-19T17:27:20Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/34d0c63563d832d01cdc8017d85c9c53b001c57a"
+        },
+        {
+          "sha": "787cf1a",
+          "message": "Initial commit",
+          "date": "2026-03-19T17:21:37Z",
+          "url": "https://github.com/joseph-robert-f/OpenClaw-Demo/commit/787cf1a08091e5bba39d40ec9f0c5ae6896c2a18"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
+    {
+      "name": "SplitStream_FrontEnd",
+      "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-01-19T21:41:51.000Z",
+      "status": "dormant",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "fdda4b5",
+          "message": "first commit",
+          "date": "2026-01-19T21:41:51Z",
+          "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd/commit/fdda4b5ae7f2b24d78abc9c62c10f6f313f4a3ea"
+        },
+        {
+          "sha": "fee103b",
+          "message": "Initial commit from Create Next App",
+          "date": "2026-01-19T20:12:52Z",
+          "url": "https://github.com/joseph-robert-f/SplitStream_FrontEnd/commit/fee103ba8ae842ee7ed0abb643bbf5cefd38055d"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "counts": {
+        "commits7d": 0,
+        "commits30d": 0,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "fix/manual-issue-name-matching · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
+      "createdAt": "2026-05-08T19:30:16Z",
+      "updatedAt": "2026-05-08T19:30:16Z",
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "feat/portal-page-filter · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
+      "createdAt": "2026-05-08T19:56:14Z",
+      "updatedAt": "2026-05-08T19:56:14Z",
+      "stale": true
+    }
+  ],
+  "attention": [
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "fix/manual-issue-name-matching · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
+      "createdAt": "2026-05-08T19:30:16Z",
+      "updatedAt": "2026-05-08T19:30:16Z",
+      "stale": true
+    },
+    {
+      "type": "branch",
+      "repo": "Localize-News",
+      "title": "feat/portal-page-filter · 1 unmerged",
+      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
+      "createdAt": "2026-05-08T19:56:14Z",
+      "updatedAt": "2026-05-08T19:56:14Z",
+      "stale": true
+    }
+  ],
+  "heatmap": [
+    {
+      "date": "2025-08-12",
+      "count": 0
+    },
+    {
+      "date": "2025-08-13",
+      "count": 0
+    },
+    {
+      "date": "2025-08-14",
+      "count": 0
+    },
+    {
+      "date": "2025-08-15",
+      "count": 0
+    },
+    {
+      "date": "2025-08-16",
+      "count": 0
+    },
+    {
+      "date": "2025-08-17",
+      "count": 0
+    },
+    {
+      "date": "2025-08-18",
+      "count": 0
+    },
+    {
+      "date": "2025-08-19",
+      "count": 0
+    },
+    {
+      "date": "2025-08-20",
+      "count": 0
+    },
+    {
+      "date": "2025-08-21",
+      "count": 0
+    },
+    {
+      "date": "2025-08-22",
+      "count": 0
+    },
+    {
+      "date": "2025-08-23",
+      "count": 0
+    },
+    {
+      "date": "2025-08-24",
+      "count": 0
+    },
+    {
+      "date": "2025-08-25",
+      "count": 0
+    },
+    {
+      "date": "2025-08-26",
+      "count": 0
+    },
+    {
+      "date": "2025-08-27",
+      "count": 0
+    },
+    {
+      "date": "2025-08-28",
+      "count": 0
+    },
+    {
+      "date": "2025-08-29",
+      "count": 0
+    },
+    {
+      "date": "2025-08-30",
+      "count": 0
+    },
+    {
+      "date": "2025-08-31",
+      "count": 0
+    },
+    {
+      "date": "2025-09-01",
+      "count": 0
+    },
+    {
+      "date": "2025-09-02",
+      "count": 0
+    },
+    {
+      "date": "2025-09-03",
+      "count": 0
+    },
+    {
+      "date": "2025-09-04",
+      "count": 0
+    },
+    {
+      "date": "2025-09-05",
+      "count": 0
+    },
+    {
+      "date": "2025-09-06",
+      "count": 0
+    },
+    {
+      "date": "2025-09-07",
+      "count": 0
+    },
+    {
+      "date": "2025-09-08",
+      "count": 0
+    },
+    {
+      "date": "2025-09-09",
+      "count": 0
+    },
+    {
+      "date": "2025-09-10",
+      "count": 0
+    },
+    {
+      "date": "2025-09-11",
+      "count": 0
+    },
+    {
+      "date": "2025-09-12",
+      "count": 0
+    },
+    {
+      "date": "2025-09-13",
+      "count": 0
+    },
+    {
+      "date": "2025-09-14",
+      "count": 0
+    },
+    {
+      "date": "2025-09-15",
+      "count": 0
+    },
+    {
+      "date": "2025-09-16",
+      "count": 0
+    },
+    {
+      "date": "2025-09-17",
+      "count": 0
+    },
+    {
+      "date": "2025-09-18",
+      "count": 0
+    },
+    {
+      "date": "2025-09-19",
+      "count": 0
+    },
+    {
+      "date": "2025-09-20",
+      "count": 0
+    },
+    {
+      "date": "2025-09-21",
+      "count": 0
+    },
+    {
+      "date": "2025-09-22",
+      "count": 0
+    },
+    {
+      "date": "2025-09-23",
+      "count": 0
+    },
+    {
+      "date": "2025-09-24",
+      "count": 0
+    },
+    {
+      "date": "2025-09-25",
+      "count": 0
+    },
+    {
+      "date": "2025-09-26",
+      "count": 0
+    },
+    {
+      "date": "2025-09-27",
+      "count": 0
+    },
+    {
+      "date": "2025-09-28",
+      "count": 0
+    },
+    {
+      "date": "2025-09-29",
+      "count": 0
+    },
+    {
+      "date": "2025-09-30",
+      "count": 0
+    },
+    {
+      "date": "2025-10-01",
+      "count": 0
+    },
+    {
+      "date": "2025-10-02",
+      "count": 0
+    },
+    {
+      "date": "2025-10-03",
+      "count": 0
+    },
+    {
+      "date": "2025-10-04",
+      "count": 0
+    },
+    {
+      "date": "2025-10-05",
+      "count": 0
+    },
+    {
+      "date": "2025-10-06",
+      "count": 0
+    },
+    {
+      "date": "2025-10-07",
+      "count": 0
+    },
+    {
+      "date": "2025-10-08",
+      "count": 0
+    },
+    {
+      "date": "2025-10-09",
+      "count": 0
+    },
+    {
+      "date": "2025-10-10",
+      "count": 0
+    },
+    {
+      "date": "2025-10-11",
+      "count": 0
+    },
+    {
+      "date": "2025-10-12",
+      "count": 0
+    },
+    {
+      "date": "2025-10-13",
+      "count": 0
+    },
+    {
+      "date": "2025-10-14",
+      "count": 0
+    },
+    {
+      "date": "2025-10-15",
+      "count": 0
+    },
+    {
+      "date": "2025-10-16",
+      "count": 0
+    },
+    {
+      "date": "2025-10-17",
+      "count": 0
+    },
+    {
+      "date": "2025-10-18",
+      "count": 0
+    },
+    {
+      "date": "2025-10-19",
+      "count": 0
+    },
+    {
+      "date": "2025-10-20",
+      "count": 0
+    },
+    {
+      "date": "2025-10-21",
+      "count": 0
+    },
+    {
+      "date": "2025-10-22",
+      "count": 0
+    },
+    {
+      "date": "2025-10-23",
+      "count": 0
+    },
+    {
+      "date": "2025-10-24",
+      "count": 0
+    },
+    {
+      "date": "2025-10-25",
+      "count": 0
+    },
+    {
+      "date": "2025-10-26",
+      "count": 0
+    },
+    {
+      "date": "2025-10-27",
+      "count": 0
+    },
+    {
+      "date": "2025-10-28",
+      "count": 0
+    },
+    {
+      "date": "2025-10-29",
+      "count": 0
+    },
+    {
+      "date": "2025-10-30",
+      "count": 0
+    },
+    {
+      "date": "2025-10-31",
+      "count": 0
+    },
+    {
+      "date": "2025-11-01",
+      "count": 0
+    },
+    {
+      "date": "2025-11-02",
+      "count": 0
+    },
+    {
+      "date": "2025-11-03",
+      "count": 0
+    },
+    {
+      "date": "2025-11-04",
+      "count": 0
+    },
+    {
+      "date": "2025-11-05",
+      "count": 0
+    },
+    {
+      "date": "2025-11-06",
+      "count": 0
+    },
+    {
+      "date": "2025-11-07",
+      "count": 0
+    },
+    {
+      "date": "2025-11-08",
+      "count": 0
+    },
+    {
+      "date": "2025-11-09",
+      "count": 0
+    },
+    {
+      "date": "2025-11-10",
+      "count": 0
+    },
+    {
+      "date": "2025-11-11",
+      "count": 0
+    },
+    {
+      "date": "2025-11-12",
+      "count": 0
+    },
+    {
+      "date": "2025-11-13",
+      "count": 0
+    },
+    {
+      "date": "2025-11-14",
+      "count": 0
+    },
+    {
+      "date": "2025-11-15",
+      "count": 0
+    },
+    {
+      "date": "2025-11-16",
+      "count": 0
+    },
+    {
+      "date": "2025-11-17",
+      "count": 0
+    },
+    {
+      "date": "2025-11-18",
+      "count": 0
+    },
+    {
+      "date": "2025-11-19",
+      "count": 0
+    },
+    {
+      "date": "2025-11-20",
+      "count": 0
+    },
+    {
+      "date": "2025-11-21",
+      "count": 0
+    },
+    {
+      "date": "2025-11-22",
+      "count": 0
+    },
+    {
+      "date": "2025-11-23",
+      "count": 0
+    },
+    {
+      "date": "2025-11-24",
+      "count": 0
+    },
+    {
+      "date": "2025-11-25",
+      "count": 0
+    },
+    {
+      "date": "2025-11-26",
+      "count": 0
+    },
+    {
+      "date": "2025-11-27",
+      "count": 0
+    },
+    {
+      "date": "2025-11-28",
+      "count": 0
+    },
+    {
+      "date": "2025-11-29",
+      "count": 0
+    },
+    {
+      "date": "2025-11-30",
+      "count": 0
+    },
+    {
+      "date": "2025-12-01",
+      "count": 0
+    },
+    {
+      "date": "2025-12-02",
+      "count": 0
+    },
+    {
+      "date": "2025-12-03",
+      "count": 0
+    },
+    {
+      "date": "2025-12-04",
+      "count": 0
+    },
+    {
+      "date": "2025-12-05",
+      "count": 0
+    },
+    {
+      "date": "2025-12-06",
+      "count": 0
+    },
+    {
+      "date": "2025-12-07",
+      "count": 0
+    },
+    {
+      "date": "2025-12-08",
+      "count": 0
+    },
+    {
+      "date": "2025-12-09",
+      "count": 0
+    },
+    {
+      "date": "2025-12-10",
+      "count": 0
+    },
+    {
+      "date": "2025-12-11",
+      "count": 0
+    },
+    {
+      "date": "2025-12-12",
+      "count": 0
+    },
+    {
+      "date": "2025-12-13",
+      "count": 0
+    },
+    {
+      "date": "2025-12-14",
+      "count": 0
+    },
+    {
+      "date": "2025-12-15",
+      "count": 0
+    },
+    {
+      "date": "2025-12-16",
+      "count": 0
+    },
+    {
+      "date": "2025-12-17",
+      "count": 0
+    },
+    {
+      "date": "2025-12-18",
+      "count": 0
+    },
+    {
+      "date": "2025-12-19",
+      "count": 0
+    },
+    {
+      "date": "2025-12-20",
+      "count": 0
+    },
+    {
+      "date": "2025-12-21",
+      "count": 0
+    },
+    {
+      "date": "2025-12-22",
+      "count": 0
+    },
+    {
+      "date": "2025-12-23",
+      "count": 0
+    },
+    {
+      "date": "2025-12-24",
+      "count": 0
+    },
+    {
+      "date": "2025-12-25",
+      "count": 0
+    },
+    {
+      "date": "2025-12-26",
+      "count": 0
+    },
+    {
+      "date": "2025-12-27",
+      "count": 0
+    },
+    {
+      "date": "2025-12-28",
+      "count": 0
+    },
+    {
+      "date": "2025-12-29",
+      "count": 0
+    },
+    {
+      "date": "2025-12-30",
+      "count": 0
+    },
+    {
+      "date": "2025-12-31",
+      "count": 0
+    },
+    {
+      "date": "2026-01-01",
+      "count": 0
+    },
+    {
+      "date": "2026-01-02",
+      "count": 0
+    },
+    {
+      "date": "2026-01-03",
+      "count": 0
+    },
+    {
+      "date": "2026-01-04",
+      "count": 0
+    },
+    {
+      "date": "2026-01-05",
+      "count": 0
+    },
+    {
+      "date": "2026-01-06",
+      "count": 0
+    },
+    {
+      "date": "2026-01-07",
+      "count": 0
+    },
+    {
+      "date": "2026-01-08",
+      "count": 0
+    },
+    {
+      "date": "2026-01-09",
+      "count": 0
+    },
+    {
+      "date": "2026-01-10",
+      "count": 0
+    },
+    {
+      "date": "2026-01-11",
+      "count": 0
+    },
+    {
+      "date": "2026-01-12",
+      "count": 0
+    },
+    {
+      "date": "2026-01-13",
+      "count": 0
+    },
+    {
+      "date": "2026-01-14",
+      "count": 0
+    },
+    {
+      "date": "2026-01-15",
+      "count": 0
+    },
+    {
+      "date": "2026-01-16",
+      "count": 0
+    },
+    {
+      "date": "2026-01-17",
+      "count": 0
+    },
+    {
+      "date": "2026-01-18",
+      "count": 0
+    },
+    {
+      "date": "2026-01-19",
+      "count": 2
+    },
+    {
+      "date": "2026-01-20",
+      "count": 0
+    },
+    {
+      "date": "2026-01-21",
+      "count": 0
+    },
+    {
+      "date": "2026-01-22",
+      "count": 0
+    },
+    {
+      "date": "2026-01-23",
+      "count": 0
+    },
+    {
+      "date": "2026-01-24",
+      "count": 0
+    },
+    {
+      "date": "2026-01-25",
+      "count": 0
+    },
+    {
+      "date": "2026-01-26",
+      "count": 0
+    },
+    {
+      "date": "2026-01-27",
+      "count": 0
+    },
+    {
+      "date": "2026-01-28",
+      "count": 0
+    },
+    {
+      "date": "2026-01-29",
+      "count": 0
+    },
+    {
+      "date": "2026-01-30",
+      "count": 0
+    },
+    {
+      "date": "2026-01-31",
+      "count": 0
+    },
+    {
+      "date": "2026-02-01",
+      "count": 0
+    },
+    {
+      "date": "2026-02-02",
+      "count": 0
+    },
+    {
+      "date": "2026-02-03",
+      "count": 0
+    },
+    {
+      "date": "2026-02-04",
+      "count": 0
+    },
+    {
+      "date": "2026-02-05",
+      "count": 0
+    },
+    {
+      "date": "2026-02-06",
+      "count": 0
+    },
+    {
+      "date": "2026-02-07",
+      "count": 0
+    },
+    {
+      "date": "2026-02-08",
+      "count": 0
+    },
+    {
+      "date": "2026-02-09",
+      "count": 0
+    },
+    {
+      "date": "2026-02-10",
+      "count": 0
+    },
+    {
+      "date": "2026-02-11",
+      "count": 0
+    },
+    {
+      "date": "2026-02-12",
+      "count": 0
+    },
+    {
+      "date": "2026-02-13",
+      "count": 0
+    },
+    {
+      "date": "2026-02-14",
+      "count": 0
+    },
+    {
+      "date": "2026-02-15",
+      "count": 0
+    },
+    {
+      "date": "2026-02-16",
+      "count": 0
+    },
+    {
+      "date": "2026-02-17",
+      "count": 0
+    },
+    {
+      "date": "2026-02-18",
+      "count": 0
+    },
+    {
+      "date": "2026-02-19",
+      "count": 0
+    },
+    {
+      "date": "2026-02-20",
+      "count": 0
+    },
+    {
+      "date": "2026-02-21",
+      "count": 0
+    },
+    {
+      "date": "2026-02-22",
+      "count": 0
+    },
+    {
+      "date": "2026-02-23",
+      "count": 0
+    },
+    {
+      "date": "2026-02-24",
+      "count": 0
+    },
+    {
+      "date": "2026-02-25",
+      "count": 0
+    },
+    {
+      "date": "2026-02-26",
+      "count": 0
+    },
+    {
+      "date": "2026-02-27",
+      "count": 0
+    },
+    {
+      "date": "2026-02-28",
+      "count": 0
+    },
+    {
+      "date": "2026-03-01",
+      "count": 0
+    },
+    {
+      "date": "2026-03-02",
+      "count": 0
+    },
+    {
+      "date": "2026-03-03",
+      "count": 0
+    },
+    {
+      "date": "2026-03-04",
+      "count": 0
+    },
+    {
+      "date": "2026-03-05",
+      "count": 0
+    },
+    {
+      "date": "2026-03-06",
+      "count": 0
+    },
+    {
+      "date": "2026-03-07",
+      "count": 0
+    },
+    {
+      "date": "2026-03-08",
+      "count": 0
+    },
+    {
+      "date": "2026-03-09",
+      "count": 0
+    },
+    {
+      "date": "2026-03-10",
+      "count": 0
+    },
+    {
+      "date": "2026-03-11",
+      "count": 0
+    },
+    {
+      "date": "2026-03-12",
+      "count": 0
+    },
+    {
+      "date": "2026-03-13",
+      "count": 0
+    },
+    {
+      "date": "2026-03-14",
+      "count": 0
+    },
+    {
+      "date": "2026-03-15",
+      "count": 0
+    },
+    {
+      "date": "2026-03-16",
+      "count": 0
+    },
+    {
+      "date": "2026-03-17",
+      "count": 0
+    },
+    {
+      "date": "2026-03-18",
+      "count": 0
+    },
+    {
+      "date": "2026-03-19",
+      "count": 6
+    },
+    {
+      "date": "2026-03-20",
+      "count": 3
+    },
+    {
+      "date": "2026-03-21",
+      "count": 0
+    },
+    {
+      "date": "2026-03-22",
+      "count": 0
+    },
+    {
+      "date": "2026-03-23",
+      "count": 0
+    },
+    {
+      "date": "2026-03-24",
+      "count": 0
+    },
+    {
+      "date": "2026-03-25",
+      "count": 0
+    },
+    {
+      "date": "2026-03-26",
+      "count": 0
+    },
+    {
+      "date": "2026-03-27",
+      "count": 0
+    },
+    {
+      "date": "2026-03-28",
+      "count": 0
+    },
+    {
+      "date": "2026-03-29",
+      "count": 0
+    },
+    {
+      "date": "2026-03-30",
+      "count": 0
+    },
+    {
+      "date": "2026-03-31",
+      "count": 0
+    },
+    {
+      "date": "2026-04-01",
+      "count": 0
+    },
+    {
+      "date": "2026-04-02",
+      "count": 0
+    },
+    {
+      "date": "2026-04-03",
+      "count": 0
+    },
+    {
+      "date": "2026-04-04",
+      "count": 4
+    },
+    {
+      "date": "2026-04-05",
+      "count": 6
+    },
+    {
+      "date": "2026-04-06",
+      "count": 3
+    },
+    {
+      "date": "2026-04-07",
+      "count": 0
+    },
+    {
+      "date": "2026-04-08",
+      "count": 0
+    },
+    {
+      "date": "2026-04-09",
+      "count": 0
+    },
+    {
+      "date": "2026-04-10",
+      "count": 18
+    },
+    {
+      "date": "2026-04-11",
+      "count": 0
+    },
+    {
+      "date": "2026-04-12",
+      "count": 34
+    },
+    {
+      "date": "2026-04-13",
+      "count": 0
+    },
+    {
+      "date": "2026-04-14",
+      "count": 3
+    },
+    {
+      "date": "2026-04-15",
+      "count": 3
+    },
+    {
+      "date": "2026-04-16",
+      "count": 1
+    },
+    {
+      "date": "2026-04-17",
+      "count": 17
+    },
+    {
+      "date": "2026-04-18",
+      "count": 8
+    },
+    {
+      "date": "2026-04-19",
+      "count": 6
+    },
+    {
+      "date": "2026-04-20",
+      "count": 1
+    },
+    {
+      "date": "2026-04-21",
+      "count": 0
+    },
+    {
+      "date": "2026-04-22",
+      "count": 0
+    },
+    {
+      "date": "2026-04-23",
+      "count": 1
+    },
+    {
+      "date": "2026-04-24",
+      "count": 0
+    },
+    {
+      "date": "2026-04-25",
+      "count": 0
+    },
+    {
+      "date": "2026-04-26",
+      "count": 0
+    },
+    {
+      "date": "2026-04-27",
+      "count": 0
+    },
+    {
+      "date": "2026-04-28",
+      "count": 3
+    },
+    {
+      "date": "2026-04-29",
+      "count": 4
+    },
+    {
+      "date": "2026-04-30",
+      "count": 0
+    },
+    {
+      "date": "2026-05-01",
+      "count": 0
+    },
+    {
+      "date": "2026-05-02",
+      "count": 5
+    },
+    {
+      "date": "2026-05-03",
+      "count": 0
+    },
+    {
+      "date": "2026-05-04",
+      "count": 0
+    },
+    {
+      "date": "2026-05-05",
+      "count": 3
+    },
+    {
+      "date": "2026-05-06",
+      "count": 0
+    },
+    {
+      "date": "2026-05-07",
+      "count": 14
+    },
+    {
+      "date": "2026-05-08",
+      "count": 1
+    },
+    {
+      "date": "2026-05-09",
+      "count": 0
+    },
+    {
+      "date": "2026-05-10",
+      "count": 0
+    },
+    {
+      "date": "2026-05-11",
+      "count": 0
+    },
+    {
+      "date": "2026-05-12",
+      "count": 0
+    },
+    {
+      "date": "2026-05-13",
+      "count": 0
+    },
+    {
+      "date": "2026-05-14",
+      "count": 0
+    },
+    {
+      "date": "2026-05-15",
+      "count": 0
+    },
+    {
+      "date": "2026-05-16",
+      "count": 0
+    },
+    {
+      "date": "2026-05-17",
+      "count": 0
+    },
+    {
+      "date": "2026-05-18",
+      "count": 0
+    },
+    {
+      "date": "2026-05-19",
+      "count": 0
+    },
+    {
+      "date": "2026-05-20",
+      "count": 0
+    },
+    {
+      "date": "2026-05-21",
+      "count": 0
+    },
+    {
+      "date": "2026-05-22",
+      "count": 0
+    },
+    {
+      "date": "2026-05-23",
+      "count": 0
+    },
+    {
+      "date": "2026-05-24",
+      "count": 0
+    },
+    {
+      "date": "2026-05-25",
+      "count": 1
+    },
+    {
+      "date": "2026-05-26",
+      "count": 1
+    },
+    {
+      "date": "2026-05-27",
+      "count": 1
+    },
+    {
+      "date": "2026-05-28",
+      "count": 1
+    },
+    {
+      "date": "2026-05-29",
+      "count": 3
+    },
+    {
+      "date": "2026-05-30",
+      "count": 0
+    },
+    {
+      "date": "2026-05-31",
+      "count": 1
+    },
+    {
+      "date": "2026-06-01",
+      "count": 0
+    },
+    {
+      "date": "2026-06-02",
+      "count": 0
+    },
+    {
+      "date": "2026-06-03",
+      "count": 0
+    },
+    {
+      "date": "2026-06-04",
+      "count": 0
+    },
+    {
+      "date": "2026-06-05",
+      "count": 0
+    },
+    {
+      "date": "2026-06-06",
+      "count": 0
+    },
+    {
+      "date": "2026-06-07",
+      "count": 0
+    },
+    {
+      "date": "2026-06-08",
+      "count": 0
+    },
+    {
+      "date": "2026-06-09",
+      "count": 0
+    },
+    {
+      "date": "2026-06-10",
+      "count": 0
+    },
+    {
+      "date": "2026-06-11",
+      "count": 0
+    },
+    {
+      "date": "2026-06-12",
+      "count": 0
+    },
+    {
+      "date": "2026-06-13",
+      "count": 2
+    },
+    {
+      "date": "2026-06-14",
+      "count": 1
+    },
+    {
+      "date": "2026-06-15",
+      "count": 2
+    },
+    {
+      "date": "2026-06-16",
+      "count": 0
+    },
+    {
+      "date": "2026-06-17",
+      "count": 0
+    },
+    {
+      "date": "2026-06-18",
+      "count": 0
+    },
+    {
+      "date": "2026-06-19",
+      "count": 0
+    },
+    {
+      "date": "2026-06-20",
+      "count": 0
+    },
+    {
+      "date": "2026-06-21",
+      "count": 0
+    },
+    {
+      "date": "2026-06-22",
+      "count": 1
+    },
+    {
+      "date": "2026-06-23",
+      "count": 0
+    },
+    {
+      "date": "2026-06-24",
+      "count": 2
+    },
+    {
+      "date": "2026-06-25",
+      "count": 0
+    },
+    {
+      "date": "2026-06-26",
+      "count": 0
+    },
+    {
+      "date": "2026-06-27",
+      "count": 0
+    },
+    {
+      "date": "2026-06-28",
+      "count": 0
+    },
+    {
+      "date": "2026-06-29",
+      "count": 0
+    },
+    {
+      "date": "2026-06-30",
+      "count": 0
+    },
+    {
+      "date": "2026-07-01",
+      "count": 0
+    },
+    {
+      "date": "2026-07-02",
+      "count": 9
+    },
+    {
+      "date": "2026-07-03",
+      "count": 2
+    },
+    {
+      "date": "2026-07-04",
+      "count": 22
+    },
+    {
+      "date": "2026-07-05",
+      "count": 1
+    },
+    {
+      "date": "2026-07-06",
+      "count": 10
+    },
+    {
+      "date": "2026-07-07",
+      "count": 1
+    },
+    {
+      "date": "2026-07-08",
+      "count": 1
+    },
+    {
+      "date": "2026-07-09",
+      "count": 2
+    },
+    {
+      "date": "2026-07-10",
+      "count": 14
+    },
+    {
+      "date": "2026-07-11",
+      "count": 14
+    },
+    {
+      "date": "2026-07-12",
+      "count": 11
+    },
+    {
+      "date": "2026-07-13",
+      "count": 4
+    },
+    {
+      "date": "2026-07-14",
+      "count": 4
+    },
+    {
+      "date": "2026-07-15",
+      "count": 1
+    },
+    {
+      "date": "2026-07-16",
+      "count": 2
+    },
+    {
+      "date": "2026-07-17",
+      "count": 2
+    },
+    {
+      "date": "2026-07-18",
+      "count": 1
+    },
+    {
+      "date": "2026-07-19",
+      "count": 1
+    },
+    {
+      "date": "2026-07-20",
+      "count": 1
+    },
+    {
+      "date": "2026-07-21",
+      "count": 1
+    },
+    {
+      "date": "2026-07-22",
+      "count": 1
+    },
+    {
+      "date": "2026-07-23",
+      "count": 1
+    },
+    {
+      "date": "2026-07-24",
+      "count": 1
+    },
+    {
+      "date": "2026-07-25",
+      "count": 2
+    },
+    {
+      "date": "2026-07-26",
+      "count": 1
+    },
+    {
+      "date": "2026-07-27",
+      "count": 1
+    },
+    {
+      "date": "2026-07-28",
+      "count": 1
+    },
+    {
+      "date": "2026-07-29",
+      "count": 1
+    },
+    {
+      "date": "2026-07-30",
+      "count": 1
+    },
+    {
+      "date": "2026-07-31",
+      "count": 1
+    },
+    {
+      "date": "2026-08-01",
+      "count": 1
+    },
+    {
+      "date": "2026-08-02",
+      "count": 5
+    },
+    {
+      "date": "2026-08-03",
+      "count": 11
+    },
+    {
+      "date": "2026-08-04",
+      "count": 7
+    },
+    {
+      "date": "2026-08-05",
+      "count": 7
+    },
+    {
+      "date": "2026-08-06",
+      "count": 1
+    },
+    {
+      "date": "2026-08-07",
+      "count": 1
+    },
+    {
+      "date": "2026-08-08",
+      "count": 1
+    },
+    {
+      "date": "2026-08-09",
+      "count": 1
+    },
+    {
+      "date": "2026-08-10",
+      "count": 1
+    },
+    {
+      "date": "2026-08-11",
+      "count": 8
+    }
+  ]
+}
