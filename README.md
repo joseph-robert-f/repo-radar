@@ -48,7 +48,8 @@ quiet cron tick can finally produce a byte-identical file and skip the commit.
 - [x] **Phase 1** — scaffold, page renders, Pages deploys
 - [x] **Phase 2** — `scripts/collect.mjs` against the real GitHub GraphQL API,
       public-only, `hide`/`pin`/`statusOverrides` wired up
-- [ ] **Phase 3** — dashboard polish (heatmap month/weekday labels, card heights)
+- [x] **Phase 3** — dashboard polish: heatmap month/weekday labels, even card heights,
+      per-repo sparklines, dormant repos collapsed behind a toggle
 - [ ] **Phase 4** — task view refinements (group-by-repo toggle, per-repo notes)
 - [ ] **Phase 5** — verification pass on the live cron
 
@@ -161,6 +162,7 @@ scripts/validate-queries.mjs  checks the GraphQL documents against GitHub's sche
 | `minUnmergedCommits` | A branch must be at least this far ahead to become a task. Default `1`, i.e. off — raise it to hide one-commit branches, but note that catches genuine parked fixes too |
 | `lookback.commitsPerRepo` | How many recent commits to show on a card |
 | `lookback.heatmapWeeks` | Heatmap window (52 → 365 days) |
+| `lookback.sparkDays` | Days in each card's sparkline (default 30) |
 | `staleDays` | Idle-day thresholds that flag a PR / draft / branch / issue |
 | `statusThresholdDays` | Day cutoffs for hot / active / idle (past `idle` is dormant) |
 
@@ -174,13 +176,14 @@ user               GitHub handle
 scope              always "public"
 summary            { repos, activeRepos, openPRs, openIssues, commits7d, needsAttention }
 repos[]            { name, url, description, language, isFork, isArchived, defaultBranch,
-                     lastActivityAt, status, pinned,
+                     lastActivityAt, status, pinned, daily[],
                      commits[], openPRs[], openIssues[], branches[], counts{} }
   commits[]        { sha, message, date, url }
   openPRs[]        { number, title, url, isDraft, createdAt, updatedAt,
                      reviewDecision, additions, deletions, headRef }
   openIssues[]     { number, title, url, labels[], createdAt, updatedAt, assigned }
   branches[]       { name, lastCommit, unmergedCommits }
+  daily            30 daily commit counts, oldest first — the card sparkline
   counts           { commits7d, commits30d, openPRs, openIssues, branches }
 tasks[]            flattened cross-repo work items, most-idle first:
                    { type: pr|issue|branch, repo, title, url, createdAt, updatedAt,
