@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:26:10.851Z",
+  "generatedAt": "2026-08-12T18:47:11.874Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,7 +7,7 @@
     "activeRepos": 5,
     "openPRs": 0,
     "openIssues": 1,
-    "commits7d": 24,
+    "commits7d": 18,
     "needsAttention": 2
   },
   "repos": [
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-12T13:00:52Z",
+      "lastActivityAt": "2026-08-12T17:58:54Z",
       "status": "hot",
       "pinned": false,
       "commits": [],
@@ -181,7 +181,7 @@
         4
       ],
       "counts": {
-        "commits7d": 14,
+        "commits7d": 11,
         "commits30d": 31,
         "openPRs": 0,
         "openIssues": 0,
@@ -493,7 +493,7 @@
         0
       ],
       "counts": {
-        "commits7d": 3,
+        "commits7d": 0,
         "commits30d": 4,
         "openPRs": 0,
         "openIssues": 0,
@@ -745,7 +745,7 @@
       ],
       "counts": {
         "commits7d": 0,
-        "commits30d": 3,
+        "commits30d": 2,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -867,7 +867,7 @@
       ],
       "counts": {
         "commits7d": 0,
-        "commits30d": 3,
+        "commits30d": 1,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 1
