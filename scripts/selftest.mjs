@@ -271,6 +271,24 @@ check("tasks are sorted by idle time, longest first", () => {
   eq(snap.tasks.map((t) => t.title.split(" ")[0]), ["b2", "b3", "b1"], "idle ordering");
 });
 
+/* -------------------------------------------------------------- sparkline */
+
+check("daily series buckets commits into the right days, oldest first", () => {
+  const snap = build([repo({ commitDates: [ago(0.2), ago(0.3), ago(2), ago(29), ago(40)] })]);
+  const daily = snap.repos[0].daily;
+  eq(daily.length, 30, "series length");
+  eq(daily[29], 2, "today");
+  eq(daily[27], 1, "two days back");
+  eq(daily[0], 1, "twenty-nine days back, the oldest day in the window");
+  eq(daily.reduce((a, b) => a + b, 0), 4, "the 40-day-old commit is outside the window");
+});
+
+check("a repo with no commits gets an all-zero series, not a hole", () => {
+  const snap = build([repo({ commitDates: [] })]);
+  eq(snap.repos[0].daily.length, 30, "series length");
+  eq(snap.repos[0].daily.some((n) => n !== 0), false, "all zero");
+});
+
 /* ---------------------------------------------------------------- heatmap */
 
 check("heatmap covers the configured window, oldest first, no gaps", () => {

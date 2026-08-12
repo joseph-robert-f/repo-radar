@@ -129,7 +129,19 @@
   .flag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); flex: none; }
 
   /* ---------- heatmap ---------- */
+  .hm-frame { display: grid; grid-template-columns: auto 1fr; gap: 0 7px; padding: 15px 15px 0; align-items: start; }
+  .hm-days {
+    display: grid; grid-template-rows: repeat(7, 11px); gap: 3px;
+    margin-top: 17px; font-size: 10px; color: var(--text-muted); text-align: right;
+  }
+  .hm-days span { line-height: 11px; }
+  .hm-months {
+    display: grid; grid-auto-flow: column; gap: 3px; width: max-content;
+    height: 14px; font-size: 10px; color: var(--text-muted);
+  }
+  .hm-months span { white-space: nowrap; overflow: visible; }
   .hm-scroll { overflow-x: auto; padding: 15px; }
+  .hm-frame .hm-scroll { padding: 0 0 4px; }
   .hm { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 11px); gap: 3px; width: max-content; }
   .hm i { width: 11px; height: 11px; border-radius: 2.5px; background: var(--hm-0); display: block; }
   .hm i[data-l="1"] { background: var(--hm-1); }
@@ -148,8 +160,18 @@
   input[type="search"]:focus { outline: 2px solid var(--recency-active); outline-offset: 1px; }
 
   /* ---------- repo cards ---------- */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 11px; }
-  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; padding: 14px 15px; }
+  /* grid-auto-rows: 1fr levels every card in a row; the flex column then lets
+     Details sit on the baseline instead of floating mid-card. */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 11px; grid-auto-rows: 1fr; }
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 11px; padding: 14px 15px; display: flex; flex-direction: column; }
+  .card details.more { margin-top: auto; }
+  .spark { display: block; width: 78px; height: 16px; overflow: visible; }
+  .spark rect { fill: var(--recency-active); }
+  .spark rect.zero { fill: var(--gridline); }
+  .sleepers { margin-top: 12px; }
+  .sparkrow { display: flex; align-items: flex-end; gap: 10px; margin-top: 10px; }
+  .sparknote { font-size: 12px; color: var(--text-muted); }
+  .sparknote b { font-weight: 600; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
   .card.pinned { border-color: var(--baseline); }
   .card h3 { margin: 0; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
   .card h3 a { color: inherit; text-decoration: none; }
@@ -311,7 +333,13 @@
     <section id="heatmapSection">
       <h2>Commit activity · all repos, last 52 weeks</h2>
       <div class="panel">
-        <div class="hm-scroll"><div class="hm" id="heatmap"></div></div>
+        <div class="hm-frame">
+          <div class="hm-days"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+          <div class="hm-scroll">
+            <div class="hm-months" id="heatmapMonths"></div>
+            <div class="hm" id="heatmap"></div>
+          </div>
+        </div>
         <div class="hm-legend">
           <span>Less</span>
           <i style="background:var(--hm-0)"></i><i style="background:var(--hm-1)"></i><i style="background:var(--hm-2)"></i><i style="background:var(--hm-3)"></i><i style="background:var(--hm-4)"></i>
@@ -330,6 +358,7 @@
         <button class="ghost" data-f="dormant" aria-pressed="false">Dormant</button>
       </div>
       <div class="cards" id="cards"></div>
+      <div class="sleepers" id="sleepers"></div>
     </section>
 
     <section id="tableSection" class="hidden">
@@ -554,6 +583,37 @@ function renderHeatmap(d) {
   const pad = Array.from({ length: lead }, () => null);
   $("#heatmap").innerHTML = pad.map(() => `<i style="visibility:hidden"></i>`).join("")
     + days.map((x) => `<i data-l="${lvl(x.count)}" data-d="${x.date}" data-n="${x.count}"></i>`).join("");
+
+  // Month labels, one per column, printed only where the month turns over.
+  // A 365-cell grid with no axis is decorative; you couldn't tell June from
+  // October.
+  const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const weeks = Math.ceil((lead + days.length) / 7);
+  let last = -1;
+  $("#heatmapMonths").style.gridTemplateColumns = `repeat(${weeks}, 11px)`;
+  $("#heatmapMonths").innerHTML = Array.from({ length: weeks }, (_, w) => {
+    const di = w * 7 - lead;
+    const day = days[Math.max(0, di)];
+    if (!day || di < 0) return "<span></span>";
+    const m = new Date(day.date + "T00:00:00Z").getUTCMonth();
+    if (m === last) return "<span></span>";
+    last = m;
+    return `<span>${MON[m]}</span>`;
+  }).join("");
+}
+
+/** Thirty days of commits as bars. Empty days keep a hairline so the baseline
+    reads as a timeline rather than a ragged gap. */
+function sparkline(daily) {
+  if (!Array.isArray(daily) || !daily.length) return "";
+  const W = 78, H = 16, n = daily.length, bw = W / n;
+  const max = Math.max(1, ...daily);
+  const bars = daily.map((v, i) => {
+    const h = v ? Math.max(2, (v / max) * H) : 1;
+    return `<rect class="${v ? "" : "zero"}" x="${(i * bw).toFixed(2)}" y="${(H - h).toFixed(2)}" width="${Math.max(1, bw - 0.7).toFixed(2)}" height="${h.toFixed(2)}"/>`;
+  }).join("");
+  const total = daily.reduce((a, b) => a + b, 0);
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${total} commits over the last ${n} days">${bars}</svg>`;
 }
 $("#heatmap").addEventListener("mouseover", (e) => {
   const c = e.target.closest("i[data-d]"); if (!c) return;
@@ -580,14 +640,7 @@ function listBlock(title, items) {
   return `<div class="grouphd">${esc(title)}</div><ul>${items.join("")}</ul>`;
 }
 
-function renderCards(d) {
-  if (!d.repos.length) {
-    $("#cards").innerHTML = `<div class="empty">No public repos in this snapshot yet — the collector hasn't run, or every repo is filtered out by <code>hide</code> in <code>config.json</code>.</div>`;
-    return;
-  }
-  const q = $("#q").value.trim().toLowerCase();
-  const rows = d.repos.filter((r) => repoMatches(r, q));
-  $("#cards").innerHTML = rows.length ? rows.map((r) => {
+function repoCard(r) {
     const name = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name);
     const commits = r.commits.map((c) => `<li><a href="${esc(c.url || "#")}" target="_blank" rel="noopener">${esc(c.message)}</a><span class="when">${relTime(c.date)}</span></li>`);
     const prs = r.openPRs.map((p) => `<li><a href="${esc(p.url || "#")}" target="_blank" rel="noopener">#${p.number} ${esc(p.title)}</a><span class="when">${ageSince(p.createdAt)}</span></li>`);
@@ -609,11 +662,50 @@ function renderCards(d) {
         <span><b>${r.counts.commits7d}</b> commits/7d</span>
         <span><b>${r.counts.openPRs}</b> PRs</span>
         <span><b>${r.counts.openIssues}</b> issues</span>
-        <span>${relTime(r.lastActivityAt)}</span>
+      </div>
+      <div class="sparkrow">
+        ${sparkline(r.daily)}
+        <span class="sparknote"><b>${r.counts.commits30d ?? 0}</b> in 30d · ${relTime(r.lastActivityAt)}</span>
       </div>
       ${detail}
     </article>`;
-  }).join("") : `<div class="empty">Nothing matches that. Try a shorter search, or the All filter.</div>`;
+}
+
+function renderCards(d) {
+  if (!d.repos.length) {
+    $("#cards").innerHTML = `<div class="empty">No public repos in this snapshot yet — the collector hasn't run, or every repo is filtered out by <code>hide</code> in <code>config.json</code>.</div>`;
+    return;
+  }
+  const q = $("#q").value.trim().toLowerCase();
+  const rows = d.repos.filter((r) => repoMatches(r, q));
+  if (!rows.length) {
+    $("#cards").innerHTML = `<div class="empty">Nothing matches that. Try a shorter search, or the All filter.</div>`;
+    return;
+  }
+
+  // Dormant repos are real but they aren't news, and four of them eat a whole
+  // grid row. Tuck them behind a disclosure — unless you went looking, via the
+  // Dormant filter or a search.
+  const collapsible = filter === "all" && !q;
+  const live = collapsible ? rows.filter((r) => r.status !== "dormant") : rows;
+  const sleeping = collapsible ? rows.filter((r) => r.status === "dormant") : [];
+
+  $("#cards").innerHTML = live.map(repoCard).join("")
+    || `<div class="empty">Everything here is dormant.</div>`;
+
+  $("#sleepers").innerHTML = sleeping.length
+    ? `<button class="ghost" id="sleepToggle" aria-expanded="false">Show ${sleeping.length} sleeping repo${sleeping.length === 1 ? "" : "s"}</button>
+       <div class="cards hidden" id="sleeperCards" style="margin-top:11px">${sleeping.map(repoCard).join("")}</div>`
+    : "";
+  const btn = $("#sleepToggle");
+  if (btn) btn.addEventListener("click", () => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!open));
+    btn.textContent = open
+      ? `Show ${sleeping.length} sleeping repo${sleeping.length === 1 ? "" : "s"}`
+      : "Hide sleeping repos";
+    $("#sleeperCards").classList.toggle("hidden", open);
+  });
 }
 
 function renderTable(d) {

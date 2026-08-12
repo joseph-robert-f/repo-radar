@@ -31,7 +31,7 @@ reads one JSON file.
 |---|---|
 | 1 — scaffold, Pages deploy workflow | ✅ shipped |
 | 2 — real collector, public-only, config wired up | ✅ shipped |
-| 3 — dashboard polish | ⬜ not started |
+| 3 — dashboard polish | ✅ shipped |
 | 4 — task view refinements | ⬜ not started |
 | 5 — verification pass on the live cron | ⬜ partial |
 
@@ -331,12 +331,19 @@ committing`.
 
 ## Next up
 
-**Phase 3 — polish.** Month and weekday labels on the heatmap. Card heights are uneven
-within a grid row. The `.card .meta` row wraps awkwardly at 5 items. Sparklines per repo
-if daily history gets retained.
-
 **Phase 4 — task view.** Group-by-repo vs sort-by-idle toggle. Possibly a per-repo notes
 file hand-edited by Joe ("blocked on X, next: Y") rendered onto cards.
+
+Phase 3 is done: the heatmap carries month and weekday labels, `grid-auto-rows: 1fr`
+levels every card in a row with Details pinned to the baseline, the five-item `.meta`
+row was split so the sparkline and "last touched" sit on their own line, and dormant
+repos hide behind a *Show N sleeping repos* toggle (skipped when you searched or chose
+the Dormant filter, since then you went looking for them).
+
+Sparklines needed a schema addition: `repos[].daily`, 30 daily commit counts. Like the
+heatmap it's a rolling window, so it shifts once a day rather than on every run — the
+byte-stability rule in decision 5a still holds within a UTC day, which is what the
+no-op-commit check depends on.
 
 **Later.** Daily snapshot history for trend sparklines · "copy last 24h as markdown"
 standup export · weekly digest via a second workflow · extend to repos Joe contributes

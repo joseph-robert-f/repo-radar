@@ -62,6 +62,18 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
   const pin = config.pin || [];
   const overrides = config.statusOverrides || {};
   const heatmapDays = Math.round((config.lookback?.heatmapWeeks ?? 52) * 7) + 1;
+  const sparkDays = config.lookback?.sparkDays ?? 30;
+  // Midnight UTC today, used to bucket commits into days for both the heatmap
+  // and the per-repo sparklines.
+  const nowDate = new Date(now);
+  const todayUTC = Date.UTC(nowDate.getUTCFullYear(), nowDate.getUTCMonth(), nowDate.getUTCDate());
+  const dayIndex = (iso, span) => {
+    const ms = Date.parse(iso);
+    if (!Number.isFinite(ms)) return -1;
+    const d = new Date(ms);
+    const bucket = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+    return span - 1 - Math.round((todayUTC - bucket) / DAY);
+  };
   const ignoreRes = (config.branchIgnore || []).map(globToRe);
   const minUnmerged = config.minUnmergedCommits ?? 1;
 
@@ -99,6 +111,16 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
     const dates = r.commitDates || [];
     const commits7d = dates.filter((d) => daysBetween(now, d) <= 7).length;
     const commits30d = dates.filter((d) => daysBetween(now, d) <= 30).length;
+
+    // Daily commit counts for the card sparkline, oldest first. Like the
+    // heatmap this is a rolling window, so it shifts once a day rather than on
+    // every run — the snapshot still comes out byte-identical on a quiet tick
+    // within the same UTC day.
+    const daily = new Array(sparkDays).fill(0);
+    for (const iso of dates) {
+      const i = dayIndex(iso, sparkDays);
+      if (i >= 0 && i < sparkDays) daily[i]++;
+    }
 
     const openPRs = (r.openPRs || []).map((p) => ({
       number: p.number,
@@ -165,6 +187,7 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
       openPRs,
       openIssues,
       branches,
+      daily,
       counts: {
         commits7d,
         commits30d,
@@ -249,11 +272,6 @@ export function buildSnapshot(rawRepos, config, { user, now }) {
 
   // ---- heatmap: daily commit counts across every tracked repo ------------
   const buckets = new Map();
-  const todayUTC = Date.UTC(
-    new Date(now).getUTCFullYear(),
-    new Date(now).getUTCMonth(),
-    new Date(now).getUTCDate(),
-  );
   const firstDay = todayUTC - (heatmapDays - 1) * DAY;
   const datesByRepo = new Map(kept.map((r) => [r.name, r.commitDates || []]));
   for (const r of repos) {
@@ -329,6 +347,9 @@ export function assertSnapshot(snap) {
     }
     for (const k of ["commits7d", "openPRs", "openIssues", "branches"]) {
       if (typeof r.counts?.[k] !== "number") fail(`repo "${r.name}" missing counts.${k}`);
+    }
+    if (!Array.isArray(r.daily) || r.daily.some((n) => !Number.isInteger(n) || n < 0)) {
+      fail(`repo "${r.name}" has a malformed daily series`);
     }
   }
 
