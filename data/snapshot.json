@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-12T01:02:51.347Z",
+  "generatedAt": "2026-08-12T12:43:18.768Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 0,
+    "openPRs": 2,
     "openIssues": 1,
     "commits7d": 20,
     "needsAttention": 2
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-11T16:35:25.000Z",
+      "lastActivityAt": "2026-08-12T12:34:03.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -84,9 +84,44 @@
           "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/679b02caca6a2ecdd0d4d6315a235eca1af4839d"
         }
       ],
-      "openPRs": [],
+      "openPRs": [
+        {
+          "number": 14,
+          "title": "Make local service onboarding checkout-safe",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/14",
+          "isDraft": true,
+          "createdAt": "2026-08-12T12:35:27Z",
+          "updatedAt": "2026-08-12T12:35:27Z",
+          "reviewDecision": null,
+          "additions": 3992,
+          "deletions": 359,
+          "headRef": "codex/service-onboarding-safety"
+        },
+        {
+          "number": 13,
+          "title": "Improve onboarding failure diagnostics",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/13",
+          "isDraft": false,
+          "createdAt": "2026-08-12T11:06:30Z",
+          "updatedAt": "2026-08-12T11:19:44Z",
+          "reviewDecision": null,
+          "additions": 735,
+          "deletions": 34,
+          "headRef": "codex/onboarding-diagnostics"
+        }
+      ],
       "openIssues": [],
       "branches": [
+        {
+          "name": "codex/service-onboarding-safety",
+          "lastCommit": "2026-08-12T12:34:03Z",
+          "unmergedCommits": 2
+        },
+        {
+          "name": "codex/onboarding-diagnostics",
+          "lastCommit": "2026-08-12T11:05:54Z",
+          "unmergedCommits": 1
+        },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
           "lastCommit": "2026-08-04T14:30:12Z",
@@ -96,9 +131,9 @@
       "counts": {
         "commits7d": 10,
         "commits30d": 27,
-        "openPRs": 0,
+        "openPRs": 2,
         "openIssues": 0,
-        "branches": 1
+        "branches": 3
       }
     },
     {
@@ -109,10 +144,16 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-11T10:47:27.000Z",
+      "lastActivityAt": "2026-08-12T10:49:32.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
+        {
+          "sha": "db6995d",
+          "message": "Add 12 August 2026 AI News Digest Report (#37)",
+          "date": "2026-08-12T10:49:32Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/db6995dd1748c77939cc9b0bc0fd1ebfd5328029"
+        },
         {
           "sha": "0242890",
           "message": "Add 11 August 2026 AI News Digest Report",
@@ -166,12 +207,6 @@
           "message": "Add 4 August 2026 AI News Digest Report",
           "date": "2026-08-04T10:48:12Z",
           "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/912342849e6a3b914eaa92352a281de93156fb9e"
-        },
-        {
-          "sha": "31455db",
-          "message": "Add 3 August 2026 AI News Digest Report (#31)",
-          "date": "2026-08-03T10:49:23Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/31455db963e38b161ab11e28219086429602b506"
         }
       ],
       "openPRs": [],
@@ -190,6 +225,11 @@
         {
           "name": "claude/wonderful-hopper-27a6qq",
           "lastCommit": "2026-07-02T16:47:33Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-w19x1r",
+          "lastCommit": "2026-08-12T10:49:10Z",
           "unmergedCommits": 1
         },
         {
@@ -293,7 +333,7 @@
         "commits30d": 33,
         "openPRs": 0,
         "openIssues": 1,
-        "branches": 20
+        "branches": 21
       }
     },
     {
@@ -817,6 +857,26 @@
       "createdAt": "2026-05-08T19:56:14Z",
       "updatedAt": "2026-05-08T19:56:14Z",
       "stale": true
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#13 Improve onboarding failure diagnostics",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/13",
+      "createdAt": "2026-08-12T11:06:30Z",
+      "updatedAt": "2026-08-12T11:19:44Z",
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#14 Make local service onboarding checkout-safe",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/14",
+      "createdAt": "2026-08-12T12:35:27Z",
+      "updatedAt": "2026-08-12T12:35:27Z",
+      "isDraft": true,
+      "stale": false
     }
   ],
   "attention": [
@@ -2298,7 +2358,7 @@
     },
     {
       "date": "2026-08-12",
-      "count": 0
+      "count": 1
     }
   ]
 }
