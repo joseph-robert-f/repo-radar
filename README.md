@@ -34,12 +34,19 @@ exposure knowingly, or to move the deploy somewhere with real auth in front
 
 Public repos you'd still rather not show up: add them to `hide` in `config.json`.
 
-**`repo-radar` hides itself.** A dashboard that reports on the repo it lives in spends
-its attention on its own 6-hourly snapshot commits. Two earlier fixes chased symptoms of
-that — bot commits excluded from the counts, then `lastActivityAt` replacing `pushedAt`
-so its own pushes stopped refreshing its status. Hiding it removes the cause. A useful
-side effect: the snapshot no longer changes just because the collector ran, so a genuinely
-quiet cron tick can finally produce a byte-identical file and skip the commit.
+**The dashboard's own plumbing hides itself** — both `repo-radar` and `repo-radar-paper`.
+A dashboard that reports on the repo it lives in spends its attention on its own 6-hourly
+snapshot commits. Two earlier fixes chased symptoms of that — bot commits excluded from
+the counts, then `lastActivityAt` replacing `pushedAt` so its own pushes stopped
+refreshing its status. Hiding it removes the cause. A useful side effect: the snapshot no
+longer changes just because the collector ran, so a genuinely quiet cron tick can finally
+produce a byte-identical file and skip the commit.
+
+`repo-radar-paper` joined the list for the same reason, and it showed the symptom more
+sharply: every commit in it is the bot filing an edition, so with bots filtered out it
+carried *zero* commits, and being freshly created it was recent enough to lead the paper
+— a top story with nothing to report. Anything whose only commits come from this
+pipeline belongs in `hide`.
 
 ---
 

@@ -4,7 +4,7 @@
   "includeForks": false,
   "includeArchived": false,
 
-  "hide": ["repo-radar"],
+  "hide": ["repo-radar", "repo-radar-paper"],
   "pin": [],
   "statusOverrides": {},
 
