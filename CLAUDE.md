@@ -18,10 +18,35 @@ cron (6h) → scripts/collect.mjs → GitHub GraphQL API
           → data/snapshot.json (committed)
           → Pages redeploys
           → index.html fetches the JSON and renders
+                          ↓
+              raw.githubusercontent.com
+                          ↓
+          repo-radar-paper (a separate repo and a separate Pages site)
 ```
 
 No API keys in the browser. No build step. No dependencies. The page is one file that
 reads one JSON file.
+
+### `data/snapshot.json` has a second consumer — check before you change its shape
+
+**[repo-radar-paper](https://github.com/joseph-robert-f/repo-radar-paper)** renders the
+same snapshot as a newspaper front page. It is a separate repository because GitHub
+Pages allows one site per repo, and it reads this repo's published snapshot over
+`raw.githubusercontent.com` on its own 6-hourly cron. No token, no cross-repo
+credentials — that only works because this repo is public.
+
+Two things follow, and both are easy to forget:
+
+- **The snapshot is a published interface now, not a private file.** Renaming or dropping
+  a field breaks a site in another repo, and nothing here will fail to tell you. Adding
+  fields is safe; the paper ignores what it doesn't know.
+- **Anything hidden here is hidden there too.** `hide` currently holds `repo-radar` *and*
+  `repo-radar-paper`, both for the same reason — a pipeline that measures its own
+  plumbing (see decision 6). Any future repo whose only commits come from this pipeline
+  belongs in that list.
+
+The paper keeps its own daily archive under `editions/` and does its own presentation
+work; nothing over there needs anything from here except the snapshot.
 
 ---
 
@@ -33,7 +58,7 @@ reads one JSON file.
 | 2 — real collector, public-only, config wired up | ✅ shipped |
 | 3 — dashboard polish | ✅ shipped |
 | 4 — task view refinements | ⬜ not started |
-| 5 — verification pass on the live cron | ⬜ partial |
+| 5 — verification pass on the live cron | ✅ done bar the browser check |
 
 Phase 2 replaced the sample data with a real collector. `scripts/make-sample.mjs` is
 gone, and with it the `sample: true` flag and the yellow scaffold banner.
@@ -302,7 +327,7 @@ only signal.
 
 ## Verification checklist
 
-- [x] `node scripts/selftest.mjs` passes (23 checks)
+- [x] `node scripts/selftest.mjs` passes (34 checks)
 - [x] All three GraphQL documents validate against GitHub's published schema
 - [x] Page renders in light, dark, and at 390px with no console errors
 - [x] Snapshot contains no private repo names, no `redacted`/`sample` flags
@@ -311,8 +336,8 @@ only signal.
 - [x] Rate-limit headroom logged in the workflow output
 - [x] The scheduled cron fires and succeeds unattended
 - [x] A collect with no new activity produces a byte-identical snapshot (`selftest.mjs`)
+- [x] A real cron tick with no new activity commits nothing
 - [ ] Pages URL loads with real data
-- [ ] A real cron tick with no new activity commits nothing
 
 First live run (2026-08-06, run #2 on `main`): 13 public repos, 37 commits/7d, 5 open
 PRs, 0 open issues, 26 tasks, 13 needing attention, 312 commits in the heatmap, 0
@@ -320,12 +345,21 @@ private repos. 7 GraphQL requests, ~28 points against the 5,000/hour budget. The
 snapshot commit landed as `3ad00a2` and deploy went green. Run #4 was the first
 unattended cron run and also went green.
 
-The two remaining boxes. The deploy job reports success every run but the Pages URL
-itself has never been fetched — the sandbox this was built in can't reach `github.io`,
-so load it once by hand. And the no-op-commit path is proven in `selftest.mjs` but has
-not yet been seen on a real tick; it couldn't fire at all before the clock-drift fix
-(see decision 5a), so watch for a quiet tick logging `only the timestamp moved — not
-committing`.
+**The no-op tick finally happened.** Run #39, an unattended cron at 2026-08-13T07:11Z,
+logged `only the timestamp moved — not committing` and still deployed green. That path
+could not fire at all before the clock-drift fix (decision 5a) and the `pushedAt` fix
+(decision 6), so it is the piece of evidence both of those were really after. Thirty
+consecutive green runs at the time of writing.
+
+One consequence to expect and not misread: `generatedAt` in the committed snapshot now
+lags the last *check* by however long the quiet stretch is. Ten hours old means ten
+hours of nothing happening, not a broken collector. The page's badge is worded for
+exactly this.
+
+**The one remaining box.** The deploy job reports success every run, but nobody has ever
+fetched the Pages URL. Every environment this has been built in blocks `github.io` at
+the network policy — `curl` gets a 403 at the proxy's CONNECT, not from GitHub — so it
+needs a human with an ordinary browser to load it once.
 
 ---
 
@@ -348,3 +382,19 @@ no-op-commit check depends on.
 **Later.** Daily snapshot history for trend sparklines · "copy last 24h as markdown"
 standup export · weekly digest via a second workflow · extend to repos Joe contributes
 to rather than owns.
+
+**Housekeeping, found by a systems check on 2026-08-13 and not yet done.** None of it is
+breaking anything today.
+
+- `actions/checkout@v4` and `actions/setup-node@v4` target Node 20, which GitHub has
+  deprecated; every run is already being forced onto Node 24 and warns about it. `@v5`
+  of both is the fix. Same warning applies to `configure-pages@v5` in the paper repo.
+- This repo's GitHub description still reads *"Phase 1: scaffold, sample data, Pages
+  deploy"*, which has been wrong since Phase 2. `repo-radar-paper` has no description at
+  all.
+- Three merged branches are still on the remote here — `claude/repo-radar-phase-2-duj0g4`,
+  `claude/repo-radar-hide-self-duj0g4`, `claude/repo-radar-newspaper-duj0g4` — plus
+  `claude/paper-sprint-3-set-in-type` over in the paper repo. They cost nothing but
+  clutter; note that agent sandboxes here cannot delete remote branches (the push is
+  refused and reports "Everything up-to-date"), so this one needs a human or the GitHub
+  UI.
