@@ -29,13 +29,13 @@ jobs:
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          # Node 20 went EOL and the runner now forces actions onto 24 anyway,
-          # logging a deprecation warning on every run. collect.mjs needs
-          # nothing newer than native fetch, so it runs fine on either.
+          # collect.mjs needs nothing newer than native fetch. Pinned to 24
+          # because that is what the runner uses anyway; the @v5 actions above
+          # are what stopped the Node 20 deprecation warning on every run.
           node-version: "24"
 
       - name: Self-test the derivation logic
@@ -105,7 +105,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Pick up the snapshot the collect job just pushed.
           ref: ${{ github.ref }}

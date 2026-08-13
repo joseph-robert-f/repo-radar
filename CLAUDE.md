@@ -38,8 +38,16 @@ credentials — that only works because this repo is public.
 Two things follow, and both are easy to forget:
 
 - **The snapshot is a published interface now, not a private file.** Renaming or dropping
-  a field breaks a site in another repo, and nothing here will fail to tell you. Adding
-  fields is safe; the paper ignores what it doesn't know.
+  a field breaks a site in another repo. Adding fields is safe; the paper ignores what it
+  doesn't know.
+
+  **You will find out, but not from here.** Nothing in this repo checks it — every test
+  here passes whatever you do to the shape. The paper runs
+  `scripts/check-snapshot.mjs` on each refresh against the 64 fields it reads, so a rename
+  turns *its* build red within six hours, naming the field and the sections that died with
+  it. If you deliberately change the shape, change that contract in the same sitting; if
+  you see the paper's workflow go red just after touching `derive.mjs`, that is what it is
+  telling you.
 - **Anything hidden here is hidden there too.** `hide` currently holds `repo-radar` *and*
   `repo-radar-paper`, both for the same reason — a pipeline that measures its own
   plumbing (see decision 6). Any future repo whose only commits come from this pipeline
@@ -386,9 +394,10 @@ to rather than owns.
 **Housekeeping, found by a systems check on 2026-08-13 and not yet done.** None of it is
 breaking anything today.
 
-- `actions/checkout@v4` and `actions/setup-node@v4` target Node 20, which GitHub has
-  deprecated; every run is already being forced onto Node 24 and warns about it. `@v5`
-  of both is the fix. Same warning applies to `configure-pages@v5` in the paper repo.
+- ~~`actions/checkout@v4` and `actions/setup-node@v4` target the deprecated Node 20.~~
+  ✅ Both on `@v5` now, here and in the paper. `configure-pages@v5`,
+  `upload-pages-artifact@v3` and `deploy-pages@v4` are already the current majors, so the
+  Node 20 warning they still emit is upstream's to fix, not ours.
 - This repo's GitHub description still reads *"Phase 1: scaffold, sample data, Pages
   deploy"*, which has been wrong since Phase 2. `repo-radar-paper` has no description at
   all.
