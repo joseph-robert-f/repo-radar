@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-13T16:38:03.345Z",
+  "generatedAt": "2026-08-13T18:48:01.944Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 0,
+    "openPRs": 1,
     "openIssues": 1,
     "commits7d": 21,
     "needsAttention": 2
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-13T11:37:36.000Z",
+      "lastActivityAt": "2026-08-13T16:50:12.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -84,9 +84,27 @@
           "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/0c87960d15e5f7e3fbbab09c6f36c4f6bd76318b"
         }
       ],
-      "openPRs": [],
+      "openPRs": [
+        {
+          "number": 16,
+          "title": "Resolve backlog systems and release blockers",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
+          "isDraft": true,
+          "createdAt": "2026-08-13T16:46:11Z",
+          "updatedAt": "2026-08-13T16:52:19Z",
+          "reviewDecision": null,
+          "additions": 15846,
+          "deletions": 451,
+          "headRef": "codex/p1-release-hardening"
+        }
+      ],
       "openIssues": [],
       "branches": [
+        {
+          "name": "codex/p1-release-hardening",
+          "lastCommit": "2026-08-13T16:50:12Z",
+          "unmergedCommits": 2
+        },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
           "lastCommit": "2026-08-04T14:30:12Z",
@@ -128,9 +146,9 @@
       "counts": {
         "commits7d": 14,
         "commits30d": 34,
-        "openPRs": 0,
+        "openPRs": 1,
         "openIssues": 0,
-        "branches": 1
+        "branches": 2
       }
     },
     {
@@ -832,7 +850,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "lastActivityAt": "2026-06-14T18:31:54.000Z",
-      "status": "idle",
+      "status": "dormant",
       "pinned": false,
       "commits": [
         {
@@ -1211,6 +1229,16 @@
       "createdAt": "2026-05-08T19:56:14Z",
       "updatedAt": "2026-05-08T19:56:14Z",
       "stale": true
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#16 Resolve backlog systems and release blockers",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
+      "createdAt": "2026-08-13T16:46:11Z",
+      "updatedAt": "2026-08-13T16:52:19Z",
+      "isDraft": true,
+      "stale": false
     }
   ],
   "attention": [
