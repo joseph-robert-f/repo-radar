@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-13T18:48:01.944Z",
+  "generatedAt": "2026-08-14T01:03:23.866Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 1,
+    "openPRs": 2,
     "openIssues": 1,
     "commits7d": 21,
     "needsAttention": 2
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-13T16:50:12.000Z",
+      "lastActivityAt": "2026-08-13T19:24:25.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -86,15 +86,27 @@
       ],
       "openPRs": [
         {
+          "number": 17,
+          "title": "PR #16 review follow-up: nine verified fixes (F1-F9)",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/17",
+          "isDraft": false,
+          "createdAt": "2026-08-13T22:18:40Z",
+          "updatedAt": "2026-08-13T22:18:40Z",
+          "reviewDecision": null,
+          "additions": 1615,
+          "deletions": 424,
+          "headRef": "claude/pr-16-review-vbsw8q"
+        },
+        {
           "number": 16,
-          "title": "Resolve backlog systems and release blockers",
+          "title": "Harden the v0.1 local release and PostgreSQL runtime",
           "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
           "isDraft": true,
           "createdAt": "2026-08-13T16:46:11Z",
-          "updatedAt": "2026-08-13T16:52:19Z",
+          "updatedAt": "2026-08-13T19:59:02Z",
           "reviewDecision": null,
-          "additions": 15846,
-          "deletions": 451,
+          "additions": 15977,
+          "deletions": 595,
           "headRef": "codex/p1-release-hardening"
         }
       ],
@@ -102,8 +114,13 @@
       "branches": [
         {
           "name": "codex/p1-release-hardening",
-          "lastCommit": "2026-08-13T16:50:12Z",
-          "unmergedCommits": 2
+          "lastCommit": "2026-08-13T19:24:25Z",
+          "unmergedCommits": 4
+        },
+        {
+          "name": "claude/pr-16-review-vbsw8q",
+          "lastCommit": "2026-08-13T22:17:59Z",
+          "unmergedCommits": 14
         },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
@@ -112,7 +129,6 @@
         }
       ],
       "daily": [
-        0,
         0,
         0,
         0,
@@ -141,14 +157,15 @@
         0,
         7,
         6,
-        1
+        1,
+        0
       ],
       "counts": {
         "commits7d": 14,
         "commits30d": 34,
-        "openPRs": 1,
+        "openPRs": 2,
         "openIssues": 0,
-        "branches": 2
+        "branches": 3
       }
     },
     {
@@ -349,7 +366,6 @@
         }
       ],
       "daily": [
-        1,
         2,
         2,
         1,
@@ -378,7 +394,8 @@
         1,
         1,
         1,
-        1
+        1,
+        0
       ],
       "counts": {
         "commits7d": 7,
@@ -447,10 +464,10 @@
         0,
         0,
         0,
-        0,
         1,
         0,
         3,
+        0,
         0,
         0,
         0,
@@ -521,8 +538,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -573,8 +590,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -1233,11 +1250,21 @@
     {
       "type": "pr",
       "repo": "headless-blender-character-builder",
-      "title": "#16 Resolve backlog systems and release blockers",
+      "title": "#16 Harden the v0.1 local release and PostgreSQL runtime",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
       "createdAt": "2026-08-13T16:46:11Z",
-      "updatedAt": "2026-08-13T16:52:19Z",
+      "updatedAt": "2026-08-13T19:59:02Z",
       "isDraft": true,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#17 PR #16 review follow-up: nine verified fixes (F1-F9)",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/17",
+      "createdAt": "2026-08-13T22:18:40Z",
+      "updatedAt": "2026-08-13T22:18:40Z",
+      "isDraft": false,
       "stale": false
     }
   ],
@@ -1262,10 +1289,6 @@
     }
   ],
   "heatmap": [
-    {
-      "date": "2025-08-14",
-      "count": 0
-    },
     {
       "date": "2025-08-15",
       "count": 0
@@ -2721,6 +2744,10 @@
     {
       "date": "2026-08-13",
       "count": 2
+    },
+    {
+      "date": "2026-08-14",
+      "count": 0
     }
   ]
 }
