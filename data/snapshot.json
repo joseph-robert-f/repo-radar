@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-14T01:03:23.866Z",
+  "generatedAt": "2026-08-14T12:40:23.247Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 2,
+    "openPRs": 1,
     "openIssues": 1,
     "commits7d": 21,
     "needsAttention": 2
@@ -19,7 +19,7 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-13T19:24:25.000Z",
+      "lastActivityAt": "2026-08-14T12:28:22.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
@@ -86,27 +86,15 @@
       ],
       "openPRs": [
         {
-          "number": 17,
-          "title": "PR #16 review follow-up: nine verified fixes (F1-F9)",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/17",
-          "isDraft": false,
-          "createdAt": "2026-08-13T22:18:40Z",
-          "updatedAt": "2026-08-13T22:18:40Z",
-          "reviewDecision": null,
-          "additions": 1615,
-          "deletions": 424,
-          "headRef": "claude/pr-16-review-vbsw8q"
-        },
-        {
           "number": 16,
           "title": "Harden the v0.1 local release and PostgreSQL runtime",
           "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
-          "isDraft": true,
+          "isDraft": false,
           "createdAt": "2026-08-13T16:46:11Z",
-          "updatedAt": "2026-08-13T19:59:02Z",
+          "updatedAt": "2026-08-14T12:40:23Z",
           "reviewDecision": null,
-          "additions": 15977,
-          "deletions": 595,
+          "additions": 17259,
+          "deletions": 686,
           "headRef": "codex/p1-release-hardening"
         }
       ],
@@ -114,13 +102,8 @@
       "branches": [
         {
           "name": "codex/p1-release-hardening",
-          "lastCommit": "2026-08-13T19:24:25Z",
-          "unmergedCommits": 4
-        },
-        {
-          "name": "claude/pr-16-review-vbsw8q",
-          "lastCommit": "2026-08-13T22:17:59Z",
-          "unmergedCommits": 14
+          "lastCommit": "2026-08-14T12:28:22Z",
+          "unmergedCommits": 15
         },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
@@ -163,9 +146,9 @@
       "counts": {
         "commits7d": 14,
         "commits30d": 34,
-        "openPRs": 2,
+        "openPRs": 1,
         "openIssues": 0,
-        "branches": 3
+        "branches": 2
       }
     },
     {
@@ -176,10 +159,16 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-13T10:45:10.000Z",
+      "lastActivityAt": "2026-08-14T10:47:25.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
+        {
+          "sha": "c859852",
+          "message": "Add 14 August 2026 AI News Digest Report (#39)",
+          "date": "2026-08-14T10:47:25Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/c859852082b88294d7247973f62d357ea6cda03b"
+        },
         {
           "sha": "8318760",
           "message": "Add 13 August 2026 AI News Digest Report (#38)",
@@ -233,12 +222,6 @@
           "message": "Add 5 August 2026 AI News Digest Report",
           "date": "2026-08-05T10:47:03Z",
           "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/f0eb7b0774da1de179e5e5fc1e6388165469cf92"
-        },
-        {
-          "sha": "3cc3559",
-          "message": "Merge pull request #21 from joseph-robert-f/automation/daily-github-a…",
-          "date": "2026-08-04T14:19:26Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/3cc3559d96cd4fb09584e4844bc14b993b4877ea"
         }
       ],
       "openPRs": [],
@@ -355,6 +338,11 @@
           "unmergedCommits": 1
         },
         {
+          "name": "claude/eager-clarke-6agm0b",
+          "lastCommit": "2026-08-14T10:47:05Z",
+          "unmergedCommits": 1
+        },
+        {
           "name": "claude/eager-clarke-1amvpe",
           "lastCommit": "2026-08-13T10:44:45Z",
           "unmergedCommits": 1
@@ -395,14 +383,14 @@
         1,
         1,
         1,
-        0
+        1
       ],
       "counts": {
         "commits7d": 7,
         "commits30d": 33,
         "openPRs": 0,
         "openIssues": 1,
-        "branches": 22
+        "branches": 23
       }
     },
     {
@@ -1253,17 +1241,7 @@
       "title": "#16 Harden the v0.1 local release and PostgreSQL runtime",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
       "createdAt": "2026-08-13T16:46:11Z",
-      "updatedAt": "2026-08-13T19:59:02Z",
-      "isDraft": true,
-      "stale": false
-    },
-    {
-      "type": "pr",
-      "repo": "headless-blender-character-builder",
-      "title": "#17 PR #16 review follow-up: nine verified fixes (F1-F9)",
-      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/17",
-      "createdAt": "2026-08-13T22:18:40Z",
-      "updatedAt": "2026-08-13T22:18:40Z",
+      "updatedAt": "2026-08-14T12:40:23Z",
       "isDraft": false,
       "stale": false
     }
@@ -2747,7 +2725,7 @@
     },
     {
       "date": "2026-08-14",
-      "count": 0
+      "count": 1
     }
   ]
 }
