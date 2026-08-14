@@ -1,16 +1,90 @@
 {
-  "generatedAt": "2026-08-14T12:40:23.247Z",
+  "generatedAt": "2026-08-14T15:23:27.198Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 1,
+    "openPRs": 2,
     "openIssues": 1,
-    "commits7d": 21,
-    "needsAttention": 2
+    "commits7d": 50,
+    "needsAttention": 0
   },
   "repos": [
+    {
+      "name": "Localize-News",
+      "url": "https://github.com/joseph-robert-f/Localize-News",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-14T15:22:15.000Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "712a2c6",
+          "message": "Merge pull request #22 from joseph-robert-f/fix/manual-issue-name-mat…",
+          "date": "2026-08-14T15:22:15Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/712a2c634bfe968b663a3a61f621af0a4d206a91"
+        },
+        {
+          "sha": "7edbc45",
+          "message": "Merge pull request #21 from joseph-robert-f/feat/portal-page-filter",
+          "date": "2026-08-14T15:21:33Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7edbc453af4b3d812836aa99c1ea7fa15325ec98"
+        },
+        {
+          "sha": "7880b8c",
+          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
+          "date": "2026-08-04T14:19:32Z",
+          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [],
+      "daily": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "counts": {
+        "commits7d": 2,
+        "commits30d": 3,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 0
+      }
+    },
     {
       "name": "headless-blender-character-builder",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder",
@@ -19,91 +93,108 @@
       "isFork": false,
       "isArchived": false,
       "defaultBranch": "main",
-      "lastActivityAt": "2026-08-14T12:28:22.000Z",
+      "lastActivityAt": "2026-08-14T14:50:39.000Z",
       "status": "hot",
       "pinned": false,
       "commits": [
         {
-          "sha": "207daf1",
-          "message": "Merge pull request #15 from joseph-robert-f/codex/p1-release-hardening",
-          "date": "2026-08-13T11:37:36Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/207daf12a6a33e96a84834de0fa8d0446f3ec58b"
+          "sha": "2bcd64c",
+          "message": "Merge pull request #19 from joseph-robert-f/claude/pr-16-review-vbsw8q",
+          "date": "2026-08-14T14:50:39Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/2bcd64cb238e5e0aaf45fb4ef40735f5397decd7"
         },
         {
-          "sha": "b221ff5",
-          "message": "Make doctor capacity test portable",
-          "date": "2026-08-12T19:12:18Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/b221ff5dafaa5e11edf6e29049cc781e728ba88a"
+          "sha": "a8792ea",
+          "message": "Pin the source-only release transaction's load-bearing doc claims",
+          "date": "2026-08-14T14:02:16Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/a8792ead823766aa239b5d30d1f22aeaf007b138"
         },
         {
-          "sha": "8de594f",
-          "message": "Harden release and service lifecycle controls",
-          "date": "2026-08-12T18:15:33Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/8de594f80525754f06dc802414f8c490220ab3c3"
+          "sha": "64dd470",
+          "message": "Record D-069 source-only publication decision and changelog entry",
+          "date": "2026-08-14T14:01:52Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/64dd470941076ca4d8a818145cab681f12c3820d"
         },
         {
-          "sha": "6dfd075",
-          "message": "Merge pull request #14 from joseph-robert-f/codex/service-onboarding-…",
-          "date": "2026-08-12T12:59:06Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/6dfd07567fda32d6601c8ee987bec072dff91ade"
+          "sha": "4dd21e2",
+          "message": "Document a fail-closed source-only v0.1 release transaction",
+          "date": "2026-08-14T14:01:32Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/4dd21e215041251cd6e7a396dadb4e47477c8ee5"
         },
         {
-          "sha": "087c5f2",
-          "message": "Merge pull request #13 from joseph-robert-f/codex/onboarding-diagnostics",
-          "date": "2026-08-12T12:56:52Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/087c5f299993ce063c9b7fa400d7164a0b07f9ba"
+          "sha": "9d6b8a8",
+          "message": "Merge pull request #18 from joseph-robert-f/claude/pr-16-review-vbsw8q",
+          "date": "2026-08-14T13:37:00Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/9d6b8a8b73e9361f826683f15764f3d6ebce4aa3"
         },
         {
-          "sha": "a398d23",
-          "message": "Make local service onboarding checkout-safe",
-          "date": "2026-08-12T12:34:03Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/a398d2346ea8238a2eafe46e3d2292a3a813b8a5"
+          "sha": "737236b",
+          "message": "T5 follow-up: list spec_version among the excerpt's elided fields",
+          "date": "2026-08-14T13:06:23Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/737236b0d08bcea1a7a364895e356ab1acb98099"
         },
         {
-          "sha": "5bf3e2f",
-          "message": "Improve onboarding failure diagnostics",
-          "date": "2026-08-12T11:05:54Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/5bf3e2f5eab1d50000bdfaa89c9e482e8838d2ec"
+          "sha": "1124bf6",
+          "message": "T5: revise README for a beginner-first read",
+          "date": "2026-08-14T13:03:41Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/1124bf672dd13617c11c2073cd2a4322daf29dac"
         },
         {
-          "sha": "9258d6d",
-          "message": "Merge pull request #12 from joseph-robert-f/agent/update-debian-base",
-          "date": "2026-08-11T16:35:25Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/9258d6d6ac786bd24eecbfa88b66db05a3c88f3e"
+          "sha": "3349944",
+          "message": "T4: link the vulnerability review from the documentation index",
+          "date": "2026-08-14T12:57:30Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/3349944685bdecdcd4ceafbdd5c0db1e5535cefc"
         },
         {
-          "sha": "dadcf91",
-          "message": "Update Debian base image",
-          "date": "2026-08-11T15:58:35Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/dadcf9159236d5a144d25c8871fc7cc74dd9b1bf"
+          "sha": "3b87911",
+          "message": "T3: add D-068 decision-ledger entry for postgres runtime hardening",
+          "date": "2026-08-14T12:57:15Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/3b87911fbb47d29250ac6cc4e65c0e49871a377b"
         },
         {
-          "sha": "0c87960",
-          "message": "Merge pull request #11 from joseph-robert-f/agent/public-readiness",
-          "date": "2026-08-11T13:13:02Z",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/0c87960d15e5f7e3fbbab09c6f36c4f6bd76318b"
+          "sha": "9cd69cf",
+          "message": "T2: remove dead BuildStateStore protocol",
+          "date": "2026-08-14T12:55:40Z",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/commit/9cd69cfc7ea79de3ad0a099f11f1fa66a20315a2"
         }
       ],
       "openPRs": [
         {
-          "number": 16,
-          "title": "Harden the v0.1 local release and PostgreSQL runtime",
-          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
+          "number": 21,
+          "title": "Fail the weekly dependency audit once disposition expiry is near",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/21",
           "isDraft": false,
-          "createdAt": "2026-08-13T16:46:11Z",
-          "updatedAt": "2026-08-14T12:40:23Z",
+          "createdAt": "2026-08-14T15:13:37Z",
+          "updatedAt": "2026-08-14T15:14:00Z",
           "reviewDecision": null,
-          "additions": 17259,
-          "deletions": 686,
-          "headRef": "codex/p1-release-hardening"
+          "additions": 22,
+          "deletions": 0,
+          "headRef": "claude/dependency-expiry-runway"
+        },
+        {
+          "number": 20,
+          "title": "Release-day step 8: record the published v0.1.0-rc.1 source-only Release",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/20",
+          "isDraft": true,
+          "createdAt": "2026-08-14T14:53:29Z",
+          "updatedAt": "2026-08-14T15:08:33Z",
+          "reviewDecision": null,
+          "additions": 15,
+          "deletions": 12,
+          "headRef": "claude/pr-16-review-vbsw8q"
         }
       ],
       "openIssues": [],
       "branches": [
         {
-          "name": "codex/p1-release-hardening",
-          "lastCommit": "2026-08-14T12:28:22Z",
-          "unmergedCommits": 15
+          "name": "claude/pr-16-review-vbsw8q",
+          "lastCommit": "2026-08-14T14:53:04Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/dependency-expiry-runway",
+          "lastCommit": "2026-08-14T15:13:07Z",
+          "unmergedCommits": 1
         },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
@@ -140,15 +231,15 @@
         0,
         7,
         6,
-        1,
-        0
+        15,
+        13
       ],
       "counts": {
-        "commits7d": 14,
-        "commits30d": 34,
-        "openPRs": 1,
+        "commits7d": 41,
+        "commits30d": 61,
+        "openPRs": 2,
         "openIssues": 0,
-        "branches": 2
+        "branches": 3
       }
     },
     {
@@ -471,79 +562,6 @@
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
-      }
-    },
-    {
-      "name": "Localize-News",
-      "url": "https://github.com/joseph-robert-f/Localize-News",
-      "description": null,
-      "language": "TypeScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "lastActivityAt": "2026-08-04T14:19:32.000Z",
-      "status": "active",
-      "pinned": false,
-      "commits": [
-        {
-          "sha": "7880b8c",
-          "message": "Merge pull request #20 from joseph-robert-f/fix/017-immutable-array-t…",
-          "date": "2026-08-04T14:19:32Z",
-          "url": "https://github.com/joseph-robert-f/Localize-News/commit/7880b8cbc22022de57d55068aa0894d9b320042b"
-        }
-      ],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [
-        {
-          "name": "fix/manual-issue-name-matching",
-          "lastCommit": "2026-05-08T19:30:16Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "feat/portal-page-filter",
-          "lastCommit": "2026-05-08T19:56:14Z",
-          "unmergedCommits": 1
-        }
-      ],
-      "daily": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "counts": {
-        "commits7d": 0,
-        "commits30d": 1,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 2
       }
     },
     {
@@ -1218,54 +1236,27 @@
   ],
   "tasks": [
     {
-      "type": "branch",
-      "repo": "Localize-News",
-      "title": "fix/manual-issue-name-matching · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
-      "createdAt": "2026-05-08T19:30:16Z",
-      "updatedAt": "2026-05-08T19:30:16Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "Localize-News",
-      "title": "feat/portal-page-filter · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
-      "createdAt": "2026-05-08T19:56:14Z",
-      "updatedAt": "2026-05-08T19:56:14Z",
-      "stale": true
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#20 Release-day step 8: record the published v0.1.0-rc.1 source-only Release",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/20",
+      "createdAt": "2026-08-14T14:53:29Z",
+      "updatedAt": "2026-08-14T15:08:33Z",
+      "isDraft": true,
+      "stale": false
     },
     {
       "type": "pr",
       "repo": "headless-blender-character-builder",
-      "title": "#16 Harden the v0.1 local release and PostgreSQL runtime",
-      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/16",
-      "createdAt": "2026-08-13T16:46:11Z",
-      "updatedAt": "2026-08-14T12:40:23Z",
+      "title": "#21 Fail the weekly dependency audit once disposition expiry is near",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/21",
+      "createdAt": "2026-08-14T15:13:37Z",
+      "updatedAt": "2026-08-14T15:14:00Z",
       "isDraft": false,
       "stale": false
     }
   ],
-  "attention": [
-    {
-      "type": "branch",
-      "repo": "Localize-News",
-      "title": "fix/manual-issue-name-matching · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Localize-News/tree/fix/manual-issue-name-matching",
-      "createdAt": "2026-05-08T19:30:16Z",
-      "updatedAt": "2026-05-08T19:30:16Z",
-      "stale": true
-    },
-    {
-      "type": "branch",
-      "repo": "Localize-News",
-      "title": "feat/portal-page-filter · 1 unmerged",
-      "url": "https://github.com/joseph-robert-f/Localize-News/tree/feat/portal-page-filter",
-      "createdAt": "2026-05-08T19:56:14Z",
-      "updatedAt": "2026-05-08T19:56:14Z",
-      "stale": true
-    }
-  ],
+  "attention": [],
   "heatmap": [
     {
       "date": "2025-08-15",
@@ -2333,7 +2324,7 @@
     },
     {
       "date": "2026-05-08",
-      "count": 1
+      "count": 3
     },
     {
       "date": "2026-05-09",
@@ -2721,11 +2712,11 @@
     },
     {
       "date": "2026-08-13",
-      "count": 2
+      "count": 16
     },
     {
       "date": "2026-08-14",
-      "count": 1
+      "count": 16
     }
   ]
 }
