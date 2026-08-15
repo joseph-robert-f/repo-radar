@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T06:19:51.474Z",
+  "generatedAt": "2026-08-15T12:17:18.324Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -11,6 +11,253 @@
     "needsAttention": 0
   },
   "repos": [
+    {
+      "name": "ai-news-digest",
+      "url": "https://github.com/joseph-robert-f/ai-news-digest",
+      "description": null,
+      "language": "HTML",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-15T10:45:03.000Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "af36f51",
+          "message": "Add 15 August 2026 AI News Digest Report (#40)",
+          "date": "2026-08-15T10:45:03Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/af36f51d36dfa6c258cd96d7d1347ddc1a3c60b7"
+        },
+        {
+          "sha": "c859852",
+          "message": "Add 14 August 2026 AI News Digest Report (#39)",
+          "date": "2026-08-14T10:47:25Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/c859852082b88294d7247973f62d357ea6cda03b"
+        },
+        {
+          "sha": "8318760",
+          "message": "Add 13 August 2026 AI News Digest Report (#38)",
+          "date": "2026-08-13T10:45:10Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/8318760dcde3b7c216f33cfd1361b64dca5d6376"
+        },
+        {
+          "sha": "db6995d",
+          "message": "Add 12 August 2026 AI News Digest Report (#37)",
+          "date": "2026-08-12T10:49:32Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/db6995dd1748c77939cc9b0bc0fd1ebfd5328029"
+        },
+        {
+          "sha": "0242890",
+          "message": "Add 11 August 2026 AI News Digest Report",
+          "date": "2026-08-11T10:47:27Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/024289061f701e3a32bc7e3e70278ea93bcd039d"
+        },
+        {
+          "sha": "9e0ac48",
+          "message": "Add 10 August 2026 AI News Digest Report (#36)",
+          "date": "2026-08-10T10:45:07Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9e0ac4881b717e7c54877da8cda2f6257e3c3ff9"
+        },
+        {
+          "sha": "9cbfdef",
+          "message": "Add 9 August 2026 AI News Digest Report",
+          "date": "2026-08-09T10:48:13Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9cbfdefca5b7ce7c8b42b83fee878045be4e48f6"
+        },
+        {
+          "sha": "4435cb3",
+          "message": "Add 8 August 2026 AI News Digest Report (#33)",
+          "date": "2026-08-08T10:45:01Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/4435cb3f1f1f20ee7d80f6e3c740e643e3a6cdb0"
+        },
+        {
+          "sha": "7e0339d",
+          "message": "Add 7 August 2026 AI News Digest Report",
+          "date": "2026-08-07T10:47:21Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7e0339d8a518e324118b627a2e5f01730f050037"
+        },
+        {
+          "sha": "7fed534",
+          "message": "Add 6 August 2026 AI News Digest Report",
+          "date": "2026-08-06T10:46:27Z",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7fed53422e708b5f980933b8b8187f02cea42cbc"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [
+        {
+          "number": 35,
+          "title": "GitHub activity digest — 2026-08-09",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/35",
+          "labels": [],
+          "createdAt": "2026-08-09T13:47:08Z",
+          "updatedAt": "2026-08-09T13:47:08Z",
+          "assigned": false
+        }
+      ],
+      "branches": [
+        {
+          "name": "claude/wonderful-hopper-27a6qq",
+          "lastCommit": "2026-07-02T16:47:33Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-w19x1r",
+          "lastCommit": "2026-08-12T10:49:10Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-rxdssh",
+          "lastCommit": "2026-08-03T10:49:05Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-rac7ie",
+          "lastCommit": "2026-08-06T10:45:53Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ltevu3",
+          "lastCommit": "2026-07-22T10:46:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-lkelva",
+          "lastCommit": "2026-07-11T10:44:24Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-j4u3kx",
+          "lastCommit": "2026-07-23T10:44:56Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-imv6i4",
+          "lastCommit": "2026-07-26T10:43:59Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-hfwpz0",
+          "lastCommit": "2026-07-24T10:45:15Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-gkn88p",
+          "lastCommit": "2026-07-19T10:48:23Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-g7t58q",
+          "lastCommit": "2026-07-21T10:46:09Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-ehh01k",
+          "lastCommit": "2026-07-13T10:45:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dv51kp",
+          "lastCommit": "2026-07-14T12:20:42Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dj1ubj",
+          "lastCommit": "2026-07-28T10:48:02Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-db2001",
+          "lastCommit": "2026-07-06T10:49:11Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-dag6ss",
+          "lastCommit": "2026-08-01T10:43:37Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-d88pg7",
+          "lastCommit": "2026-08-10T10:44:42Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-cws7ld",
+          "lastCommit": "2026-07-09T10:44:21Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-22azs4",
+          "lastCommit": "2026-08-08T10:44:43Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-6g2vte",
+          "lastCommit": "2026-07-12T11:35:03Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-6agm0b",
+          "lastCommit": "2026-08-14T10:47:05Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-05u5cf",
+          "lastCommit": "2026-08-15T10:44:45Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-1amvpe",
+          "lastCommit": "2026-08-13T10:44:45Z",
+          "unmergedCommits": 1
+        },
+        {
+          "name": "claude/eager-clarke-0hon4m",
+          "lastCommit": "2026-08-02T10:47:55Z",
+          "unmergedCommits": 1
+        }
+      ],
+      "daily": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "counts": {
+        "commits7d": 7,
+        "commits30d": 32,
+        "openPRs": 0,
+        "openIssues": 1,
+        "branches": 24
+      }
+    },
     {
       "name": "headless-blender-character-builder",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder",
@@ -223,248 +470,6 @@
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
-      }
-    },
-    {
-      "name": "ai-news-digest",
-      "url": "https://github.com/joseph-robert-f/ai-news-digest",
-      "description": null,
-      "language": "HTML",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "lastActivityAt": "2026-08-14T10:47:25.000Z",
-      "status": "hot",
-      "pinned": false,
-      "commits": [
-        {
-          "sha": "c859852",
-          "message": "Add 14 August 2026 AI News Digest Report (#39)",
-          "date": "2026-08-14T10:47:25Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/c859852082b88294d7247973f62d357ea6cda03b"
-        },
-        {
-          "sha": "8318760",
-          "message": "Add 13 August 2026 AI News Digest Report (#38)",
-          "date": "2026-08-13T10:45:10Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/8318760dcde3b7c216f33cfd1361b64dca5d6376"
-        },
-        {
-          "sha": "db6995d",
-          "message": "Add 12 August 2026 AI News Digest Report (#37)",
-          "date": "2026-08-12T10:49:32Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/db6995dd1748c77939cc9b0bc0fd1ebfd5328029"
-        },
-        {
-          "sha": "0242890",
-          "message": "Add 11 August 2026 AI News Digest Report",
-          "date": "2026-08-11T10:47:27Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/024289061f701e3a32bc7e3e70278ea93bcd039d"
-        },
-        {
-          "sha": "9e0ac48",
-          "message": "Add 10 August 2026 AI News Digest Report (#36)",
-          "date": "2026-08-10T10:45:07Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9e0ac4881b717e7c54877da8cda2f6257e3c3ff9"
-        },
-        {
-          "sha": "9cbfdef",
-          "message": "Add 9 August 2026 AI News Digest Report",
-          "date": "2026-08-09T10:48:13Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/9cbfdefca5b7ce7c8b42b83fee878045be4e48f6"
-        },
-        {
-          "sha": "4435cb3",
-          "message": "Add 8 August 2026 AI News Digest Report (#33)",
-          "date": "2026-08-08T10:45:01Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/4435cb3f1f1f20ee7d80f6e3c740e643e3a6cdb0"
-        },
-        {
-          "sha": "7e0339d",
-          "message": "Add 7 August 2026 AI News Digest Report",
-          "date": "2026-08-07T10:47:21Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7e0339d8a518e324118b627a2e5f01730f050037"
-        },
-        {
-          "sha": "7fed534",
-          "message": "Add 6 August 2026 AI News Digest Report",
-          "date": "2026-08-06T10:46:27Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/7fed53422e708b5f980933b8b8187f02cea42cbc"
-        },
-        {
-          "sha": "f0eb7b0",
-          "message": "Add 5 August 2026 AI News Digest Report",
-          "date": "2026-08-05T10:47:03Z",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/commit/f0eb7b0774da1de179e5e5fc1e6388165469cf92"
-        }
-      ],
-      "openPRs": [],
-      "openIssues": [
-        {
-          "number": 35,
-          "title": "GitHub activity digest — 2026-08-09",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/35",
-          "labels": [],
-          "createdAt": "2026-08-09T13:47:08Z",
-          "updatedAt": "2026-08-09T13:47:08Z",
-          "assigned": false
-        }
-      ],
-      "branches": [
-        {
-          "name": "claude/wonderful-hopper-27a6qq",
-          "lastCommit": "2026-07-02T16:47:33Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-w19x1r",
-          "lastCommit": "2026-08-12T10:49:10Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-rxdssh",
-          "lastCommit": "2026-08-03T10:49:05Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-rac7ie",
-          "lastCommit": "2026-08-06T10:45:53Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-ltevu3",
-          "lastCommit": "2026-07-22T10:46:02Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-lkelva",
-          "lastCommit": "2026-07-11T10:44:24Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-j4u3kx",
-          "lastCommit": "2026-07-23T10:44:56Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-imv6i4",
-          "lastCommit": "2026-07-26T10:43:59Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-hfwpz0",
-          "lastCommit": "2026-07-24T10:45:15Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-gkn88p",
-          "lastCommit": "2026-07-19T10:48:23Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-g7t58q",
-          "lastCommit": "2026-07-21T10:46:09Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-ehh01k",
-          "lastCommit": "2026-07-13T10:45:02Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-dv51kp",
-          "lastCommit": "2026-07-14T12:20:42Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-dj1ubj",
-          "lastCommit": "2026-07-28T10:48:02Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-db2001",
-          "lastCommit": "2026-07-06T10:49:11Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-dag6ss",
-          "lastCommit": "2026-08-01T10:43:37Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-d88pg7",
-          "lastCommit": "2026-08-10T10:44:42Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-cws7ld",
-          "lastCommit": "2026-07-09T10:44:21Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-22azs4",
-          "lastCommit": "2026-08-08T10:44:43Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-6g2vte",
-          "lastCommit": "2026-07-12T11:35:03Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-6agm0b",
-          "lastCommit": "2026-08-14T10:47:05Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-1amvpe",
-          "lastCommit": "2026-08-13T10:44:45Z",
-          "unmergedCommits": 1
-        },
-        {
-          "name": "claude/eager-clarke-0hon4m",
-          "lastCommit": "2026-08-02T10:47:55Z",
-          "unmergedCommits": 1
-        }
-      ],
-      "daily": [
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        0
-      ],
-      "counts": {
-        "commits7d": 7,
-        "commits30d": 31,
-        "openPRs": 0,
-        "openIssues": 1,
-        "branches": 23
       }
     },
     {
@@ -2689,7 +2694,7 @@
     },
     {
       "date": "2026-08-15",
-      "count": 0
+      "count": 1
     }
   ]
 }
