@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-16T12:17:59.940Z",
+  "generatedAt": "2026-08-16T18:13:57.883Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 1,
+    "openPRs": 2,
     "openIssues": 1,
     "commits7d": 52,
     "needsAttention": 0
@@ -87,12 +87,12 @@
       "openPRs": [],
       "openIssues": [
         {
-          "number": 41,
-          "title": "GitHub activity digest — 2026-08-15",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/41",
+          "number": 43,
+          "title": "GitHub activity digest — 2026-08-16",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/43",
           "labels": [],
-          "createdAt": "2026-08-15T13:27:54Z",
-          "updatedAt": "2026-08-15T13:27:54Z",
+          "createdAt": "2026-08-16T13:28:40Z",
+          "updatedAt": "2026-08-16T13:28:40Z",
           "assigned": false
         }
       ],
@@ -339,23 +339,40 @@
       "openPRs": [
         {
           "number": 20,
-          "title": "Right-size the release process (D-070) and record the v0.1.0-rc.1 source-only Release",
+          "title": "Release-day final step: record the published v0.1.0-rc.1 source-only Release",
           "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/20",
           "isDraft": true,
           "createdAt": "2026-08-14T14:53:29Z",
-          "updatedAt": "2026-08-15T03:03:10Z",
+          "updatedAt": "2026-08-16T13:03:02Z",
           "reviewDecision": null,
-          "additions": 1291,
-          "deletions": 1221,
+          "additions": 15,
+          "deletions": 12,
           "headRef": "claude/pr-16-review-vbsw8q"
+        },
+        {
+          "number": 22,
+          "title": "Right-size the release process for a solo maintainer (D-070)",
+          "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/22",
+          "isDraft": false,
+          "createdAt": "2026-08-16T13:02:55Z",
+          "updatedAt": "2026-08-16T13:02:55Z",
+          "reviewDecision": null,
+          "additions": 1276,
+          "deletions": 1209,
+          "headRef": "claude/release-right-sizing-d070"
         }
       ],
       "openIssues": [],
       "branches": [
         {
+          "name": "claude/release-right-sizing-d070",
+          "lastCommit": "2026-08-16T13:02:13Z",
+          "unmergedCommits": 1
+        },
+        {
           "name": "claude/pr-16-review-vbsw8q",
-          "lastCommit": "2026-08-15T03:02:09Z",
-          "unmergedCommits": 2
+          "lastCommit": "2026-08-16T13:02:33Z",
+          "unmergedCommits": 1
         },
         {
           "name": "claude/blender-3d-print-cli-review-xp4mbg",
@@ -398,9 +415,9 @@
       "counts": {
         "commits7d": 43,
         "commits30d": 63,
-        "openPRs": 1,
+        "openPRs": 2,
         "openIssues": 0,
-        "branches": 2
+        "branches": 3
       }
     },
     {
@@ -1231,10 +1248,20 @@
     {
       "type": "pr",
       "repo": "headless-blender-character-builder",
-      "title": "#20 Right-size the release process (D-070) and record the v0.1.0-rc.1 source-only Release",
+      "title": "#22 Right-size the release process for a solo maintainer (D-070)",
+      "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/22",
+      "createdAt": "2026-08-16T13:02:55Z",
+      "updatedAt": "2026-08-16T13:02:55Z",
+      "isDraft": false,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "headless-blender-character-builder",
+      "title": "#20 Release-day final step: record the published v0.1.0-rc.1 source-only Release",
       "url": "https://github.com/joseph-robert-f/headless-blender-character-builder/pull/20",
       "createdAt": "2026-08-14T14:53:29Z",
-      "updatedAt": "2026-08-15T03:03:10Z",
+      "updatedAt": "2026-08-16T13:03:02Z",
       "isDraft": true,
       "stale": false
     }
