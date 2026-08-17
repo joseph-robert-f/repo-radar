@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T00:38:33.550Z",
+  "generatedAt": "2026-08-17T12:21:50.819Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,7 +7,7 @@
     "activeRepos": 4,
     "openPRs": 2,
     "openIssues": 1,
-    "commits7d": 52,
+    "commits7d": 51,
     "needsAttention": 0
   },
   "repos": [
@@ -256,8 +256,8 @@
         0
       ],
       "counts": {
-        "commits7d": 7,
-        "commits30d": 31,
+        "commits7d": 6,
+        "commits30d": 30,
         "openPRs": 0,
         "openIssues": 1,
         "branches": 25
