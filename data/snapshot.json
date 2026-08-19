@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T18:21:47.185Z",
+  "generatedAt": "2026-08-19T00:38:12.998Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,10 +7,102 @@
     "activeRepos": 4,
     "openPRs": 1,
     "openIssues": 1,
-    "commits7d": 46,
+    "commits7d": 47,
     "needsAttention": 0
   },
   "repos": [
+    {
+      "name": "career_search",
+      "url": "https://github.com/joseph-robert-f/career_search",
+      "description": null,
+      "language": "TypeScript",
+      "isFork": false,
+      "isArchived": false,
+      "defaultBranch": "main",
+      "lastActivityAt": "2026-08-18T18:44:15.000Z",
+      "status": "hot",
+      "pinned": false,
+      "commits": [
+        {
+          "sha": "b5ae7be",
+          "message": "Add interested jobs tracker",
+          "date": "2026-08-18T18:44:15Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/b5ae7be85ec4229143f58568b6544618020404be"
+        },
+        {
+          "sha": "cd12eee",
+          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
+          "date": "2026-08-05T14:57:32Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
+        },
+        {
+          "sha": "1610b30",
+          "message": "Build packages before workspace tests",
+          "date": "2026-08-05T14:52:16Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
+        },
+        {
+          "sha": "b9caa47",
+          "message": "Build Career Clarity voice journal",
+          "date": "2026-08-05T14:38:29Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
+        },
+        {
+          "sha": "8ee286c",
+          "message": "Initial commit",
+          "date": "2026-08-03T12:54:06Z",
+          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
+        }
+      ],
+      "openPRs": [],
+      "openIssues": [],
+      "branches": [
+        {
+          "name": "claude/career-search-os-setup-1i740k",
+          "lastCommit": "2026-08-18T19:42:23Z",
+          "unmergedCommits": 3
+        }
+      ],
+      "daily": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "counts": {
+        "commits7d": 1,
+        "commits30d": 5,
+        "openPRs": 0,
+        "openIssues": 0,
+        "branches": 1
+      }
+    },
     {
       "name": "ai-news-digest",
       "url": "https://github.com/joseph-robert-f/ai-news-digest",
@@ -243,7 +335,6 @@
         1,
         1,
         1,
-        1,
         2,
         1,
         1,
@@ -258,7 +349,8 @@
         1,
         1,
         0,
-        1
+        1,
+        0
       ],
       "counts": {
         "commits7d": 6,
@@ -381,7 +473,6 @@
         0,
         0,
         0,
-        0,
         4,
         9,
         4,
@@ -398,6 +489,7 @@
         0,
         1,
         1,
+        0,
         0
       ],
       "counts": {
@@ -457,7 +549,6 @@
         0,
         0,
         0,
-        0,
         1,
         0,
         0,
@@ -472,91 +563,12 @@
         0,
         0,
         0,
+        0,
         0
       ],
       "counts": {
         "commits7d": 2,
         "commits30d": 3,
-        "openPRs": 0,
-        "openIssues": 0,
-        "branches": 0
-      }
-    },
-    {
-      "name": "career_search",
-      "url": "https://github.com/joseph-robert-f/career_search",
-      "description": null,
-      "language": "TypeScript",
-      "isFork": false,
-      "isArchived": false,
-      "defaultBranch": "main",
-      "lastActivityAt": "2026-08-05T14:57:32.000Z",
-      "status": "active",
-      "pinned": false,
-      "commits": [
-        {
-          "sha": "cd12eee",
-          "message": "Merge pull request #1 from joseph-robert-f/codex/career-clarity-voice…",
-          "date": "2026-08-05T14:57:32Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/cd12eeefbab05b7e97045ce6cd612d43eb7495e2"
-        },
-        {
-          "sha": "1610b30",
-          "message": "Build packages before workspace tests",
-          "date": "2026-08-05T14:52:16Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/1610b3063eb773fb6dc4216451db50f9fb731854"
-        },
-        {
-          "sha": "b9caa47",
-          "message": "Build Career Clarity voice journal",
-          "date": "2026-08-05T14:38:29Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/b9caa477c8e64399e9cd10072f35dc3c6a90fcec"
-        },
-        {
-          "sha": "8ee286c",
-          "message": "Initial commit",
-          "date": "2026-08-03T12:54:06Z",
-          "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
-        }
-      ],
-      "openPRs": [],
-      "openIssues": [],
-      "branches": [],
-      "daily": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        3,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "counts": {
-        "commits7d": 0,
-        "commits30d": 4,
         "openPRs": 0,
         "openIssues": 0,
         "branches": 0
@@ -589,8 +601,8 @@
         0,
         0,
         0,
-        0,
         1,
+        0,
         0,
         0,
         0,
@@ -1246,10 +1258,6 @@
   ],
   "attention": [],
   "heatmap": [
-    {
-      "date": "2025-08-19",
-      "count": 0
-    },
     {
       "date": "2025-08-20",
       "count": 0
@@ -2704,7 +2712,11 @@
     },
     {
       "date": "2026-08-18",
-      "count": 1
+      "count": 2
+    },
+    {
+      "date": "2026-08-19",
+      "count": 0
     }
   ]
 }
