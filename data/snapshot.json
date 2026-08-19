@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-19T12:23:19.240Z",
+  "generatedAt": "2026-08-19T18:18:25.973Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
     "repos": 12,
     "activeRepos": 4,
-    "openPRs": 1,
+    "openPRs": 2,
     "openIssues": 1,
-    "commits7d": 46,
+    "commits7d": 42,
     "needsAttention": 0
   },
   "repos": [
@@ -87,12 +87,12 @@
       "openPRs": [],
       "openIssues": [
         {
-          "number": 46,
-          "title": "GitHub activity digest — 2026-08-18",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/46",
+          "number": 47,
+          "title": "GitHub activity digest — 2026-08-19",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/47",
           "labels": [],
-          "createdAt": "2026-08-18T13:40:16Z",
-          "updatedAt": "2026-08-18T13:40:16Z",
+          "createdAt": "2026-08-19T13:41:47Z",
+          "updatedAt": "2026-08-19T13:41:47Z",
           "assigned": false
         }
       ],
@@ -311,13 +311,26 @@
           "url": "https://github.com/joseph-robert-f/career_search/commit/8ee286ccd270cc69fbc8987591fc16f549a2a583"
         }
       ],
-      "openPRs": [],
+      "openPRs": [
+        {
+          "number": 2,
+          "title": "Rebuild career_search as a career-search operating system",
+          "url": "https://github.com/joseph-robert-f/career_search/pull/2",
+          "isDraft": false,
+          "createdAt": "2026-08-19T16:03:21Z",
+          "updatedAt": "2026-08-19T16:04:01Z",
+          "reviewDecision": null,
+          "additions": 4022,
+          "deletions": 26148,
+          "headRef": "claude/career-search-os-setup-1i740k"
+        }
+      ],
       "openIssues": [],
       "branches": [
         {
           "name": "claude/career-search-os-setup-1i740k",
-          "lastCommit": "2026-08-18T19:42:23Z",
-          "unmergedCommits": 3
+          "lastCommit": "2026-08-19T16:03:58Z",
+          "unmergedCommits": 6
         }
       ],
       "daily": [
@@ -355,7 +368,7 @@
       "counts": {
         "commits7d": 1,
         "commits30d": 5,
-        "openPRs": 0,
+        "openPRs": 1,
         "openIssues": 0,
         "branches": 1
       }
@@ -493,7 +506,7 @@
         0
       ],
       "counts": {
-        "commits7d": 37,
+        "commits7d": 33,
         "commits30d": 65,
         "openPRs": 1,
         "openIssues": 0,
@@ -1253,6 +1266,16 @@
       "createdAt": "2026-08-14T14:53:29Z",
       "updatedAt": "2026-08-16T13:03:02Z",
       "isDraft": true,
+      "stale": false
+    },
+    {
+      "type": "pr",
+      "repo": "career_search",
+      "title": "#2 Rebuild career_search as a career-search operating system",
+      "url": "https://github.com/joseph-robert-f/career_search/pull/2",
+      "createdAt": "2026-08-19T16:03:21Z",
+      "updatedAt": "2026-08-19T16:04:01Z",
+      "isDraft": false,
       "stale": false
     }
   ],
