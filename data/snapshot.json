@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T12:26:06.881Z",
+  "generatedAt": "2026-08-20T18:22:46.556Z",
   "user": "joseph-robert-f",
   "scope": "public",
   "summary": {
@@ -7,7 +7,7 @@
     "activeRepos": 4,
     "openPRs": 1,
     "openIssues": 1,
-    "commits7d": 47,
+    "commits7d": 45,
     "needsAttention": 0
   },
   "repos": [
@@ -87,12 +87,12 @@
       "openPRs": [],
       "openIssues": [
         {
-          "number": 47,
-          "title": "GitHub activity digest — 2026-08-19",
-          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/47",
+          "number": 49,
+          "title": "GitHub activity digest — 2026-08-20",
+          "url": "https://github.com/joseph-robert-f/ai-news-digest/issues/49",
           "labels": [],
-          "createdAt": "2026-08-19T13:41:47Z",
-          "updatedAt": "2026-08-19T13:41:47Z",
+          "createdAt": "2026-08-20T13:43:43Z",
+          "updatedAt": "2026-08-20T13:43:43Z",
           "assigned": false
         }
       ],
@@ -398,7 +398,7 @@
       "isArchived": false,
       "defaultBranch": "main",
       "lastActivityAt": "2026-08-17T13:30:38.000Z",
-      "status": "hot",
+      "status": "active",
       "pinned": false,
       "commits": [
         {
@@ -522,7 +522,7 @@
         0
       ],
       "counts": {
-        "commits7d": 31,
+        "commits7d": 29,
         "commits30d": 65,
         "openPRs": 1,
         "openIssues": 0,
